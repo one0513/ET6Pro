@@ -4,7 +4,7 @@ namespace ET
 {
     public interface IConfigLoader
     {
-        void GetAllConfigBytes(Dictionary<string, byte[]> output);
+        Dictionary<string, byte[]> GetAllConfigBytes();
         byte[] GetOneConfigBytes(string configName);
     }
 }

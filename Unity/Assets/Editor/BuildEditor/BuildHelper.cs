@@ -83,12 +83,12 @@ namespace ET
             buildParameters.BuildPipeline = EBuildPipeline.ScriptableBuildPipeline;
             buildParameters.SBPParameters = new BuildParameters.SBPBuildParameters();
             buildParameters.BuildMode = isBuildExe?EBuildMode.ForceRebuild:EBuildMode.IncrementalBuild;
-            buildParameters.BuildVersion = buildVersion;
-            buildParameters.BuildinTags = "buildin";
+            // buildParameters.BuildVersion = buildVersion;
+            // buildParameters.BuildinTags = "buildin";
             buildParameters.VerifyBuildingResult = true;
-            buildParameters.EnableAddressable = true;
-            buildParameters.CopyBuildinTagFiles = true;
-            buildParameters.EncryptionServices = new GameEncryption();
+            // buildParameters.EnableAddressable = true;
+            // buildParameters.CopyBuildinTagFiles = true;
+            // buildParameters.EncryptionServices = new GameEncryption();
             buildParameters.CompressOption = ECompressOption.LZ4;
             buildParameters.DisableWriteTypeTree = true;//禁止写入类型树结构（可以降低包体和内存并提高加载效率）
             

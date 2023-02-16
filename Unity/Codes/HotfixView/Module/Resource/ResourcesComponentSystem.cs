@@ -171,7 +171,7 @@ namespace ET
                     self.CachedAssetOperationHandles.RemoveAt(i);
                 }
             }
-            YooAssets.UnloadUnusedAssets();
+            
         }
 
         public static void ReleaseAsset(this ResourcesComponent self,UnityEngine.Object pooledGo)

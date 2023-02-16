@@ -5,81 +5,20 @@ using YooAsset;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
+using UniFramework.Event;
+using UniFramework.Module;
 using UnityEngine;
 namespace ET
 {
-	// 1 mono模式 2 ILRuntime模式 3 mono热重载模式
-	public enum CodeMode
-	{
-		Mono = 1,
-		Reload = 2,
-		Wolong = 3,
-	}
+
 	
 	public class Init: MonoBehaviour
 	{
-		public CodeMode CodeMode = CodeMode.Mono;
-
-		public YooAssets.EPlayMode PlayMode = YooAssets.EPlayMode.EditorSimulateMode;
-
-		private bool IsInit = false;
 		
-
-		private IEnumerator AwakeAsync()
+		public EPlayMode PlayMode = EPlayMode.EditorSimulateMode;
+		
+		private void Awake()
 		{
-			Define.Networked = Application.internetReachability != NetworkReachability.NotReachable;
-// #if !UNITY_EDITOR && !FORCE_UPDATE //编辑器模式下跳过更新
-// 			Define.Networked = Application.internetReachability != NetworkReachability.NotReachable;
-// #endif
-			
-
-
-#if UNITY_EDITOR
-			// 编辑器下的模拟模式
-			if (PlayMode == YooAssets.EPlayMode.EditorSimulateMode)
-			{
-				yield return YooAssetsMgr.Instance.Init(YooAssets.EPlayMode.EditorSimulateMode);
-				var createParameters = new YooAssets.EditorSimulateModeParameters();
-				createParameters.LocationServices = new AddressByPathLocationServices("Assets/AssetsPackage");
-				//createParameters.SimulatePatchManifestPath = GetPatchManifestPath();
-				yield return YooAssets.InitializeAsync(createParameters);
-			}
-			else
-#endif
-			// 单机运行模式
-			if (PlayMode == YooAssets.EPlayMode.OfflinePlayMode)
-			{
-				yield return YooAssetsMgr.Instance.Init(YooAssets.EPlayMode.OfflinePlayMode);
-				var createParameters = new YooAssets.OfflinePlayModeParameters();
-				createParameters.LocationServices = new AddressByPathLocationServices("Assets/AssetsPackage");
-				yield return YooAssets.InitializeAsync(createParameters);
-			}
-			// 联机运行模式
-			else
-			{
-				yield return YooAssetsMgr.Instance.Init(YooAssets.EPlayMode.HostPlayMode);
-				var createParameters = new YooAssets.HostPlayModeParameters();
-				createParameters.LocationServices = new AddressByPathLocationServices("Assets/AssetsPackage");
-				createParameters.DecryptionServices = new BundleDecryption();
-				createParameters.ClearCacheWhenDirty = true;
-				createParameters.DefaultHostServer = YooAssetsMgr.Instance.Config.RemoteCdnUrl+"/"+YooAssetsMgr.Instance.Config.Channel+"_"+PlatformUtil.GetStrPlatformIgnoreEditor();
-				createParameters.FallbackHostServer = YooAssetsMgr.Instance.Config.RemoteCdnUrl2+"/"+YooAssetsMgr.Instance.Config.Channel+"_"+PlatformUtil.GetStrPlatformIgnoreEditor();
-				createParameters.VerifyLevel = EVerifyLevel.High;
-				yield return YooAssets.InitializeAsync(createParameters);
-
-				// 先设置更新补丁清单
-				yield return  YooAssets.WeaklyUpdateManifestAsync(YooAssetsMgr.Instance.staticVersion);
-			}
-
-			InitUnitySetting();
-			
-			this.CodeMode = CodeMode.Wolong;
-// #if ENABLE_IL2CPP
-// 			this.CodeMode = CodeMode.Wolong;
-// #else
-// 			this.CodeMode = CodeMode.Mono;
-// #endif
-
 			System.AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
 			{
 				Log.Error(e.ExceptionObject.ToString());
@@ -88,59 +27,63 @@ namespace ET
 			SynchronizationContext.SetSynchronizationContext(ThreadSynchronizationContext.Instance);
 			CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
 			DontDestroyOnLoad(gameObject);
+			LitJson.UnityTypeBindings.Register();
 
 			ETTask.ExceptionHandler += Log.Error;
 
 			Log.ILog = new UnityLogger();
 
 			Options.Instance = new Options();
-
-			CodeLoader.Instance.CodeMode = this.CodeMode;
 			Options.Instance.Develop = 1;
 			Options.Instance.LogLevel = 0;
-			IsInit = true;
-			//AOT补元
-			CodeLoader.Instance.LoadMetadataForAOTAssembly();
-			CodeLoader.Instance.Start();
+			InitUnitySetting();
+			
 		}
+		
 
 		private void Start()
 		{
-			StartCoroutine(AwakeAsync());
+			// 初始化BetterStreaming
+			BetterStreamingAssets.Initialize();
+
+			// 初始化事件系统
+			UniEvent.Initalize();
+
+			// 初始化管理系统
+			UniModule.Initialize();
+
+			// 初始化资源系统
+			YooAssets.Initialize();
+			YooAssets.SetOperationSystemMaxTimeSlice(30);
+
+			// 创建补丁管理器
+			UniModule.CreateModule<PatchManager>();
+
+			// 开始补丁更新流程
+			PatchManager.Instance.Run(PlayMode);
 		}
 
 		private void Update()
 		{
-			if (!IsInit) return;
-			CodeLoader.Instance.Update?.Invoke();
-			if (CodeLoader.Instance.isReStart)
+			
+			if (CodeLoader.Instance.IsInit)
 			{
-				StartCoroutine(ReStart());
+				CodeLoader.Instance.Update();
 			}
-		}
-
-		public IEnumerator ReStart()
-		{
-			CodeLoader.Instance.isReStart = false;
-			yield return YooAssetsMgr.Instance.Init(YooAssets.PlayMode);
-			// 先设置更新补丁清单
-			yield return YooAssets.WeaklyUpdateManifestAsync(YooAssetsMgr.Instance.staticVersion);
-			Log.Debug("ReStart");
-			CodeLoader.Instance.OnApplicationQuit();
-			CodeLoader.Instance.Dispose();
-			CodeLoader.Instance.Start();
 		}
 
 		private void LateUpdate()
 		{
-			CodeLoader.Instance.LateUpdate?.Invoke();
-			CodeLoader.Instance.FrameFinishUpdate?.Invoke();
+			if (CodeLoader.Instance.IsInit)
+			{
+				CodeLoader.Instance.LateUpdate();
+			}
 		}
 
 		private void OnApplicationQuit()
 		{
-			CodeLoader.Instance.OnApplicationQuit();
-			CodeLoader.Instance.Dispose();
+			CodeLoader.Instance?.OnApplicationQuit();
+			CodeLoader.Instance?.Dispose();
 		}
 		
 		// 一些unity的设置项目

@@ -6,22 +6,14 @@ namespace ET
 {
        public class ConfigLoader: IConfigLoader
     {
-        public void GetAllConfigBytes(Dictionary<string, byte[]> output)
+        public Dictionary<string, byte[]> GetAllConfigBytes()
         {
-            Dictionary<string, TextAsset> keys = YooAssetsMgr.Instance.LoadAllTextAsset();
-
-            foreach (var kv in keys)
-            {
-                TextAsset v = kv.Value as TextAsset;
-                string key = kv.Key;
-                output[key] = v.bytes;
-            }
+            return AssetsBundleHelper.LoadSomeByteAssetSyncByTag("config");
         }
 
         public byte[] GetOneConfigBytes(string configName)
         {
-            TextAsset v = YooAssetsMgr.Instance.LoadTextAsset(configName) as TextAsset;
-            return v.bytes;
+            return  ((TextAsset)AssetsBundleHelper.LoadOneAssetSync("configName")).bytes;
         }
     }
 }

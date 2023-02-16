@@ -19,7 +19,7 @@ MonoBehaviour:
   hotUpdateAssemblyDefinitions:
   - {fileID: 5897886265953266890, guid: 56a1255879ec6714f96131eaa8f496b8, type: 3}
   hotUpdateAssemblies:
-  - Code1
+  - Code
   preserveHotUpdateAssemblies: []
   hotUpdateDllCompileOutputRootDir: HybridCLRData/HotUpdateDlls
   externalHotUpdateAssembliyDirs:

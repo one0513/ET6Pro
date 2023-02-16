@@ -52,7 +52,7 @@ namespace ET
 			List<Type> types = Game.EventSystem.GetTypes(TypeInfo<ConfigAttribute>.Type);
 
 			Dictionary<string, byte[]> configBytes = new Dictionary<string, byte[]>();
-			self.ConfigLoader.GetAllConfigBytes(configBytes);
+			configBytes = self.ConfigLoader.GetAllConfigBytes();
 
 			foreach (Type type in types)
 			{
@@ -66,7 +66,7 @@ namespace ET
 			List<Type> types = Game.EventSystem.GetTypes(TypeInfo<ConfigAttribute>.Type);
 
 			Dictionary<string, byte[]> configBytes = new Dictionary<string, byte[]>();
-			self.ConfigLoader.GetAllConfigBytes(configBytes);
+			configBytes =  self.ConfigLoader.GetAllConfigBytes();
 
 			using (ListComponent<Task> listTasks = ListComponent<Task>.Create())
 			{

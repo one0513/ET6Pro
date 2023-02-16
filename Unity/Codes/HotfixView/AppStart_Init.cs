@@ -44,10 +44,10 @@ namespace ET
             Game.Scene.AddComponent<SceneManagerComponent>();
             
             await UIManagerComponent.Instance.OpenWindow<UILoadingView>(UILoadingView.PrefabPath);
-            if(Define.Networked||Define.ForceUpdate)//有网络或者设置为默认强更新的情况下
-                await UIManagerComponent.Instance.OpenWindow<UIUpdateView,Action>(UIUpdateView.PrefabPath,StartGame);//尝试下载热更资源
-            else
-                StartGame();
+            // if(Define.Networked||Define.ForceUpdate)//有网络或者设置为默认强更新的情况下
+            //     await UIManagerComponent.Instance.OpenWindow<UIUpdateView,Action>(UIUpdateView.PrefabPath,StartGame);//尝试下载热更资源
+            // else
+            StartGame();
         }
         
         public void StartGame()

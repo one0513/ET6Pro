@@ -30,7 +30,7 @@ namespace ET
             self.Slider.SetValue(0);
             //如果这个界面依赖了其他没加载过的ab包，等会提示下载前会自动下载依赖包，所以这里需要提前预加载
             GameObjectPoolComponent.Instance.PreLoadGameObjectAsync(UIMsgBoxWin.PrefabPath,1).Coroutine();
-            self.StartCheckUpdate().Coroutine();
+            
         }
     }
     [FriendClass(typeof(UIUpdateView))]
@@ -78,34 +78,7 @@ namespace ET
             await UIManagerComponent.Instance.CloseWindow<UIMsgBoxWin>();
             return result;
         }
-        /// <summary>
-        /// 开始检测
-        /// </summary>
-        /// <param name="self"></param>
-        public static async ETTask StartCheckUpdate(this UIUpdateView self)
-        {
-            // await self.CheckIsInWhiteList();
-            //
-            // await self.CheckUpdateList();
-            //
-            // var Over = await self.CheckAppUpdate();
-            // if (Over) return;
-            
-            var isUpdateDone = await self.CheckResUpdate();
-            if (isUpdateDone)
-            {
-                Log.Info("更新完成，准备进入游戏");
-                self.UpdateFinishAndStartGame().Coroutine();
-            }
-            else
-            {
-                Log.Info("不需要更新，直接进入游戏");
-                self.OnOver?.Invoke();
-                await self.CloseSelf();
-            }
-        }
-
-        #region 更新流程
+        
         
         /// <summary>
         /// 白名单
@@ -269,134 +242,7 @@ namespace ET
             return false;
         }
         
-        /// <summary>
-        /// 资源更新检查，并根据版本来修改资源cdn地址
-        /// </summary>
-        /// <param name="self"></param>
-        /// <returns></returns>
-        public static async ETTask<bool> CheckResUpdate(this UIUpdateView self)
-        {
-            var appChannel = PlatformUtil.GetAppChannel();
-            var channel = YooAssetsMgr.Instance.Config.Channel;
-            self.StaticVersion = ServerConfigComponent.Instance.FindMaxUpdateResVer(appChannel, channel, out var verInfo);
-            if (self.StaticVersion < 0)
-            {
-                Log.Info("CheckResUpdate No Max Ver Channel = " + channel + " app_channel " + appChannel);
-                return false;
-            }
-            self.ForceUpdate = Define.ForceUpdate; 
-            if (!Define.ForceUpdate)//默认强更
-            {
-                if (verInfo != null && verInfo.force_update != 0)
-                    self.ForceUpdate = true;
-            }
-            // if (self.StaticVersion>= maxVer)
-            // {
-            //     Log.Info("CheckResUpdate ResVer is Most Max Version, so return;");
-            //     return false;
-            // }
-
-            // 编辑器下跳过。
-            // if (Define.IsEditor) return false;
-            if (YooAssets.PlayMode != YooAssets.EPlayMode.HostPlayMode)
-            {
-                Log.Info("非网络运行模式");
-                return false;
-            }
-            ETTask task = ETTask.Create(true);
-            // 更新补丁清单
-            Log.Info("更新补丁清单");
-            var operation = YooAssets.UpdateManifestAsync(self.StaticVersion, 30);
-            operation.Completed += (op) =>
-            {
-                task.SetResult();
-            };
-            await task;
-            int btnState;
-            if(operation.Status != EOperationStatus.Succeed)
-            {
-                btnState = await self.ShowMsgBoxView("Update_Get_Fail", "Update_ReTry", self.ForceUpdate?"Btn_Exit":"Update_Skip");
-                if (btnState == self.BTN_CONFIRM)
-                {
-                    return await self.CheckResUpdate();
-                }
-                else if(self.ForceUpdate)
-                {
-                    GameUtility.Quit();
-                    return false;
-                }
-            }
-
-            Log.Info("创建补丁下载器.");
-            int downloadingMaxNum = 10;
-            int failedTryAgain = 3;
-            self.Downloader = YooAssets.CreatePatchDownloader(downloadingMaxNum, failedTryAgain);
-            if (self.Downloader.TotalDownloadCount == 0)
-            {
-                Log.Info("没有发现需要下载的资源");
-                return false;
-            }
-            
-            //获取需要更新的大小
-            var size = self.Downloader.TotalDownloadBytes;
-            //提示给用户
-            Log.Info("downloadSize " + size);
-            double size_mb = size / (1024f * 1024f);
-            Log.Info("CheckResUpdate res size_mb is " + size_mb);//不屏蔽
-            if (size_mb > 0 && size_mb < 0.01) size_mb = 0.01;
-
-            var ct = I18NComponent.Instance.I18NGetParamText("Update_Info",size_mb.ToString("0.00"));
-            btnState = await self.ShowMsgBoxView(ct, "Global_Btn_Confirm", self.ForceUpdate?"Btn_Exit":"Update_Skip");
-            if (btnState == self.BTN_CANCEL)
-            {
-                if (self.ForceUpdate)
-                {
-                    GameUtility.Quit();
-                    return false;
-                }
-                return true;
-            }
-
-            //开始进行更新
-
-            self.LastProgress = 0;
-            self.SetProgress(0);
-            //2、更新资源
-            ETTask<bool> downloadTask = ETTask<bool>.Create(true);
-            self.Downloader.OnDownloadOverCallback += (a)=>{downloadTask.SetResult(a);};
-            self.Downloader.OnDownloadProgressCallback =(a,b,c,d)=>
-            {
-                self.SetProgress((float)d/c);
-            };
-            self.Downloader.BeginDownload();
-            Log.Info("CheckResUpdate DownloadContent begin");
-            bool result = await downloadTask;
-            if (!result) return false;
-            Log.Info("CheckResUpdate DownloadContent Success");
-            return true;
-        }
-        
-        /// <summary>
-        /// 更新完成
-        /// </summary>
-        /// <param name="self"></param>
-        private static async ETTask UpdateFinishAndStartGame(this UIUpdateView self)
-        {
-            PlayerPrefs.SetInt("STATIC_VERSION",self.StaticVersion);
-            PlayerPrefs.Save();
-            while (ResourcesComponent.Instance.IsProsessRunning())
-            {
-                await Game.WaitFrameFinish();
-            }
-            ResourcesComponent.Instance.ClearAssetsCache();
-            Game.Scene.RemoveAllComponent();
-            YooAssetsMgr.Instance.ClearConfigCache();
-            ObjectPool.Instance.Dispose();
-            //热修复
-            // AddressablesManager.Instance.StartInjectFix();
-            CodeLoader.Instance.ReStart();
-        }
-        #endregion
+      
 
     }
 }

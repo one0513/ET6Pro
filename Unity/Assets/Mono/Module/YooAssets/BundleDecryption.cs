@@ -2,11 +2,11 @@
 
 namespace YooAsset
 {
-    public class BundleDecryption : IDecryptionServices
-    {
-        public ulong GetFileOffset(DecryptionFileInfo fileInfo)
-        {
-            return YooAssetConst.Offset;
-        }
-    }
+    // public class BundleDecryption : IDecryptionServices
+    // {
+    //     public ulong GetFileOffset(DecryptionFileInfo fileInfo)
+    //     {
+    //         return YooAssetConst.Offset;
+    //     }
+    // }
 }
