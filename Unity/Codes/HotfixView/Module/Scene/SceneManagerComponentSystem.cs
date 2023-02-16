@@ -52,14 +52,14 @@ namespace ET
             CameraManagerComponent.Instance.SetCameraStackAtLoadingStart();
 
             //等待资源管理器加载任务结束，否则很多Unity版本在切场景时会有异常，甚至在真机上crash
-            Log.Info("InnerSwitchScene ProsessRunning Done ");
-            while (ResourcesComponent.Instance.IsProsessRunning())
-            {
-                await Game.WaitFrameFinish();
-            }
+            // Log.Info("InnerSwitchScene ProsessRunning Done ");
+            // while (ResourcesComponent.Instance.IsProsessRunning())
+            // {
+            //     await Game.WaitFrameFinish();
+            // }
             slid_value += 0.01f;
             Game.EventSystem.Publish(new UIEventType.LoadingProgress { Progress = slid_value });
-            await Game.WaitFrameFinish();
+            //await Game.WaitFrameFinish();
 
             //清理UI
             Log.Info("InnerSwitchScene Clean UI");
@@ -107,10 +107,10 @@ namespace ET
             GC.Collect();
 
             var res = Resources.UnloadUnusedAssets();
-            while (!res.isDone)
-            {
-                await Game.WaitFrameFinish();
-            }
+            // while (!res.isDone)
+            // {
+            //     await Game.WaitFrameFinish();
+            // }
             slid_value += 0.12f;
             Game.EventSystem.Publish(new UIEventType.LoadingProgress { Progress = slid_value });
 

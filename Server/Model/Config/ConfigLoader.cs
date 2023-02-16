@@ -17,7 +17,12 @@ namespace ET
             output["StartSceneConfigCategory"] = File.ReadAllBytes($"../Config/{Game.Options.StartConfig}/StartSceneConfigCategory.bytes");
             output["StartZoneConfigCategory"] = File.ReadAllBytes($"../Config/{Game.Options.StartConfig}/StartZoneConfigCategory.bytes");
         }
-        
+
+        public Dictionary<string, byte[]> GetAllConfigBytes()
+        {
+            return null;
+        }
+
         public byte[] GetOneConfigBytes(string configName)
         {
             byte[] configBytes = File.ReadAllBytes($"../Config/{configName}.bytes");
