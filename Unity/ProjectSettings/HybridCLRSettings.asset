@@ -18,10 +18,12 @@ MonoBehaviour:
   il2cppPlusRepoURL: https://github.com/526077247/il2cpp_plus
   hotUpdateAssemblyDefinitions:
   - {fileID: 5897886265953266890, guid: 56a1255879ec6714f96131eaa8f496b8, type: 3}
-  hotUpdateAssemblies: []
+  hotUpdateAssemblies:
+  - Code1
   preserveHotUpdateAssemblies: []
   hotUpdateDllCompileOutputRootDir: HybridCLRData/HotUpdateDlls
-  externalHotUpdateAssembliyDirs: []
+  externalHotUpdateAssembliyDirs:
+  - Temp\Bin\Debug
   strippedAOTDllOutputRootDir: HybridCLRData/AssembliesPostIl2CppStrip
   patchAOTAssemblies: []
   collectAssetReferenceTypes: 0

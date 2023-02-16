@@ -16,6 +16,6 @@ namespace ET
         public bool grayState;
         public string spritePath;
         public Button button;
-        public Image image;
+        public CSprite image;
     }
 }

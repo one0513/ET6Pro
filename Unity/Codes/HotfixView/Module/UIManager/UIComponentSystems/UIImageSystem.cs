@@ -34,7 +34,7 @@ namespace ET
         {
             if (self.image == null)
             {
-                self.image = self.GetGameObject().GetComponent<Image>();
+                self.image = self.GetGameObject().GetComponent<CSprite>();
                 if (self.image == null)
                 {
                     Log.Error($"添加UI侧组件UIImage时，物体{self.GetGameObject().name}上没有找到Image组件");

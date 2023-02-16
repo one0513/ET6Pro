@@ -27,10 +27,13 @@ namespace ET
 
 		private IEnumerator AwakeAsync()
 		{
-#if !UNITY_EDITOR && !FORCE_UPDATE //编辑器模式下跳过更新
 			Define.Networked = Application.internetReachability != NetworkReachability.NotReachable;
-#endif
+// #if !UNITY_EDITOR && !FORCE_UPDATE //编辑器模式下跳过更新
+// 			Define.Networked = Application.internetReachability != NetworkReachability.NotReachable;
+// #endif
 			
+
+
 #if UNITY_EDITOR
 			// 编辑器下的模拟模式
 			if (PlayMode == YooAssets.EPlayMode.EditorSimulateMode)
@@ -70,12 +73,12 @@ namespace ET
 
 			InitUnitySetting();
 			
-
-#if ENABLE_IL2CPP
 			this.CodeMode = CodeMode.Wolong;
-#else
-			this.CodeMode = CodeMode.Mono;
-#endif
+// #if ENABLE_IL2CPP
+// 			this.CodeMode = CodeMode.Wolong;
+// #else
+// 			this.CodeMode = CodeMode.Mono;
+// #endif
 
 			System.AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
 			{

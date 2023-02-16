@@ -402,6 +402,7 @@ namespace TMPro
                     case RuntimePlatform.Android:
                     case RuntimePlatform.IPhonePlayer:
                     case RuntimePlatform.tvOS:
+                    case RuntimePlatform.WindowsEditor:
                         SetPropertyUtility.SetStruct(ref m_HideMobileInput, value);
                         break;
                     default:
@@ -431,6 +432,7 @@ namespace TMPro
                         #endif
                     #endif
                     case RuntimePlatform.Switch:
+                    case RuntimePlatform.WindowsEditor:
                         return m_HideSoftKeyboard;
                     default:
                         return true;
@@ -455,6 +457,7 @@ namespace TMPro
                         #endif
                     #endif
                     case RuntimePlatform.Switch:
+                    case RuntimePlatform.WindowsEditor:
                         SetPropertyUtility.SetStruct(ref m_HideSoftKeyboard, value);
                         break;
                     default:

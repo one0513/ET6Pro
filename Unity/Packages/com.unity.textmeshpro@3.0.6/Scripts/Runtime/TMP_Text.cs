@@ -8,8 +8,6 @@ using Unity.Profiling;
 using UnityEngine;
 using UnityEngine.TextCore;
 using UnityEngine.UI;
-
-
 namespace TMPro
 {
     public interface ITextElement
@@ -178,6 +176,7 @@ namespace TMPro
         protected TMP_FontAsset m_currentFontAsset;
         protected bool m_isSDFShader;
 
+        protected bool isStartHtmlColor = false;
 
         /// <summary>
         /// The material to be assigned to this text object.
@@ -411,20 +410,17 @@ namespace TMPro
         /// <summary>
         /// Sets the color of the _OutlineColor property of the assigned material. Changing outline color will result in an instance of the material.
         /// </summary>
-        public Color32 outlineColor
+        public Color outlineColor
         {
             get
             {
-                if (m_sharedMaterial == null) return m_outlineColor;
-
-                m_outlineColor = m_sharedMaterial.GetColor(ShaderUtilities.ID_OutlineColor);
                 return m_outlineColor;
             }
 
-            set { if (m_outlineColor.Compare(value)) return; SetOutlineColor(value); m_havePropertiesChanged = true; m_outlineColor = value; SetVerticesDirty(); }
+            set { if (m_outlineColor.Compare(value)) return; m_havePropertiesChanged = true; m_outlineColor = value; SetVerticesDirty(); }
         }
         //[SerializeField]
-        protected Color32 m_outlineColor = Color.black;
+        protected Color m_outlineColor = Color.white;
 
 
         /// <summary>
@@ -434,16 +430,23 @@ namespace TMPro
         {
             get
             {
-                if (m_sharedMaterial == null) return m_outlineWidth;
-
-                m_outlineWidth = m_sharedMaterial.GetFloat(ShaderUtilities.ID_OutlineWidth);
                 return m_outlineWidth;
             }
-            set { if (m_outlineWidth == value) return; SetOutlineThickness(value); m_havePropertiesChanged = true; m_outlineWidth = value; SetVerticesDirty(); }
+            set { if (Math.Abs(m_outlineWidth - value) <= 0.001f) return; SetOutlineThickness(value); m_havePropertiesChanged = true; m_outlineWidth = value; SetVerticesDirty(); }
         }
         protected float m_outlineWidth = 0.0f;
 
 
+        private int _isGray = -1;
+        public int isGray
+        {
+            get
+            {
+                return _isGray;
+            }
+            set { _isGray = value; m_havePropertiesChanged = true;SetVerticesDirty(); }
+        }
+        
         /// <summary>
         /// The point size of the font.
         /// </summary>
@@ -1696,15 +1699,16 @@ namespace TMPro
         /// <returns></returns>
         protected virtual float GetPaddingForMaterial()
         {
+            Debug.Log("protected virtual float GetPaddingForMaterial()");
             ShaderUtilities.GetShaderPropertyIDs();
-
+            
             if (m_sharedMaterial == null) return 0;
-
-            m_padding = ShaderUtilities.GetPadding(m_sharedMaterial, m_enableExtraPadding, m_isUsingBold);
+            
+            m_padding = ShaderUtilities.GetPadding(m_sharedMaterial, m_enableExtraPadding, m_isUsingBold,this);
             m_isMaskingEnabled = ShaderUtilities.IsMaskingEnabled(m_sharedMaterial);
             m_isSDFShader = m_sharedMaterial.HasProperty(ShaderUtilities.ID_WeightNormal);
 
-            return m_padding;
+            return 0;
         }
 
 
@@ -1714,13 +1718,14 @@ namespace TMPro
         /// <returns></returns>
         protected virtual float GetPaddingForMaterial(Material mat)
         {
+            Debug.Log("protected virtual float GetPaddingForMaterial(Material mat)");
             if (mat == null)
                 return 0;
-
-            m_padding = ShaderUtilities.GetPadding(mat, m_enableExtraPadding, m_isUsingBold);
+            
+            m_padding = ShaderUtilities.GetPadding(mat, m_enableExtraPadding, m_isUsingBold,this);
             m_isMaskingEnabled = ShaderUtilities.IsMaskingEnabled(m_sharedMaterial);
             m_isSDFShader = mat.HasProperty(ShaderUtilities.ID_WeightNormal);
-
+            
             return m_padding;
         }
 
@@ -5535,11 +5540,17 @@ namespace TMPro
             m_textInfo.meshInfo[materialIndex].uvs2[3 + index_X4] = characterInfoArray[i].vertex_BR.uv2;
 
 
+            // Setup UVS3
+            m_textInfo.meshInfo[materialIndex].uvs3[0 + index_X4] = characterInfoArray[i].vertex_BL.uv3;
+            m_textInfo.meshInfo[materialIndex].uvs3[1 + index_X4] = characterInfoArray[i].vertex_TL.uv3;
+            m_textInfo.meshInfo[materialIndex].uvs3[2 + index_X4] = characterInfoArray[i].vertex_TR.uv3;
+            m_textInfo.meshInfo[materialIndex].uvs3[3 + index_X4] = characterInfoArray[i].vertex_BR.uv3;
+            
             // Setup UVS4
-            //m_textInfo.meshInfo[0].uvs4[0 + index_X4] = characterInfoArray[i].vertex_BL.uv4;
-            //m_textInfo.meshInfo[0].uvs4[1 + index_X4] = characterInfoArray[i].vertex_TL.uv4;
-            //m_textInfo.meshInfo[0].uvs4[2 + index_X4] = characterInfoArray[i].vertex_TR.uv4;
-            //m_textInfo.meshInfo[0].uvs4[3 + index_X4] = characterInfoArray[i].vertex_BR.uv4;
+            m_textInfo.meshInfo[materialIndex].uvs4[0 + index_X4] = characterInfoArray[i].vertex_BL.uv4;
+            m_textInfo.meshInfo[materialIndex].uvs4[1 + index_X4] = characterInfoArray[i].vertex_TL.uv4;
+            m_textInfo.meshInfo[materialIndex].uvs4[2 + index_X4] = characterInfoArray[i].vertex_TR.uv4;
+            m_textInfo.meshInfo[materialIndex].uvs4[3 + index_X4] = characterInfoArray[i].vertex_BR.uv4;
 
 
             // setup Vertex Colors
@@ -5547,6 +5558,12 @@ namespace TMPro
             m_textInfo.meshInfo[materialIndex].colors32[1 + index_X4] = characterInfoArray[i].vertex_TL.color;
             m_textInfo.meshInfo[materialIndex].colors32[2 + index_X4] = characterInfoArray[i].vertex_TR.color;
             m_textInfo.meshInfo[materialIndex].colors32[3 + index_X4] = characterInfoArray[i].vertex_BR.color;
+            
+            // steup Tangents
+            // m_textInfo.meshInfo[materialIndex].tangents[0 + index_X4] = characterInfoArray[i].vertex_BL.tangent;
+            // m_textInfo.meshInfo[materialIndex].tangents[1 + index_X4] = characterInfoArray[i].vertex_TL.tangent;
+            // m_textInfo.meshInfo[materialIndex].tangents[2 + index_X4] = characterInfoArray[i].vertex_TR.tangent;
+            // m_textInfo.meshInfo[materialIndex].tangents[3 + index_X4] = characterInfoArray[i].vertex_BR.tangent;
 
             m_textInfo.meshInfo[materialIndex].vertexCount = index_X4 + 4;
         }
@@ -5609,11 +5626,33 @@ namespace TMPro
             }
 
 
+            // Setup UVS3
+            m_textInfo.meshInfo[materialIndex].uvs3[0 + index_X4] = characterInfoArray[i].vertex_BL.uv3;
+            m_textInfo.meshInfo[materialIndex].uvs3[1 + index_X4] = characterInfoArray[i].vertex_TL.uv3;
+            m_textInfo.meshInfo[materialIndex].uvs3[2 + index_X4] = characterInfoArray[i].vertex_TR.uv3;
+            m_textInfo.meshInfo[materialIndex].uvs3[3 + index_X4] = characterInfoArray[i].vertex_BR.uv3;
+
+            if (isVolumetric)
+            {
+                m_textInfo.meshInfo[materialIndex].uvs3[4 + index_X4] = characterInfoArray[i].vertex_BL.uv3;
+                m_textInfo.meshInfo[materialIndex].uvs3[5 + index_X4] = characterInfoArray[i].vertex_TL.uv3;
+                m_textInfo.meshInfo[materialIndex].uvs3[6 + index_X4] = characterInfoArray[i].vertex_TR.uv3;
+                m_textInfo.meshInfo[materialIndex].uvs3[7 + index_X4] = characterInfoArray[i].vertex_BR.uv3;
+            }
+
             // Setup UVS4
-            //m_textInfo.meshInfo[0].uvs4[0 + index_X4] = characterInfoArray[i].vertex_BL.uv4;
-            //m_textInfo.meshInfo[0].uvs4[1 + index_X4] = characterInfoArray[i].vertex_TL.uv4;
-            //m_textInfo.meshInfo[0].uvs4[2 + index_X4] = characterInfoArray[i].vertex_TR.uv4;
-            //m_textInfo.meshInfo[0].uvs4[3 + index_X4] = characterInfoArray[i].vertex_BR.uv4;
+            m_textInfo.meshInfo[materialIndex].uvs4[0 + index_X4] = characterInfoArray[i].vertex_BL.uv4;
+            m_textInfo.meshInfo[materialIndex].uvs4[1 + index_X4] = characterInfoArray[i].vertex_TL.uv4;
+            m_textInfo.meshInfo[materialIndex].uvs4[2 + index_X4] = characterInfoArray[i].vertex_TR.uv4;
+            m_textInfo.meshInfo[materialIndex].uvs4[3 + index_X4] = characterInfoArray[i].vertex_BR.uv4;
+
+            if (isVolumetric)
+            {
+                m_textInfo.meshInfo[materialIndex].uvs4[4 + index_X4] = characterInfoArray[i].vertex_BL.uv4;
+                m_textInfo.meshInfo[materialIndex].uvs4[5 + index_X4] = characterInfoArray[i].vertex_TL.uv4;
+                m_textInfo.meshInfo[materialIndex].uvs4[6 + index_X4] = characterInfoArray[i].vertex_TR.uv4;
+                m_textInfo.meshInfo[materialIndex].uvs4[7 + index_X4] = characterInfoArray[i].vertex_BR.uv4;
+            }
 
 
             // setup Vertex Colors
@@ -5630,6 +5669,21 @@ namespace TMPro
                 m_textInfo.meshInfo[materialIndex].colors32[6 + index_X4] = backColor; //characterInfoArray[i].vertex_TR.color;
                 m_textInfo.meshInfo[materialIndex].colors32[7 + index_X4] = backColor; //characterInfoArray[i].vertex_BR.color;
             }
+            
+            // Setup Tangents
+            // m_textInfo.meshInfo[materialIndex].tangents[0 + index_X4] = characterInfoArray[i].vertex_BL.tangent;
+            // m_textInfo.meshInfo[materialIndex].tangents[1 + index_X4] = characterInfoArray[i].vertex_TL.tangent;
+            // m_textInfo.meshInfo[materialIndex].tangents[2 + index_X4] = characterInfoArray[i].vertex_TR.tangent;
+            // m_textInfo.meshInfo[materialIndex].tangents[3 + index_X4] = characterInfoArray[i].vertex_BR.tangent;
+
+            // 体积的tangents可能有其他用途
+            // if (isVolumetric)
+            // {
+                // m_textInfo.meshInfo[materialIndex].tangents[4 + index_X4] = characterInfoArray[i].vertex_BL.tangent;
+                // m_textInfo.meshInfo[materialIndex].tangents[5 + index_X4] = characterInfoArray[i].vertex_TL.tangent;
+                // m_textInfo.meshInfo[materialIndex].tangents[6 + index_X4] = characterInfoArray[i].vertex_TR.tangent;
+                // m_textInfo.meshInfo[materialIndex].tangents[7 + index_X4] = characterInfoArray[i].vertex_BR.tangent;
+            // }
 
             m_textInfo.meshInfo[materialIndex].vertexCount = index_X4 + (!isVolumetric ? 4 : 8);
         }
@@ -5673,11 +5727,17 @@ namespace TMPro
             m_textInfo.meshInfo[materialIndex].uvs2[3 + index_X4] = characterInfoArray[i].vertex_BR.uv2;
 
 
+            // Setup UVS3
+            m_textInfo.meshInfo[materialIndex].uvs3[0 + index_X4] = characterInfoArray[i].vertex_BL.uv3;
+            m_textInfo.meshInfo[materialIndex].uvs3[1 + index_X4] = characterInfoArray[i].vertex_TL.uv3;
+            m_textInfo.meshInfo[materialIndex].uvs3[2 + index_X4] = characterInfoArray[i].vertex_TR.uv3;
+            m_textInfo.meshInfo[materialIndex].uvs3[3 + index_X4] = characterInfoArray[i].vertex_BR.uv3;
+
             // Setup UVS4
-            //m_textInfo.meshInfo[0].uvs4[0 + index_X4] = characterInfoArray[i].vertex_BL.uv4;
-            //m_textInfo.meshInfo[0].uvs4[1 + index_X4] = characterInfoArray[i].vertex_TL.uv4;
-            //m_textInfo.meshInfo[0].uvs4[2 + index_X4] = characterInfoArray[i].vertex_TR.uv4;
-            //m_textInfo.meshInfo[0].uvs4[3 + index_X4] = characterInfoArray[i].vertex_BR.uv4;
+            m_textInfo.meshInfo[materialIndex].uvs4[0 + index_X4] = characterInfoArray[i].vertex_BL.uv4;
+            m_textInfo.meshInfo[materialIndex].uvs4[1 + index_X4] = characterInfoArray[i].vertex_TL.uv4;
+            m_textInfo.meshInfo[materialIndex].uvs4[2 + index_X4] = characterInfoArray[i].vertex_TR.uv4;
+            m_textInfo.meshInfo[materialIndex].uvs4[3 + index_X4] = characterInfoArray[i].vertex_BR.uv4;
 
 
             // setup Vertex Colors
@@ -5686,6 +5746,12 @@ namespace TMPro
             m_textInfo.meshInfo[materialIndex].colors32[2 + index_X4] = characterInfoArray[i].vertex_TR.color;
             m_textInfo.meshInfo[materialIndex].colors32[3 + index_X4] = characterInfoArray[i].vertex_BR.color;
 
+            // setup Tangents
+            // m_textInfo.meshInfo[materialIndex].tangents[0 + index_X4] = characterInfoArray[i].vertex_BL.tangent;
+            // m_textInfo.meshInfo[materialIndex].tangents[1 + index_X4] = characterInfoArray[i].vertex_TL.tangent;
+            // m_textInfo.meshInfo[materialIndex].tangents[2 + index_X4] = characterInfoArray[i].vertex_TR.tangent;
+            // m_textInfo.meshInfo[materialIndex].tangents[3 + index_X4] = characterInfoArray[i].vertex_BR.tangent;
+            
             m_textInfo.meshInfo[materialIndex].vertexCount = index_X4 + 4;
         }
 
@@ -6360,7 +6426,7 @@ namespace TMPro
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        protected float PackUV(float x, float y)
+        public float PackUV(float x, float y)
         {
             double x0 = (int)(x * 511);
             double y0 = (int)(y * 511);
@@ -6854,7 +6920,6 @@ namespace TMPro
             endIndex = startIndex;
             bool isTagSet = false;
             bool isValidHtmlTag = false;
-
             for (int i = startIndex; i < chars.Length && chars[i].unicode != 0 && tagCharCount < m_htmlTag.Length && chars[i].unicode != '<'; i++)
             {
                 int unicode = chars[i].unicode;
@@ -6889,7 +6954,7 @@ namespace TMPro
                             m_xmlAttribute[attributeIndex].valueStartIndex = tagCharCount - 1;
                             m_xmlAttribute[attributeIndex].valueLength += 1;
                         }
-                        else if (unicode == '"')
+                        else if (unicode == '"'||unicode == '\'')
                         {
                             tagUnitType = TagUnitType.Pixels;
                             tagValueType = m_xmlAttribute[attributeIndex].valueType = TagValueType.StringValue;
@@ -6964,7 +7029,7 @@ namespace TMPro
                         else if (tagValueType == TagValueType.StringValue)
                         {
                             // Compute HashCode value for the named tag.
-                            if (unicode != '"')
+                            if (unicode != '"'&&unicode != '\'')
                             {
                                 m_xmlAttribute[attributeIndex].valueHashCode = (m_xmlAttribute[attributeIndex].valueHashCode << 5) + m_xmlAttribute[attributeIndex].valueHashCode ^ unicode;
                                 m_xmlAttribute[attributeIndex].valueLength += 1;
@@ -7069,7 +7134,6 @@ namespace TMPro
             {
                 float value = 0;
                 float fontScale;
-
                 switch (m_xmlAttribute[0].nameHashCode)
                 {
                     case 98: // <b>
@@ -7475,7 +7539,10 @@ namespace TMPro
                         {
                             // Check for anyone registered to this callback
                             tempFont = OnFontAssetRequest?.Invoke(fontHashCode, new string(m_htmlTag, m_xmlAttribute[0].valueStartIndex, m_xmlAttribute[0].valueLength));
-
+                            if (tempFont == null)
+                            {
+                                tempFont = TMP_AssetsLoad.GetAssets<TMP_FontAsset>("Font/" + new string(m_htmlTag, m_xmlAttribute[0].valueStartIndex, m_xmlAttribute[0].valueLength));
+                            }
                             if (tempFont == null)
                             {
                                 // Load Font Asset
@@ -7512,7 +7579,8 @@ namespace TMPro
                             else
                             {
                                 // Load new material
-                                tempMaterial = Resources.Load<Material>(TMP_Settings.defaultFontAssetPath + new string(m_htmlTag, m_xmlAttribute[1].valueStartIndex, m_xmlAttribute[1].valueLength));
+                                // tempMaterial = Resources.Load<Material>(TMP_Settings.defaultFontAssetPath + new string(m_htmlTag, m_xmlAttribute[1].valueStartIndex, m_xmlAttribute[1].valueLength));
+                                tempMaterial = TMP_AssetsLoad.GetAssets<Material>(TMP_Settings.defaultFontAssetPath + new string(m_htmlTag, m_xmlAttribute[1].valueStartIndex, m_xmlAttribute[1].valueLength));
 
                                 if (tempMaterial == null)
                                     return false;
@@ -7578,7 +7646,8 @@ namespace TMPro
                         else
                         {
                             // Load new material
-                            tempMaterial = Resources.Load<Material>(TMP_Settings.defaultFontAssetPath + new string(m_htmlTag, m_xmlAttribute[0].valueStartIndex, m_xmlAttribute[0].valueLength));
+                            // tempMaterial = Resources.Load<Material>(TMP_Settings.defaultFontAssetPath + new string(m_htmlTag, m_xmlAttribute[0].valueStartIndex, m_xmlAttribute[0].valueLength));
+                            tempMaterial = TMP_AssetsLoad.GetAssets<Material>(TMP_Settings.defaultFontAssetPath + new string(m_htmlTag, m_xmlAttribute[0].valueStartIndex, m_xmlAttribute[0].valueLength));
 
                             if (tempMaterial == null)
                                 return false;
@@ -7770,6 +7839,7 @@ namespace TMPro
                         {
                             m_htmlColor = HexCharsToColor(m_htmlTag, tagCharCount);
                             m_colorStack.Add(m_htmlColor);
+                            isStartHtmlColor = true;
                             return true;
                         }
                         // <color=#FFF7> 4 Hex (short hand)
@@ -7777,6 +7847,7 @@ namespace TMPro
                         {
                             m_htmlColor = HexCharsToColor(m_htmlTag, tagCharCount);
                             m_colorStack.Add(m_htmlColor);
+                            isStartHtmlColor = true;
                             return true;
                         }
                         // <color=#FF00FF> 3 Hex pairs
@@ -7784,6 +7855,7 @@ namespace TMPro
                         {
                             m_htmlColor = HexCharsToColor(m_htmlTag, tagCharCount);
                             m_colorStack.Add(m_htmlColor);
+                            isStartHtmlColor = true;
                             return true;
                         }
                         // <color=#FF00FF00> 4 Hex pairs
@@ -7791,6 +7863,7 @@ namespace TMPro
                         {
                             m_htmlColor = HexCharsToColor(m_htmlTag, tagCharCount);
                             m_colorStack.Add(m_htmlColor);
+                            isStartHtmlColor = true;
                             return true;
                         }
 
@@ -7952,6 +8025,7 @@ namespace TMPro
                     case 1071884: // </color>
                     case 982252: // </COLOR>
                         m_htmlColor = m_colorStack.Remove();
+                        isStartHtmlColor = false;
                         return true;
                     case 2068980: // <indent=10px> <indent=10em> <indent=50%>
                     case 1441524: // <INDENT>
@@ -8030,7 +8104,7 @@ namespace TMPro
                                 if (TMP_Settings.defaultSpriteAsset != null)
                                     m_defaultSpriteAsset = TMP_Settings.defaultSpriteAsset;
                                 else
-                                    m_defaultSpriteAsset = Resources.Load<TMP_SpriteAsset>("Sprite Assets/Default Sprite Asset");
+                                    m_defaultSpriteAsset = TMP_AssetsLoad.GetAssets<TMP_SpriteAsset>("Sprite Assets/Default Sprite Asset");
 
                                 m_currentSpriteAsset = m_defaultSpriteAsset;
                             }
@@ -8055,7 +8129,7 @@ namespace TMPro
                                     tempSpriteAsset = OnSpriteAssetRequest?.Invoke(spriteAssetHashCode, new string(m_htmlTag, m_xmlAttribute[0].valueStartIndex, m_xmlAttribute[0].valueLength));
 
                                     if (tempSpriteAsset == null)
-                                        tempSpriteAsset = Resources.Load<TMP_SpriteAsset>(TMP_Settings.defaultSpriteAssetPath + new string(m_htmlTag, m_xmlAttribute[0].valueStartIndex, m_xmlAttribute[0].valueLength));
+                                        tempSpriteAsset = TMP_AssetsLoad.GetAssets<TMP_SpriteAsset>(TMP_Settings.defaultSpriteAssetPath + new string(m_htmlTag, m_xmlAttribute[0].valueStartIndex, m_xmlAttribute[0].valueLength));
                                 }
 
                                 if (tempSpriteAsset == null)
@@ -8511,5 +8585,133 @@ namespace TMPro
 
             return false;
         }
+        public float faceDilate
+        {
+            get { return m_faceDilate; }
+            set
+            {
+                if (m_faceDilate == value) return;
+                m_havePropertiesChanged = true;
+                m_faceDilate = value;
+                SetOutlineThickness(value);
+                SetVerticesDirty();
+            }
+        }
+
+        protected float m_faceDilate = 0.0f;
+
+        public float scaleRatioA
+        {
+            get
+            {
+                return m_scaleRatioA;
+            }
+            set
+            {
+                if (m_scaleRatioA == value)
+                {
+                    return;
+                }
+                m_scaleRatioA = value;
+            }
+        }
+        protected float m_scaleRatioA = 1.0f;
+
+        #region 投影
+        public float underlayDilate
+        {
+            get
+            {
+                return m_underlayDilate;
+            }
+            set
+            {
+                if (m_underlayDilate == value)
+                {
+                    return;
+                }
+                m_havePropertiesChanged = true;
+                m_underlayDilate = value;
+                SetOutlineThickness(value);
+                SetVerticesDirty();
+            }
+        }
+        protected float m_underlayDilate = 0f;
+
+        public float underlayOffsetX
+        {
+            get
+            {
+                return m_underlayOffsetX;
+            }
+            set
+            {
+                float clamp = Mathf.Clamp(value, -1f, 1f);
+                if (Mathf.Abs(m_underlayOffsetX - clamp) <= 0.001f)
+                {
+                    return;
+                }
+                m_havePropertiesChanged = true;
+                m_underlayOffsetX = clamp;
+                SetOutlineThickness(clamp);
+                SetVerticesDirty();
+            }
+        }
+        protected float m_underlayOffsetX = 0f;
+
+        public float underlayOffsetY
+        {
+            get
+            {
+                return m_underlayOffsetY;
+            }
+            set
+            {
+                float clamp = Mathf.Clamp(value, -1f, 1f);
+                if (Mathf.Abs(m_underlayOffsetY - clamp) <= 0.001f)
+                {
+                    return;
+                }
+                m_havePropertiesChanged = true;
+                m_underlayOffsetY = clamp;
+                SetOutlineThickness(clamp);
+                SetVerticesDirty();
+            }
+        }
+        protected float m_underlayOffsetY = 0f;
+
+        public float scaleRatioC
+        {
+            get
+            {
+                return m_scaleRatioC;
+            }
+            set
+            {
+                if (m_scaleRatioC == value)
+                {
+                    return;
+                }
+                m_scaleRatioC = value;
+            }
+        }
+        protected float m_scaleRatioC = 1.0f;
+        #endregion
+        
+#region 效果颜色
+
+        /// <summary>
+        /// 刷新描边效果颜色
+        /// </summary>
+        public void RefreshEffect()
+        {
+            m_havePropertiesChanged = true;
+            SetVerticesDirty();
+        }
+        public void UpdatePaddind()
+        {
+            m_padding = GetPaddingForMaterial();
+        }
+#endregion
     }
 }

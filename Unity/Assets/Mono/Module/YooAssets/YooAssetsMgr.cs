@@ -83,21 +83,26 @@ namespace YooAsset
             }
             else
             {
-                string assetBundleName = "assets/assetspackage.bundle";
+
+                //string jstr = ((TextAsset)(YooAssets.LoadAssetSync<UnityEngine.Object>("config.bytes").AssetObject)).text;
+                
+                
+                string assetBundleName = "assets_assetspackage.bundle";
                 var ab = SyncLoadAssetBundle(assetBundleName);
                 IsDllBuildIn = true;
+                //var a = ab.LoadAllAssets();
                 string jstr = ((TextAsset) ab.LoadAsset("Assets/AssetsPackage/config.bytes", typeof (TextAsset))).text;
                 Config = JsonHelper.FromJson<BuildConfig>(jstr);
                 ab.Unload(true);
-                if (!IsAssetBundleInPackage(assetBundleName))
-                {
-                    ab = SyncLoadBuildInAssetBundle(assetBundleName);
-                    jstr = ((TextAsset) ab.LoadAsset("Assets/AssetsPackage/config.bytes", typeof (TextAsset))).text;
-                    var oldConfig = JsonHelper.FromJson<BuildConfig>(jstr);
-                    this.IsDllBuildIn = Config.Dllver == oldConfig.Dllver;
-                    Debug.Log($"Config.Dllver ={Config.Dllver } oldConfig.Dllver={oldConfig.Dllver}");
-                    ab.Unload(true);
-                }
+                 if (!IsAssetBundleInPackage(assetBundleName))
+                 {
+                     ab = SyncLoadBuildInAssetBundle(assetBundleName);
+                     jstr = ((TextAsset) ab.LoadAsset("Assets/AssetsPackage/config.bytes", typeof (TextAsset))).text;
+                     var oldConfig = JsonHelper.FromJson<BuildConfig>(jstr);
+                     this.IsDllBuildIn = Config.Dllver == oldConfig.Dllver;
+                     Debug.Log($"Config.Dllver ={Config.Dllver } oldConfig.Dllver={oldConfig.Dllver}");
+                     ab.Unload(true);
+                 }
             }
         }
 
@@ -203,7 +208,7 @@ namespace YooAsset
             {
                 if (configBundle == null)
                 {
-                    configBundle = SyncLoadAssetBundle("assets/assetspackage/config.bundle");
+                    configBundle = SyncLoadAssetBundle("assets_assetspackage_config.bundle");
                 }
                 TextAsset asset = (TextAsset)configBundle.LoadAsset(addressPath, TypeInfo<TextAsset>.Type);
                 if (asset == null)
@@ -234,7 +239,7 @@ namespace YooAsset
             {
                 if (configBundle == null)
                 {
-                    configBundle = SyncLoadAssetBundle("assets/assetspackage/config.bundle");
+                    configBundle = SyncLoadAssetBundle("assets_assetspackage_config.bundle");
                 }
                 var assets = configBundle.LoadAllAssets<TextAsset>();
                 foreach (TextAsset asset in assets)

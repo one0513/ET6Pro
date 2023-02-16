@@ -64,11 +64,11 @@ namespace ET
 		{
 			if(this.CodeMode!=CodeMode.Wolong) return;
 			// 注意，补充元数据是给AOT dll补充元数据，而不是给热更新dll补充元数据。
-			// 热更新dll不缺元数据，不需要补充，如果调用LoadMetadataForAOTAssembly会返回错误
+			// 热更新dll不缺元数据，不需要补充，
 			AssetBundle ab = null;
 			if (YooAssets.PlayMode != YooAssets.EPlayMode.EditorSimulateMode)
 			{
-				ab = YooAssetsMgr.Instance.SyncLoadAssetBundle("assets/assetspackage/code/aot.bundle");
+				ab = YooAssetsMgr.Instance.SyncLoadAssetBundle("assets_assetspackage_code_aot.bundle");
 				// optionBytes = ((TextAsset) ab.LoadAsset($"{Define.AOTDir}Unity.Codes.dhao.bytes", typeof (TextAsset)))?.bytes;
 			}
 // #if UNITY_EDITOR
@@ -209,7 +209,7 @@ namespace ET
 			ab = null;
 			if (YooAssets.PlayMode != YooAssets.EPlayMode.EditorSimulateMode)
 			{
-				ab = YooAssetsMgr.Instance.SyncLoadAssetBundle("assets/assetspackage/code/hotfix.bundle");
+				ab = YooAssetsMgr.Instance.SyncLoadAssetBundle("assets_assetspackage_code_hotfix.bundle");
 				assBytes = ((TextAsset) ab.LoadAsset($"{Define.HotfixDir}Code{YooAssetsMgr.Instance.Config.Dllver}.dll.bytes",
 					typeof (TextAsset))).bytes;
 				pdbBytes = ((TextAsset) ab.LoadAsset($"{Define.HotfixDir}Code{YooAssetsMgr.Instance.Config.Dllver}.pdb.bytes",

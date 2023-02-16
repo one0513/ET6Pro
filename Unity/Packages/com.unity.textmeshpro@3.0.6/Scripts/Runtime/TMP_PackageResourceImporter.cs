@@ -24,7 +24,7 @@ namespace TMPro
         public void OnGUI()
         {
             // Check if the resources state has changed.
-            m_EssentialResourcesImported = File.Exists("Assets/TextMesh Pro/Resources/TMP Settings.asset");
+            m_EssentialResourcesImported = File.Exists("Assets/Bundles/TMP/TMPSettings.asset");
             m_ExamplesAndExtrasResourcesImported = Directory.Exists("Assets/TextMesh Pro/Examples & Extras");
 
             GUILayout.BeginVertical();

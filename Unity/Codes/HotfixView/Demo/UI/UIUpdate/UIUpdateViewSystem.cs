@@ -84,12 +84,12 @@ namespace ET
         /// <param name="self"></param>
         public static async ETTask StartCheckUpdate(this UIUpdateView self)
         {
-            await self.CheckIsInWhiteList();
-
-            await self.CheckUpdateList();
-
-            var Over = await self.CheckAppUpdate();
-            if (Over) return;
+            // await self.CheckIsInWhiteList();
+            //
+            // await self.CheckUpdateList();
+            //
+            // var Over = await self.CheckAppUpdate();
+            // if (Over) return;
             
             var isUpdateDone = await self.CheckResUpdate();
             if (isUpdateDone)

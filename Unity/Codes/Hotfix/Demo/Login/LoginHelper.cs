@@ -44,17 +44,20 @@ namespace ET
                 }
                 TimerComponent.Instance.Remove(ref timerId);
                 long channelId = RandomHelper.RandInt64();
-                var routercomponent = zoneScene.AddComponent<GetRouterComponent, long, long>(r2CLogin.GateId, channelId);
-                string routerAddress = await routercomponent.Tcs;
-                if (routerAddress == "")
-                {
-                    zoneScene.RemoveComponent<GetRouterComponent>();
-                    throw new Exception("routerAddress 失败");
-                }
-                Log.Debug("routerAddress 获取成功:" + routerAddress);
-                zoneScene.RemoveComponent<GetRouterComponent>();
+                
+                //----没有cdn服务器 先不使用
+                // var routercomponent = zoneScene.AddComponent<GetRouterComponent, long, long>(r2CLogin.GateId, channelId);
+                // string routerAddress = await routercomponent.Tcs;
+                // if (routerAddress == "")
+                // {
+                //     zoneScene.RemoveComponent<GetRouterComponent>();
+                //     throw new Exception("routerAddress 失败");
+                // }
+                // Log.Debug("routerAddress 获取成功:" + routerAddress);
+                // zoneScene.RemoveComponent<GetRouterComponent>();
+                
                 // 创建一个gate Session,并且保存到SessionComponent中
-                Session gateSession = zoneScene.GetComponent<NetKcpComponent>().Create(channelId, NetworkHelper.ToIPEndPoint(routerAddress));
+                Session gateSession = zoneScene.GetComponent<NetKcpComponent>().Create(channelId, NetworkHelper.ToIPEndPoint(r2CLogin.Address));
                 gateSession.AddComponent<RouterDataComponent>().Gateid = r2CLogin.GateId;
 
                 gateSession.AddComponent<PingComponent>();

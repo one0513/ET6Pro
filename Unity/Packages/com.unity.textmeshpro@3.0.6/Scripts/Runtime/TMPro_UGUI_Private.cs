@@ -895,20 +895,20 @@ namespace TMPro
         protected override void SetOutlineThickness(float thickness)
         {
             // Use material instance if one exists. Otherwise, create a new instance of the shared material.
-            if (m_fontMaterial != null && m_sharedMaterial.GetInstanceID() != m_fontMaterial.GetInstanceID())
-            {
-                m_sharedMaterial = m_fontMaterial;
-                m_canvasRenderer.SetMaterial(m_sharedMaterial, m_sharedMaterial.GetTexture(ShaderUtilities.ID_MainTex));
-            }
-            else if(m_fontMaterial == null)
-            {
-                m_fontMaterial = CreateMaterialInstance(m_sharedMaterial);
-                m_sharedMaterial = m_fontMaterial;
-                m_canvasRenderer.SetMaterial(m_sharedMaterial, m_sharedMaterial.GetTexture(ShaderUtilities.ID_MainTex));
-            }
-
-            thickness = Mathf.Clamp01(thickness);
-            m_sharedMaterial.SetFloat(ShaderUtilities.ID_OutlineWidth, thickness);
+            // if (m_fontMaterial != null && m_sharedMaterial.GetInstanceID() != m_fontMaterial.GetInstanceID())
+            // {
+            //     m_sharedMaterial = m_fontMaterial;
+            //     m_canvasRenderer.SetMaterial(m_sharedMaterial, m_sharedMaterial.GetTexture(ShaderUtilities.ID_MainTex));
+            // }
+            // else if(m_fontMaterial == null)
+            // {
+            //     m_fontMaterial = CreateMaterialInstance(m_sharedMaterial);
+            //     m_sharedMaterial = m_fontMaterial;
+            //     m_canvasRenderer.SetMaterial(m_sharedMaterial, m_sharedMaterial.GetTexture(ShaderUtilities.ID_MainTex));
+            // }
+            //
+            // thickness = Mathf.Clamp01(thickness);
+            // m_sharedMaterial.SetFloat(ShaderUtilities.ID_OutlineWidth, thickness);
             m_padding = GetPaddingForMaterial();
         }
 
@@ -1008,6 +1008,33 @@ namespace TMPro
                 m_sharedMaterial.SetFloat(ShaderUtilities.ID_PerspectiveFilter, 0.875f);
         }
 
+        /// <summary>
+        /// Get the padding value for the currently assigned material.
+        /// </summary>
+        /// <returns></returns>
+        protected override float GetPaddingForMaterial(Material mat)
+        {
+            m_padding = ShaderUtilities.GetPadding(mat, m_enableExtraPadding, m_isUsingBold, this);
+            m_isMaskingEnabled = ShaderUtilities.IsMaskingEnabled(m_sharedMaterial);
+            m_isSDFShader = mat.HasProperty(ShaderUtilities.ID_WeightNormal);
+
+            return m_padding;
+        }
+        
+        /// <summary>
+        /// Get the padding value for the currently assigned material.
+        /// </summary>
+        /// <returns></returns>
+        protected override float GetPaddingForMaterial()
+        {
+            ShaderUtilities.GetShaderPropertyIDs();
+
+            m_padding = ShaderUtilities.GetPadding(m_sharedMaterial, m_enableExtraPadding, m_isUsingBold, this);
+            m_isMaskingEnabled = ShaderUtilities.IsMaskingEnabled(m_sharedMaterial);
+            m_isSDFShader = m_sharedMaterial.HasProperty(ShaderUtilities.ID_WeightNormal);
+
+            return m_padding;
+        }
 
         // Function to allocate the necessary buffers to render the text. This function is called whenever the buffer size needs to be increased.
         void SetMeshArrays(int size)
@@ -1272,6 +1299,7 @@ namespace TMPro
                             : string.Format("The character with Unicode value \\u{0:X4} was not found in the [{1}] font asset or any potential fallbacks. It was replaced by Unicode character \\u{2:X4} in text object [{3}].", srcGlyph, m_fontAsset.name, character.unicode, this.name);
 
                         Debug.LogWarning(formattedWarning, this);
+                        TMP_ChatReport.ReportMissiongChat(srcGlyph);
                     }
                 }
 
@@ -2122,6 +2150,7 @@ namespace TMPro
                 // Store some of the text object's information
                 m_textInfo.characterInfo[m_characterCount].character = (char)charCode;
                 m_textInfo.characterInfo[m_characterCount].pointSize = m_currentFontSize;
+                m_textInfo.characterInfo[m_characterCount].isHtmlColor = isStartHtmlColor;
                 m_textInfo.characterInfo[m_characterCount].color = m_htmlColor;
                 m_textInfo.characterInfo[m_characterCount].underlineColor = m_underlineColor;
                 m_textInfo.characterInfo[m_characterCount].strikethroughColor = m_strikethroughColor;
@@ -3927,6 +3956,23 @@ namespace TMPro
                             characterInfos[i].vertex_TL.uv2.x = PackUV(x0, y1); characterInfos[i].vertex_TL.uv2.y = xScale;
                             characterInfos[i].vertex_TR.uv2.x = PackUV(x1, y1); characterInfos[i].vertex_TR.uv2.y = xScale;
                             characterInfos[i].vertex_BR.uv2.x = PackUV(x1, y0); characterInfos[i].vertex_BR.uv2.y = xScale;
+                            
+                            float x = Mathf.Clamp(underlayOffsetX, -1f, 1f) / 2 + 0.5f;
+                            float y = Mathf.Clamp(underlayOffsetY, -1f, 1f) / 2 + 0.5f;
+                            float uv3_x = PackUV(x, y);
+                            float uv3_y = (outlineWidth+1)*isGray;
+                            characterInfos[i].vertex_BL.uv3.x = uv3_x; characterInfos[i].vertex_BL.uv3.y = uv3_y; //characterInfos[i].vertex_BL.tangent = effectColorFloat;
+                            characterInfos[i].vertex_TL.uv3.x = uv3_x; characterInfos[i].vertex_TL.uv3.y = uv3_y; //characterInfos[i].vertex_TL.tangent = effectColorFloat;
+                            characterInfos[i].vertex_TR.uv3.x = uv3_x; characterInfos[i].vertex_TR.uv3.y = uv3_y; //characterInfos[i].vertex_TR.tangent = effectColorFloat;
+                            characterInfos[i].vertex_BR.uv3.x = uv3_x; characterInfos[i].vertex_BR.uv3.y = uv3_y; //characterInfos[i].vertex_BR.tangent = effectColorFloat;
+
+                            float uv4_x = PackUV(outlineColor.r, outlineColor.g);
+                            float uv4_y = PackUV(outlineColor.b, outlineColor.a);
+                            characterInfos[i].vertex_BL.uv4.x = uv4_x; characterInfos[i].vertex_BL.uv4.y = uv4_y; //characterInfos[i].vertex_BL.tangent = effectColorToTangent;
+                            characterInfos[i].vertex_TL.uv4.x = uv4_x; characterInfos[i].vertex_TL.uv4.y = uv4_y; //characterInfos[i].vertex_TL.tangent = effectColorToTangent;
+                            characterInfos[i].vertex_TR.uv4.x = uv4_x; characterInfos[i].vertex_TR.uv4.y = uv4_y; //characterInfos[i].vertex_TR.tangent = effectColorToTangent;
+                            characterInfos[i].vertex_BR.uv4.x = uv4_x; characterInfos[i].vertex_BR.uv4.y = uv4_y; //characterInfos[i].vertex_BR.tangent = effectColorToTangent;
+    
                             #endregion
                             break;
 
@@ -4422,8 +4468,8 @@ namespace TMPro
 
                 // Must ensure the Canvas support the additional vertex attributes used by TMP.
                 // This could be optimized based on canvas render mode settings but gets complicated to handle with multiple text objects using different material presets.
-                if (m_canvas.additionalShaderChannels != (AdditionalCanvasShaderChannels)25)
-                    m_canvas.additionalShaderChannels |= (AdditionalCanvasShaderChannels)25;
+                if (m_canvas.additionalShaderChannels != (AdditionalCanvasShaderChannels)31)
+                    m_canvas.additionalShaderChannels |= (AdditionalCanvasShaderChannels)31;
 
                 // Sort the geometry of the text object if needed.
                 if (m_geometrySortingOrder != VertexSortingOrder.Normal)
@@ -4434,8 +4480,10 @@ namespace TMPro
                 m_mesh.vertices = m_textInfo.meshInfo[0].vertices;
                 m_mesh.uv = m_textInfo.meshInfo[0].uvs0;
                 m_mesh.uv2 = m_textInfo.meshInfo[0].uvs2;
-                //m_mesh.uv4 = m_textInfo.meshInfo[0].uvs4;
+                m_mesh.uv3 = m_textInfo.meshInfo[0].uvs3;
+                m_mesh.uv4 = m_textInfo.meshInfo[0].uvs4;
                 m_mesh.colors32 = m_textInfo.meshInfo[0].colors32;
+                m_mesh.tangents = m_textInfo.meshInfo[0].tangents;
 
                 // Compute Bounds for the mesh. Manual computation is more efficient then using Mesh.RecalcualteBounds.
                 m_mesh.RecalculateBounds();
@@ -4463,8 +4511,10 @@ namespace TMPro
                     m_subTextObjects[i].mesh.vertices = m_textInfo.meshInfo[i].vertices;
                     m_subTextObjects[i].mesh.uv = m_textInfo.meshInfo[i].uvs0;
                     m_subTextObjects[i].mesh.uv2 = m_textInfo.meshInfo[i].uvs2;
-                    //m_subTextObjects[i].mesh.uv4 = m_textInfo.meshInfo[i].uvs4;
+                    m_subTextObjects[i].mesh.uv3 = m_textInfo.meshInfo[i].uvs3;
+                    m_subTextObjects[i].mesh.uv4 = m_textInfo.meshInfo[i].uvs4;
                     m_subTextObjects[i].mesh.colors32 = m_textInfo.meshInfo[i].colors32;
+                    m_subTextObjects[i].mesh.tangents = m_textInfo.meshInfo[i].tangents;
 
                     m_subTextObjects[i].mesh.RecalculateBounds();
 

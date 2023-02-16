@@ -45,11 +45,11 @@ namespace ET
         {
             if (self.textmesh == null)
             {
-                self.textmesh = self.GetGameObject().GetComponent<TMPro.TMP_Text>();
+                self.textmesh = self.GetGameObject().GetComponent<CMeshProLabel>();
                 if (self.textmesh == null)
                 {
-                    self.textmesh = self.GetGameObject().AddComponent<TMPro.TMP_Text>();
-                    Log.Info($"添加UI侧组件UITextmesh时，物体{self.GetGameObject().name}上没有找到TMPro.TMP_Text组件");
+                    self.textmesh = self.GetGameObject().AddComponent<CMeshProLabel>();
+                    Log.Info($"添加UI侧组件UITextmesh时，物体{self.GetGameObject().name}上没有找到CMeshProLabel组件");
                 }
 
                 self.i18nCompTouched = self.GetGameObject().GetComponent<I18NText>();

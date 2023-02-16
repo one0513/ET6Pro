@@ -387,10 +387,10 @@ namespace TMPro
             {
                 if (TMP_Settings.s_Instance == null)
                 {
-                    TMP_Settings.s_Instance = Resources.Load<TMP_Settings>("TMP Settings");
+                    // TMP_Settings.s_Instance = Resources.Load<TMP_Settings>("TMP/TMP Settings");
+                    TMP_Settings.s_Instance = TMP_AssetsLoad.GetAssets<TMP_Settings>("TMP/TMP Settings");
 
                     #if UNITY_EDITOR
-                    // Make sure TextMesh Pro UPM packages resources have been added to the user project
                     if (TMP_Settings.s_Instance == null)
                     {
                         // Open TMP Resources Importer
@@ -413,7 +413,8 @@ namespace TMPro
             if (s_Instance == null)
             {
                 // Load settings from TMP_Settings file
-                TMP_Settings settings = Resources.Load<TMP_Settings>("TMP Settings");
+                // TMP_Settings settings = Resources.Load<TMP_Settings>("TMP Settings");
+                TMP_Settings settings = TMP_AssetsLoad.GetAssets<TMP_Settings>("TMP/TMPSettings");
                 if (settings != null)
                     s_Instance = settings;
             }

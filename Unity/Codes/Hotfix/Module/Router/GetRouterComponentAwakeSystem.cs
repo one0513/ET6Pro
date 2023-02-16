@@ -29,12 +29,14 @@ namespace ET
         /// <returns></returns>
         static async ETTask<string[]> GetRouterListFake()
         {
-#if !NOT_UNITY
-            return await HttpManager.Instance.HttpGetResult<string[]>(ServerConfigComponent.Instance.GetCurConfig().RouterListUrl + "/router.list");
-#else
+// #if !NOT_UNITY
+//             return await HttpManager.Instance.HttpGetResult<string[]>(ServerConfigComponent.Instance.GetCurConfig().RouterListUrl + "/router.list");
+// #else
+//             await ETTask.CompletedTask;
+//             return new string[]{"172.22.213.58:10007", "172.22.213.58:10008", "172.22.213.58:10009", };
+// #endif
             await ETTask.CompletedTask;
-            return new string[]{"172.22.213.58:10007", "172.22.213.58:10008", "172.22.213.58:10009", };
-#endif
+            return new string[]{"127.0.0.1:10007", "127.0.0.1:10008", "127.0.0.1:10009", };
         }
         private static async ETTask SynAsync(GetRouterComponent self, long gateid, long channelid)
         {

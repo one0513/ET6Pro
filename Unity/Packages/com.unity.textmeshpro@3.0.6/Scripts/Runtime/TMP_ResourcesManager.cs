@@ -25,7 +25,7 @@ namespace TMPro
             if (s_TextSettings == null)
             {
                 // Try loading the TMP Settings from a Resources folder in the user project.
-                s_TextSettings = Resources.Load<TMP_Settings>("TextSettings"); // ?? ScriptableObject.CreateInstance<TMP_Settings>();
+                s_TextSettings = TMP_AssetsLoad.GetAssets<TMP_Settings>("TMP/TMP Settings"); // ?? ScriptableObject.CreateInstance<TMP_Settings>();
 
                 #if UNITY_EDITOR
                 if (s_TextSettings == null)
