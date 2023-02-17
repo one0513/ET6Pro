@@ -39,5 +39,8 @@ namespace ET
 		 public const ushort M2C_ChangeSkillGroup = 10036;
 		 public const ushort M2C_RemoveBuff = 10037;
 		 public const ushort M2C_Interrupt = 10038;
+		 public const ushort C2A_LoginAccount = 10039;
+		 public const ushort A2C_LoginAccount = 10040;
+		 public const ushort A2C_Disconnect = 10041;
 	}
 }

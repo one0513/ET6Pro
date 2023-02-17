@@ -14,8 +14,8 @@ namespace ET
 	{
 		public override void OnCreate(UILoginView self)
 		{
-			self.loginBtn = self.AddUIComponent<UIButton>("Panel/LoginBtn");
-			self.registerBtn = self.AddUIComponent<UIButton>("Panel/RegisterBtn");
+			self.loginBtn = self.AddUIComponent<UIButton>("Panel/btnLogin");
+			self.registerBtn = self.AddUIComponent<UIButton>("Panel/btnSign");
 			self.loginBtn.SetOnClick(() => { self.OnLogin(); });
 			self.registerBtn.SetOnClick(() => { self.OnRegister(); });
 			self.account = self.AddUIComponent<UIInput>("Panel/Account");
@@ -53,10 +53,13 @@ namespace ET
 			self.loginBtn.SetInteractable(false);
 			PlayerPrefs.SetString(CacheKeys.Account, self.account.GetText());
 			PlayerPrefs.SetString(CacheKeys.Password, self.password.GetText());
-			LoginHelper.Login(self.scene, self.ipaddr.GetText(), self.account.GetText(), self.password.GetText(), () =>
+			LoginHelper.Login(self.scene, ConstValue.LoginAddress, self.account.GetText(), self.password.GetText(), () =>
 			{
 				self.loginBtn.SetInteractable(true);
 			}).Coroutine();
+			
+			// Debug.Log("登入。。。。");
+			// Game.EventSystem.PublishAsync(new UIEventType.ShowToast() { Text = "登入。。。。" }).Coroutine();
 		}
 		public static void OnBtnClick(this UILoginView self,int id)
         {
@@ -65,8 +68,9 @@ namespace ET
 
 		public static void OnRegister(this UILoginView self)
 		{
-			Game.EventSystem.PublishAsync(new UIEventType.ShowToast() { Text = "测试OnRegister" }).Coroutine();
-			RedDotComponent.Instance.RefreshRedDotViewCount("Test1", 1);
+			Debug.Log("注册。。。。");
+			Game.EventSystem.PublishAsync(new UIEventType.ShowToast() { Text = "注册。。。。" }).Coroutine();
+			// RedDotComponent.Instance.RefreshRedDotViewCount("Test1", 1);
 		}
 
 		public static LoopListViewItem2 GetItemByIndex(this UILoginView self,LoopListView2 listView, int index)

@@ -15,7 +15,7 @@ namespace ET
         public UnityAction onClick;
         public bool grayState;
         public string spritePath;
-        public Button button;
+        public CButton button;
         public CSprite image;
     }
 }

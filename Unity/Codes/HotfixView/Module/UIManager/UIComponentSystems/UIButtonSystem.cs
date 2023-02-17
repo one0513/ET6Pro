@@ -40,7 +40,7 @@ namespace ET
         {
             if (self.button == null)
             {
-                self.button = self.GetGameObject().GetComponent<Button>();
+                self.button = self.GetGameObject().GetComponent<CButton>();
                 if (self.button == null)
                 {
                     Log.Error($"添加UI侧组件UIButton时，物体{self.GetGameObject().name}上没有找到Button组件");

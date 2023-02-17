@@ -9,7 +9,8 @@
 		Http = 4,
 		Location = 5,
 		Map = 6,
-		Router = 7,
+		Account = 7,
+		Router = 8,
 
 		// 客户端Model层
 		Client = 30,

@@ -42,6 +42,8 @@ namespace ET
             
             Game.Scene.AddComponent<NavmeshComponent, Func<string, byte[]>>(RecastFileReader.Read);
             Game.Scene.AddComponent<AreaConfigComponent>();
+
+            Game.Scene.AddComponent<DBManagerComponent>();
             switch (Game.Options.AppType)
             {
                 case AppType.IDE:

@@ -2,7 +2,7 @@ namespace ET
 {
     public static class ConstValue
     {
-        public const string LoginAddress = "127.0.0.1:10002";
+        public const string LoginAddress = "127.0.0.1:10005";
 
         public static readonly int[] SkillKeys = new[]
         {

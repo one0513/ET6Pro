@@ -20,7 +20,18 @@ namespace ET
 
         public Dictionary<string, byte[]> GetAllConfigBytes()
         {
-            return null;
+            Dictionary<string, byte[]> dict = new Dictionary<string, byte[]>();
+            
+            foreach (string file in Directory.GetFiles($"../Config", "*.bytes"))
+            {
+                string key = Path.GetFileNameWithoutExtension(file);
+                dict[key] = File.ReadAllBytes(file);
+            }
+            dict["StartMachineConfigCategory"] = File.ReadAllBytes($"../Config/{Game.Options.StartConfig}/StartMachineConfigCategory.bytes");
+            dict["StartProcessConfigCategory"] = File.ReadAllBytes($"../Config/{Game.Options.StartConfig}/StartProcessConfigCategory.bytes");
+            dict["StartSceneConfigCategory"] = File.ReadAllBytes($"../Config/{Game.Options.StartConfig}/StartSceneConfigCategory.bytes");
+            dict["StartZoneConfigCategory"] = File.ReadAllBytes($"../Config/{Game.Options.StartConfig}/StartZoneConfigCategory.bytes");
+            return dict;
         }
 
         public byte[] GetOneConfigBytes(string configName)

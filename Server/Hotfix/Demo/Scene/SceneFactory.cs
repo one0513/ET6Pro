@@ -36,11 +36,16 @@ namespace ET
                 case SceneType.Location:
                     scene.AddComponent<LocationComponent>();
                     break;
-                case SceneType.Router:
-                    Log.Debug("Router:" + startSceneConfig.OuterPort);
-                    scene.AddComponent<RouterServiceComponent, IPEndPoint>(new IPEndPoint(IPAddress.Any, startSceneConfig.OuterPort));
-                    scene.AddComponent<RouterServiceInnerComponent>();
+                case SceneType.Account:
+                    scene.AddComponent<NetKcpComponent, IPEndPoint, int>(startSceneConfig.OuterIPPort, SessionStreamDispatcherType.SessionStreamDispatcherServerOuter);
+                    scene.AddComponent<TokenComponent>();
+                    scene.AddComponent<AccountSessionComponent>();
                     break;
+                // case SceneType.Router:
+                //     Log.Debug("Router:" + startSceneConfig.OuterPort);
+                //     scene.AddComponent<RouterServiceComponent, IPEndPoint>(new IPEndPoint(IPAddress.Any, startSceneConfig.OuterPort));
+                //     scene.AddComponent<RouterServiceInnerComponent>();
+                //     break;
             }
 
             return scene;
