@@ -48,7 +48,21 @@ MonoBehaviour:
       GroupDesc: 
       AssetTags: 
       ActiveRuleName: EnableGroup
-      Collectors: []
+      Collectors:
+      - CollectPath: Assets/AssetsPackage/ShaderVariants
+        CollectorGUID: 4c72be5fcfbd03b4589ee99ab1f68cf7
+        CollectorType: 0
+        AddressRuleName: AddressByFileName
+        PackRuleName: PackDirectory
+        FilterRuleName: CollectShaderVariants
+        AssetTags: 
+      - CollectPath: Assets/AssetsPackage/Shader
+        CollectorGUID: 640af8003e3f37c4485d08d2069d866c
+        CollectorType: 0
+        AddressRuleName: AddressByFileName
+        PackRuleName: PackDirectory
+        FilterRuleName: CollectAll
+        AssetTags: tmpShader
     - GroupName: config
       GroupDesc: 
       AssetTags: 

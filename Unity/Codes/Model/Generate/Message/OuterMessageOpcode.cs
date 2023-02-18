@@ -42,5 +42,7 @@ namespace ET
 		 public const ushort C2A_LoginAccount = 10039;
 		 public const ushort A2C_LoginAccount = 10040;
 		 public const ushort A2C_Disconnect = 10041;
+		 public const ushort C2A_TestSendMsg = 10044;
+		 public const ushort A2C_TestSendMsg = 10045;
 	}
 }

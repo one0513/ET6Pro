@@ -16,7 +16,7 @@ namespace ET
 		{
 			self.loginBtn = self.AddUIComponent<UIButton>("Panel/btnLogin");
 			self.registerBtn = self.AddUIComponent<UIButton>("Panel/btnSign");
-			self.loginBtn.SetOnClick(() => { self.OnLogin(); });
+			self.loginBtn.SetOnClick(() => { self.OnLogin().Coroutine(); });
 			self.registerBtn.SetOnClick(() => { self.OnRegister(); });
 			self.account = self.AddUIComponent<UIInput>("Panel/Account");
 			self.password = self.AddUIComponent<UIInput>("Panel/Password");
@@ -48,16 +48,23 @@ namespace ET
 	public static class UILoginViewSystem
 	{
 		
-		public static void OnLogin(this UILoginView self)
+		public static async ETTask OnLogin(this UILoginView self)
 		{
 			self.loginBtn.SetInteractable(false);
 			PlayerPrefs.SetString(CacheKeys.Account, self.account.GetText());
 			PlayerPrefs.SetString(CacheKeys.Password, self.password.GetText());
-			LoginHelper.Login(self.scene, ConstValue.LoginAddress, self.account.GetText(), self.password.GetText(), () =>
+			int errorcode =  await LoginHelper.Login(self.scene, ConstValue.LoginAddress, self.account.GetText(), self.password.GetText(), () =>
 			{
 				self.loginBtn.SetInteractable(true);
-			}).Coroutine();
-			
+			});
+
+			if (errorcode != ErrorCode.ERR_Success)
+			{
+				return;
+			}
+			await UIManagerComponent.Instance.CloseWindow<UILoginView>();
+			await UIManagerComponent.Instance.OpenWindow<UILobbyView,Scene>(UILobbyView.PrefabPath,self.scene);
+
 			// Debug.Log("登入。。。。");
 			// Game.EventSystem.PublishAsync(new UIEventType.ShowToast() { Text = "登入。。。。" }).Coroutine();
 		}

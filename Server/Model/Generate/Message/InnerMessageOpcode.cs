@@ -33,5 +33,9 @@ namespace ET
 		 public const ushort M2M_ChangeSkillGroup = 20030;
 		 public const ushort M2M_RemoveBuff = 20031;
 		 public const ushort M2M_Interrupt = 20032;
+		 public const ushort A2L_LoginAccountRequest = 20033;
+		 public const ushort L2A_LoginAccountResponse = 20034;
+		 public const ushort L2G_DisconnectGateUnit = 20035;
+		 public const ushort G2L_DisconnectGateUnit = 20036;
 	}
 }

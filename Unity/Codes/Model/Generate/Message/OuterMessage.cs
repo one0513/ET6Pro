@@ -704,4 +704,32 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(A2C_TestSendMsg))]
+	[Message(OuterOpcode.C2A_TestSendMsg)]
+	[ProtoContract]
+	public partial class C2A_TestSendMsg: Object, IRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.A2C_TestSendMsg)]
+	[ProtoContract]
+	public partial class A2C_TestSendMsg: Object, IResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public string testMsg { get; set; }
+
+	}
+
 }

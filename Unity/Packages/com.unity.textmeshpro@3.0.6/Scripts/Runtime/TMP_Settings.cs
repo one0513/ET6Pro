@@ -388,7 +388,7 @@ namespace TMPro
                 if (TMP_Settings.s_Instance == null)
                 {
                     // TMP_Settings.s_Instance = Resources.Load<TMP_Settings>("TMP/TMP Settings");
-                    TMP_Settings.s_Instance = TMP_AssetsLoad.GetAssets<TMP_Settings>("TMP/TMP Settings");
+                    TMP_Settings.s_Instance = TMP_AssetsLoad.GetAssets<TMP_Settings>("TMP Settings");
 
                     #if UNITY_EDITOR
                     if (TMP_Settings.s_Instance == null)
@@ -414,7 +414,7 @@ namespace TMPro
             {
                 // Load settings from TMP_Settings file
                 // TMP_Settings settings = Resources.Load<TMP_Settings>("TMP Settings");
-                TMP_Settings settings = TMP_AssetsLoad.GetAssets<TMP_Settings>("TMP/TMPSettings");
+                TMP_Settings settings = TMP_AssetsLoad.GetAssets<TMP_Settings>("TMP Settings");
                 if (settings != null)
                     s_Instance = settings;
             }

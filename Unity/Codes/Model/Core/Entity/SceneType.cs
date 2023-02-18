@@ -10,7 +10,9 @@
 		Location = 5,
 		Map = 6,
 		Account = 7,
-		Router = 8,
+		LoginCenter = 8,
+		
+		//Router = 8,
 
 		// 客户端Model层
 		Client = 30,

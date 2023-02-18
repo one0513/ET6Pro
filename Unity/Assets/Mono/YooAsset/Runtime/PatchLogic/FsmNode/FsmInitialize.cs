@@ -91,7 +91,7 @@ internal class FsmInitialize : IStateNode
 	private string GetHostServerURL()
 	{
 		//string hostServerIP = "http://10.0.2.2"; //安卓模拟器地址
-		string hostServerIP = "http://192.168.31.197:8000";
+		string hostServerIP = "http://192.168.31.5:8000";
 		string gameVersion = "v1.0";
 
 #if UNITY_EDITOR

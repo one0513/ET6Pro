@@ -15,7 +15,7 @@ namespace ET
                 self.CacheValues = new Dictionary<string, int>();
                 self.CurIndex = -1;
                 self.Group = -1;
-                self.CheckGroupStart();
+                //self.CheckGroupStart();
             }
         }
 

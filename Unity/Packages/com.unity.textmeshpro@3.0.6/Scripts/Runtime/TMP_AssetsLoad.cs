@@ -17,9 +17,11 @@ namespace TMPro
         public static T GetAssets<T>(string url)where T : UnityEngine.Object
         {
             UnityEngine.Object obj = null ;
+            obj = Resources.Load(url);
 #if UNITY_EDITOR
-            obj = UnityEditor.AssetDatabase.LoadAssetAtPath<T>($"Assets/AssetsPackage/{url}.asset");
+            //obj = UnityEditor.AssetDatabase.LoadAssetAtPath<T>($"Assets/AssetsPackage/{url}.asset");
 #else
+           
             if (loadAssets != null)
             {
                 loadAssets.DynamicInvoke(url, (Action<Object>) (tmp =>

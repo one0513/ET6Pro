@@ -91,6 +91,20 @@ namespace ET
                         account.accountType = (int)AccountType.Genral;
                         await DBManagerComponent.Instance.GetZoneDB(session.DomainZone()).Save<Account>(account);
                     }
+                    //登入中心服 存储查询
+                    StartSceneConfig sceneConfig = StartSceneConfigCategory.Instance.GetBySceneName(session.DomainZone(), "LoginCenter");
+                    long loginCenterInstanceId = sceneConfig.InstanceId;
+
+                    L2A_LoginAccountResponse loginAccountResponse = (L2A_LoginAccountResponse) await ActorMessageSenderComponent.Instance.Call(loginCenterInstanceId, new A2L_LoginAccountRequest() { AccountId = account.Id });
+                    if (loginAccountResponse.Error != ErrorCode.ERR_Success)
+                    {
+                        response.Error = loginAccountResponse.Error;
+                        reply();
+                        session?.Disconnect().Coroutine();
+                        account?.Dispose();
+                        return;
+                    }
+                    
 
                     long accountSessionInstanceId = session.DomainScene().GetComponent<AccountSessionComponent>().Get(account.Id);
                     Session otherSession = Game.EventSystem.Get(accountSessionInstanceId) as Session;

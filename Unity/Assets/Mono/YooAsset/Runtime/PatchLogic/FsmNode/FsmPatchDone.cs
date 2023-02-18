@@ -18,6 +18,7 @@ internal class FsmPatchDone : IStateNode
 		PatchEventDefine.PatchStatesChange.SendEventMessage("开始游戏！");
 		CodeLoader.Instance.Start();
 
+		AssetsBundleHelper.LoadSomeAssetSyncByTag("tmpShader");
 		var go = Transform.FindObjectOfType<PatchWindow>();
 		go.gameObject.SetActive(false);
 	}
