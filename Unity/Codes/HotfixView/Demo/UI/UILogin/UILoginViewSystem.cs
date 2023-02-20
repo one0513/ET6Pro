@@ -45,6 +45,7 @@ namespace ET
 	}
 	[FriendClass(typeof(UILoginView))]
 	[FriendClass(typeof(GlobalComponent))]
+	[FriendClass(typeof(ServerInfosComponent))]
 	public static class UILoginViewSystem
 	{
 		
@@ -62,8 +63,18 @@ namespace ET
 			{
 				return;
 			}
+
+			int getServerError = await LoginHelper.GetServerInfos(self.scene);
+			if (getServerError != ErrorCode.ERR_Success)
+			{
+				return;
+			}
+			
+			
 			await UIManagerComponent.Instance.CloseWindow<UILoginView>();
-			await UIManagerComponent.Instance.OpenWindow<UILobbyView,Scene>(UILobbyView.PrefabPath,self.scene);
+
+			List<ServerInfo> serverInfos = self.scene.GetComponent<ServerInfosComponent>().serverInfoList;
+			await UIManagerComponent.Instance.OpenWindow<UILobbyView,List<ServerInfo>>(UILobbyView.PrefabPath,serverInfos);
 
 			// Debug.Log("登入。。。。");
 			// Game.EventSystem.PublishAsync(new UIEventType.ShowToast() { Text = "登入。。。。" }).Coroutine();

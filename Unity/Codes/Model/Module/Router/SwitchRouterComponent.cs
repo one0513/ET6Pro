@@ -20,7 +20,7 @@ namespace ET
     {
         public override void Awake(SwitchRouterComponent self)
         {
-            ChangeRouter(self).Coroutine();
+            //ChangeRouter(self).Coroutine();
         }
         
         public async ETTask ChangeRouter(SwitchRouterComponent self)

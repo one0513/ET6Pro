@@ -19,6 +19,7 @@ namespace ET
         public const int ERR_AccountMessaFormatError = 200004; //账号或密码格式错误
         public const int ERR_AccountInBlackListError = 200005; //账号在黑名单
         public const int ERR_RequestRepeatedly = 200006; //频繁请求
+        public const int ERR_TokenError = 200007; //token验证错误
         
     }
 }

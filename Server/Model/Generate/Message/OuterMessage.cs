@@ -732,4 +732,93 @@ namespace ET
 
 	}
 
+	[Message(OuterOpcode.ServerInfoProto)]
+	[ProtoContract]
+	public partial class ServerInfoProto: Object
+	{
+		[ProtoMember(1)]
+		public int Id { get; set; }
+
+		[ProtoMember(2)]
+		public int Status { get; set; }
+
+		[ProtoMember(3)]
+		public string ServerName { get; set; }
+
+	}
+
+	[ResponseType(nameof(A2C_GetServerInfos))]
+	[Message(OuterOpcode.C2A_GetServerInfos)]
+	[ProtoContract]
+	public partial class C2A_GetServerInfos: Object, IRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public string Token { get; set; }
+
+		[ProtoMember(2)]
+		public long AccountId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.A2C_GetServerInfos)]
+	[ProtoContract]
+	public partial class A2C_GetServerInfos: Object, IResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public List<ServerInfoProto> ServerInfoList = new List<ServerInfoProto>();
+
+	}
+
+	[ResponseType(nameof(A2C_GetRealmKey))]
+	[Message(OuterOpcode.C2A_GetRealmKey)]
+	[ProtoContract]
+	public partial class C2A_GetRealmKey: Object, IRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public string Token { get; set; }
+
+		[ProtoMember(2)]
+		public int ServerId { get; set; }
+
+		[ProtoMember(3)]
+		public long AccountId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.A2C_GetRealmKey)]
+	[ProtoContract]
+	public partial class A2C_GetRealmKey: Object, IResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public string RealmKey { get; set; }
+
+		[ProtoMember(2)]
+		public string RealmAddress { get; set; }
+
+	}
+
 }

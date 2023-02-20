@@ -121,5 +121,10 @@ namespace ET
             public Unit Unit;
             public Entity Parent;
         }
+
+        public struct ChangServer
+        {
+            public ServerInfo serverInfo;
+        }
     }
 }

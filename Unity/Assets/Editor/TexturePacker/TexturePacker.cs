@@ -349,7 +349,7 @@ public class TexturePacker : MonoBehaviour {
             ti.filterMode = FilterMode.Bilinear;
             ti.anisoLevel = 1;
             ti.isReadable = false;
-            ti.maxTextureSize = 2048;
+            ti.maxTextureSize = 4096;
             if (alpha) {
                 ti.isReadable = true;
                 ti.SetPlatformTextureSettings(PLAT_FORM, ti.maxTextureSize, TextureImporterFormat.RGBA32);
@@ -426,7 +426,7 @@ public class TexturePacker : MonoBehaviour {
             cmdParam += " --scale-mode Smooth";
             cmdParam += " --disable-auto-alias";
         }
-        cmdParam += " --max-size 2048";
+        cmdParam += " --max-size 4096";
         cmdParam += " --trim-mode None";
 		cmdParam += " --size-constraints POT";
         cmdParam += " --disable-rotation";
@@ -599,7 +599,7 @@ public class TexturePacker : MonoBehaviour {
         //cmdParam += " --algorithm Basic";
         cmdParam += " --basic-sort-by Name";
         cmdParam += " --basic-order Ascending";
-        cmdParam += " --max-size 2048";
+        cmdParam += " --max-size 4096";
         if (cmdType == TexturePackerCMDType.SpriteAnim) {
             cmdParam += " --trim-mode Trim";
         } else {
@@ -826,7 +826,7 @@ public class TexturePacker : MonoBehaviour {
             ti.filterMode = FilterMode.Bilinear;
             ti.anisoLevel = 1;
             ti.isReadable = false;
-            ti.maxTextureSize = 2048;
+            ti.maxTextureSize = 4096;
             ti.spritePackingTag = moduleName;
             ti.SetPlatformTextureSettings(PLAT_FORM, ti.maxTextureSize, TextureImporterFormat.ETC_RGB4, true);
             AssetDatabase.ImportAsset(fileName);

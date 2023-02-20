@@ -346,3 +346,47 @@ message A2C_TestSendMsg //IResponse
 	string Message = 92;
 	string testMsg = 1;
 }
+
+
+message ServerInfoProto
+{
+	int32 Id = 1;
+	int32 Status = 2;
+	string ServerName = 3;
+}
+
+//ResponseType A2C_GetServerInfos
+message C2A_GetServerInfos //IRequest
+{
+	int32 RpcId = 90;
+	string Token = 1;
+	int64 AccountId = 2;
+
+}
+
+message A2C_GetServerInfos //IResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	repeated ServerInfoProto ServerInfoList = 1;
+}
+
+
+//ResponseType A2C_GetRealmKey
+message C2A_GetRealmKey //IRequest
+{
+	int32 RpcId = 90;
+	string Token = 1;
+	int32 ServerId = 2;
+	int64 AccountId = 3;
+}
+
+message A2C_GetRealmKey //IResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	string RealmKey = 1;
+	string RealmAddress = 2;
+}

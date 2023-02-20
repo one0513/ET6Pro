@@ -99,6 +99,7 @@ namespace ET
         //记录Component
         static void RecordUIComponent(this Entity self,string name, Type component_class, Entity component)
         {
+            var a = self.GetCompoennts();
             if (self.GetCompoennts().TryGetValue(name, component_class,out var obj))
             {
                 Log.Error("Aready exist component_class : " + component_class.Name);

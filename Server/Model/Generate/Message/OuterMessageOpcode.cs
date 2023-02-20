@@ -44,5 +44,10 @@ namespace ET
 		 public const ushort A2C_Disconnect = 10041;
 		 public const ushort C2A_TestSendMsg = 10044;
 		 public const ushort A2C_TestSendMsg = 10045;
+		 public const ushort ServerInfoProto = 10046;
+		 public const ushort C2A_GetServerInfos = 10047;
+		 public const ushort A2C_GetServerInfos = 10048;
+		 public const ushort C2A_GetRealmKey = 10049;
+		 public const ushort A2C_GetRealmKey = 10050;
 	}
 }

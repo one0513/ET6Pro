@@ -54,8 +54,77 @@ namespace ET
 
             zoneScene.GetComponent<AccountInfoComponent>().token = a2CLoginAccount.Token;
             zoneScene.GetComponent<AccountInfoComponent>().accountId = a2CLoginAccount.AccountId;
-
+            
             return ErrorCode.ERR_Success;
         }
+
+
+        public static async ETTask<int> GetServerInfos(Scene zoneScene)
+        {
+            A2C_GetServerInfos a2CGetServerInfos = null;
+            try
+            {
+                a2CGetServerInfos = (A2C_GetServerInfos)await zoneScene.GetComponent<SessionComponent>().Session.Call(new C2A_GetServerInfos()
+                {
+                    AccountId = zoneScene.GetComponent<AccountInfoComponent>().accountId,
+                    Token = zoneScene.GetComponent<AccountInfoComponent>().token
+                            
+                });
+            }
+            catch (Exception e)
+            {
+               Log.Error(e.ToString());
+               return ErrorCode.ERR_NetWorkError;
+            }
+
+            if (a2CGetServerInfos.Error != ErrorCode.ERR_Success)
+            {
+                return a2CGetServerInfos.Error;
+            }
+
+            foreach (var serverInfo in a2CGetServerInfos.ServerInfoList)
+            {
+                ServerInfo info = zoneScene.GetComponent<ServerInfosComponent>().AddChild<ServerInfo>();
+                info.FromMessage(serverInfo);
+                zoneScene.GetComponent<ServerInfosComponent>().Add(info);
+            }
+
+            await ETTask.CompletedTask;
+            return ErrorCode.ERR_Success;
+
+        }
+
+
+        public static async ETTask<int> GetRealmKey(Scene zoneScene,int serverId)
+        {
+            A2C_GetRealmKey a2CGetRealmKey = null;
+            try
+            {
+                a2CGetRealmKey = (A2C_GetRealmKey)await zoneScene.GetComponent<SessionComponent>().Session.Call(new C2A_GetRealmKey()
+                {
+                    AccountId = zoneScene.GetComponent<AccountInfoComponent>().accountId,
+                    Token =  zoneScene.GetComponent<AccountInfoComponent>().token,
+                    ServerId = serverId
+                });
+            }
+            catch (Exception e)
+            {
+                Log.Error(e.ToString());
+                return ErrorCode.ERR_NetWorkError;
+            }
+            
+            if (a2CGetRealmKey.Error != ErrorCode.ERR_Success)
+            {
+                return a2CGetRealmKey.Error;
+            }
+
+            zoneScene.GetComponent<AccountInfoComponent>().realmKey = a2CGetRealmKey.RealmKey;
+            zoneScene.GetComponent<AccountInfoComponent>().realmAddress = a2CGetRealmKey.RealmAddress;
+            
+            
+            await ETTask.CompletedTask;
+            return ErrorCode.ERR_Success;
+        }
+
     }
 }
