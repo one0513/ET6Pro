@@ -22,49 +22,49 @@ namespace ET
 	{
 		public static float GetAsFloat(this NumericComponent self, int numericType)
 		{
-			if(self.IsFloat(numericType))
-				return self.GetByKey(numericType)/10000f;
-			else
+			// if(self.IsFloat(numericType))
+			// 	return self.GetByKey(numericType)/10000f;
+			// else
 				return self.GetByKey(numericType);
 		}
 
 		public static int GetAsInt(this NumericComponent self, int numericType)
 		{
-			if(self.IsFloat(numericType))
-				return (int)self.GetByKey(numericType)/10000;
-			else
+			// if(self.IsFloat(numericType))
+			// 	return (int)self.GetByKey(numericType)/10000;
+			// else
 				return (int)self.GetByKey(numericType);
 		}
 		
 		public static long GetAsLong(this NumericComponent self, int numericType)
 		{
-			if(self.IsFloat(numericType))
-				return self.GetByKey(numericType)/10000;
-			else
+			// if(self.IsFloat(numericType))
+			// 	return self.GetByKey(numericType)/10000;
+			// else
 				return self.GetByKey(numericType);
 		}
 
 		public static void Set(this NumericComponent self, int nt, float value,bool isRealValue=false)
 		{
-			if(!isRealValue&&self.IsFloat(nt))
-				self[nt] = (int) (value * 10000);
-			else
+			// if(!isRealValue&&self.IsFloat(nt))
+			// 	self[nt] = (int) (value * 10000);
+			// else
 				self[nt] = (int) value;
 		}
 
 		public static void Set(this NumericComponent self, int nt, int value,bool isRealValue=false)
 		{
-			if(!isRealValue&&self.IsFloat(nt))
-				self[nt] = value * 10000;
-			else
+			// if(!isRealValue&&self.IsFloat(nt))
+			// 	self[nt] = value * 10000;
+			// else
 				self[nt] = value;
 		}
 		
 		public static void Set(this NumericComponent self, int nt, long value,bool isRealValue=false)
 		{
-			if(!isRealValue&&self.IsFloat(nt))
-				self[nt] = value * 10000;
-			else
+			// if(!isRealValue&&self.IsFloat(nt))
+			// 	self[nt] = value * 10000;
+			// else
 				self[nt] = value;
 		}
 
@@ -142,7 +142,13 @@ namespace ET
 	
 
 	[ComponentOf(typeof(Unit))]
+	
+	
+#if SERVER 
+	public class NumericComponent: Entity, IAwake, ITransfer,IUnitCache
+#else
 	public class NumericComponent: Entity, IAwake, ITransfer
+#endif
 	{
 		[BsonDictionaryOptions(DictionaryRepresentation.ArrayOfArrays)]
 		public Dictionary<int, long> NumericDic = new Dictionary<int, long>();

@@ -12,6 +12,7 @@
 		Account = 7,
 		LoginCenter = 8,
 		
+		UnitCache = 9,
 		//Router = 8,
 
 		// 客户端Model层

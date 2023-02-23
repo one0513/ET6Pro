@@ -8,5 +8,6 @@ namespace ET
 		 public const ushort M2M_UnitAreaAdd = 30005;
 		 public const ushort M2M_UnitAreaCreate = 30006;
 		 public const ushort RecursiveEntitys = 30007;
+		 public const ushort UnitCache2Other_GetUnit = 30008;
 	}
 }

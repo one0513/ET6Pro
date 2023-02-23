@@ -10,6 +10,7 @@ namespace ET
     [FriendClass(typeof(BuffComponent))]
     [FriendClass(typeof(Buff))]
     [FriendClass(typeof(CombatUnitComponent))]
+    [FriendClass(typeof(GateMapComponent))]
     public static class UnitHelper
     {
         public static UnitInfo CreateUnitInfo(Unit unit)
@@ -28,25 +29,25 @@ namespace ET
             unitInfo.ForwardY = forward.y;
             unitInfo.ForwardZ = forward.z;
 
-            #region 移动信息
-            MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
-            if (moveComponent != null)
-            {
-                if (!moveComponent.IsArrived())
-                {
-                    unitInfo.MoveInfo = new MoveInfo();
-                    for (int i = moveComponent.N; i < moveComponent.Targets.Count; ++i)
-                    {
-                        Vector3 pos = moveComponent.Targets[i];
-                        unitInfo.MoveInfo.X.Add(pos.x);
-                        unitInfo.MoveInfo.Y.Add(pos.y);
-                        unitInfo.MoveInfo.Z.Add(pos.z);
-                    }
-                }
-            }
-            
-
-            #endregion
+            // #region 移动信息
+            // MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
+            // if (moveComponent != null)
+            // {
+            //     if (!moveComponent.IsArrived())
+            //     {
+            //         unitInfo.MoveInfo = new MoveInfo();
+            //         for (int i = moveComponent.N; i < moveComponent.Targets.Count; ++i)
+            //         {
+            //             Vector3 pos = moveComponent.Targets[i];
+            //             unitInfo.MoveInfo.X.Add(pos.x);
+            //             unitInfo.MoveInfo.Y.Add(pos.y);
+            //             unitInfo.MoveInfo.Z.Add(pos.z);
+            //         }
+            //     }
+            // }
+            //
+            //
+            // #endregion
 
             #region 数值信息
 
@@ -63,28 +64,28 @@ namespace ET
                 }
             }
             #endregion
-
-            #region 战斗数据
-
-            var cuc = unit.GetComponent<CombatUnitComponent>();
-            if (cuc != null)
-            {
-                //技能
-                unitInfo.SkillIds.AddRange(cuc.IdSkillMap.Keys);
-                var buffC = cuc.GetComponent<BuffComponent>();
-                if (buffC != null)
-                {
-                    for (int i = 0; i < buffC.AllBuff.Count; i++)
-                    {
-                        var buff = buffC.GetChild<Buff>(buffC.AllBuff[i]);
-                        unitInfo.BuffIds.Add(buff.ConfigId);
-                        unitInfo.BuffTimestamp.Add(buff.Timestamp);
-                        unitInfo.BuffSourceIds.Add(buff.FromUnitId);
-                    }
-                }
-            }
-            
-            #endregion
+            //
+            // #region 战斗数据
+            //
+            // var cuc = unit.GetComponent<CombatUnitComponent>();
+            // if (cuc != null)
+            // {
+            //     //技能
+            //     unitInfo.SkillIds.AddRange(cuc.IdSkillMap.Keys);
+            //     var buffC = cuc.GetComponent<BuffComponent>();
+            //     if (buffC != null)
+            //     {
+            //         for (int i = 0; i < buffC.AllBuff.Count; i++)
+            //         {
+            //             var buff = buffC.GetChild<Buff>(buffC.AllBuff[i]);
+            //             unitInfo.BuffIds.Add(buff.ConfigId);
+            //             unitInfo.BuffTimestamp.Add(buff.Timestamp);
+            //             unitInfo.BuffSourceIds.Add(buff.FromUnitId);
+            //         }
+            //     }
+            // }
+            //
+            // #endregion
            
             
             return unitInfo;
@@ -136,5 +137,54 @@ namespace ET
             removeUnits.Units = sendUnit;
             MessageHelper.SendToClient(unit, removeUnits);
         }
+
+        public static async ETTask<Unit> GetUnitFromCache(Player player)
+        {
+            GateMapComponent gateMapComponent = player.GetComponent<GateMapComponent>();
+            Unit unit = await UnitCacheHelper.GetUnitCache(gateMapComponent.Scene, player.UnitId);
+            
+            bool isNewUnit = unit == null;
+            if (isNewUnit)
+            {
+                unit =  UnitFactory.Create(gateMapComponent.Scene, player.UnitId, UnitType.Player);
+
+                int a = player.DomainZone();
+                var roleInfos = await DBManagerComponent.Instance.GetZoneDB(player.DomainZone()).Query<RoleInfo>(d => d.Id == player.UnitId);
+                unit.AddComponent(roleInfos[0]);
+                
+                UnitCacheHelper.AddOrUpdateUnitAllCache(unit);
+            }
+            return unit;
+        }
+
+        public static async ETTask<(bool, Unit)> LoadUnit(Player player)
+        {
+            GateMapComponent gateMapComponent = player.AddComponent<GateMapComponent>();
+            gateMapComponent.Scene            = await SceneFactory.Create(gateMapComponent, "GateMap", SceneType.Map);
+            
+            Unit unit = await UnitCacheHelper.GetUnitCache(gateMapComponent.Scene, player.UnitId);
+            
+            bool isNewUnit = unit == null;
+            if (isNewUnit)
+            {
+                unit =  UnitFactory.Create(gateMapComponent.Scene, player.UnitId, UnitType.Player);
+
+                int a = player.DomainZone();
+                var roleInfos = await DBManagerComponent.Instance.GetZoneDB(player.DomainZone()).Query<RoleInfo>(d => d.Id == player.UnitId);
+                unit.AddComponent(roleInfos[0]);
+                
+                UnitCacheHelper.AddOrUpdateUnitAllCache(unit);
+            }
+            
+            return (isNewUnit, unit);
+        }
+        
+        public static async ETTask InitUnit(Unit unit, bool isNew)
+        {
+            unit.GetComponent<NumericComponent>().SetNoEvent(NumericType.BattleRandomSeed,TimeHelper.ServerNow());
+            await ETTask.CompletedTask;
+        }
+        
+        
     }
 }

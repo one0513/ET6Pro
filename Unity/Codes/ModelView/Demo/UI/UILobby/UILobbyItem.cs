@@ -14,5 +14,7 @@ namespace ET
 
 		public ServerInfo itemData;
 
+		public Scene scene;
+
 	}
 }

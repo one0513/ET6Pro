@@ -10,6 +10,7 @@ namespace ET
         public GameObject GameObject { get; set; }
         public Action OnDestroyAction;
         public bool IsDebug;
+        public SpriteRenderer SpriteRenderer;
 
         public ReferenceCollector Collector;
     }

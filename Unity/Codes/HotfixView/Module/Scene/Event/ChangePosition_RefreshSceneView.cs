@@ -12,7 +12,7 @@ namespace ET
             {
                 var nc =args.Unit.GetComponent<NumericComponent>();
                 if(nc==null) return;
-                ChangePosition(args.Unit.ZoneScene(), args.Unit.Position,nc.GetAsInt(NumericType.AOI)).Coroutine();
+                //ChangePosition(args.Unit.ZoneScene(), args.Unit.Position,nc.GetAsInt(NumericType.AOI)).Coroutine();
             }
         }
 

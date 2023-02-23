@@ -20,6 +20,23 @@ namespace ET
         public const int ERR_AccountInBlackListError = 200005; //账号在黑名单
         public const int ERR_RequestRepeatedly = 200006; //频繁请求
         public const int ERR_TokenError = 200007; //token验证错误
-        
+        public const int ERR_RequestSceneTypeError = 200008;//请求scene错误
+        public const int ERR_ConnectGateKeyError = 200009;//gatekey验证失败
+        public const int ERR_SessionPlayerError = 200010;
+        public const int ERR_NonePlayerError = 200011;
+        public const int ERR_PlayerSessionError = 200012;
+        public const int ERR_SessionStateError = 200013;
+        public const int ERR_ReEnterGameError = 200014;
+        public const int ERR_ReEnterGameError2 = 200015;
+        public const int ERR_EnterGameError = 200016;
+        public const int ERR_HasCreatedRole = 200017;
+        public const int ERR_NumericTypeNotExist = 200018;
+        public const int ERR_NumericTypeNotAddPoint = 200019;
+        public const int ERR_AddPointNotEnough = 200020;
+        public const int ERR_ExpNotEnough = 200021;
+        public const int ERR_ExpNumError = 200022;
+        public const int ERR_OtherAccountLogin = 200023;
+
+
     }
 }

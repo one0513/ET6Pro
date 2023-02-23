@@ -6,9 +6,13 @@ namespace ET
         protected override async ETTask Run(EventType.SceneChangeStart args)
         {
             Scene currentScene = args.ZoneScene.CurrentScene();
-            SceneLoadComponent slc = EnterMap(currentScene);
-            await AOISceneViewComponent.Instance.ChangeToScene(args.Name,slc);
-            slc.Dispose();
+            
+            await UIManagerComponent.Instance.CloseWindow<UILobbyView>();
+
+            await UIManagerComponent.Instance.OpenWindow<UIMainView,Scene>(UIMainView.PrefabPath,args.ZoneScene);
+            // SceneLoadComponent slc = EnterMap(currentScene);
+            // await AOISceneViewComponent.Instance.ChangeToScene(args.Name,slc);
+            // slc.Dispose();
         }
 
         public SceneLoadComponent EnterMap(Entity self)

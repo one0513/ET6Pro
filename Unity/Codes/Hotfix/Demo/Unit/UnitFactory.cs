@@ -6,6 +6,24 @@ namespace ET
 {
     public static class UnitFactory
     {
+	    
+	    public static Unit CreatePlayer(Scene currentScene, UnitInfo unitInfo)
+	    {
+		    UnitComponent unitComponent = currentScene.GetComponent<UnitComponent>();
+		    Unit unit = unitComponent.AddChildWithId<Unit, int>(unitInfo.UnitId, unitInfo.ConfigId);
+		    unitComponent.Add(unit);
+	        
+		    NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
+		    for (int i = 0; i < unitInfo.Ks.Count; ++i)
+		    {
+			    numericComponent.Set(unitInfo.Ks[i], unitInfo.Vs[i]);
+		    }
+	        
+		    unit.AddComponent<ObjectWait>();
+	        
+		    Game.EventSystem.PublishAsync(new EventType.AfterUnitCreate() {Unit = unit}).Coroutine();
+		    return unit;
+	    }
         public static Unit Create(Scene currentScene, UnitInfo unitInfo)
         {
 	        UnitComponent unitComponent = currentScene.GetComponent<UnitComponent>();
@@ -26,46 +44,46 @@ namespace ET
 							numericComponent.Set(unitInfo.Ks[i], unitInfo.Vs[i],true);
 			        }
 
-			        unit.AddComponent<MoveComponent>();
-			        if (unitInfo.MoveInfo != null)
-			        {
-				        if (unitInfo.MoveInfo.X.Count > 0)
-				        {
-					        using (ListComponent<Vector3> list = ListComponent<Vector3>.Create())
-					        {
-						        list.Add(pos);
-						        for (int i = 0; i < unitInfo.MoveInfo.X.Count; ++i)
-						        {
-							        list.Add(new Vector3(unitInfo.MoveInfo.X[i], unitInfo.MoveInfo.Y[i], unitInfo.MoveInfo.Z[i]));
-						        }
-
-						        unit.MoveToAsync(list).Coroutine();
-					        }
-				        }
-			        }
-			        unit.AddComponent<AOIUnitComponent,Vector3,Quaternion, UnitType>(pos,unit.Rotation,unit.Type);
-			        CombatUnitComponent combatU;
-			        if (unitInfo.SkillIds != null)
-			        {
-				        combatU = unit.AddComponent<CombatUnitComponent,List<int>>(unitInfo.SkillIds);
-				        
-			        }
-			        else
-			        {
-				        combatU = unit.AddComponent<CombatUnitComponent>();
-			        }
-
-			        if (unitInfo.BuffIds != null&&unitInfo.BuffIds.Count>0)
-			        {
-				        var buffC = combatU.GetComponent<BuffComponent>();
-				        buffC.Init(unitInfo.BuffIds, unitInfo.BuffTimestamp,unitInfo.BuffSourceIds);
-
-			        }
-			       
-			        unit.AddComponent<ObjectWait>();
-
-			        unit.AddComponent<XunLuoPathComponent>();
-			        unit.Position = pos;//触发客户端加载场景预制体
+			        // unit.AddComponent<MoveComponent>();
+			        // if (unitInfo.MoveInfo != null)
+			        // {
+				       //  if (unitInfo.MoveInfo.X.Count > 0)
+				       //  {
+					      //   using (ListComponent<Vector3> list = ListComponent<Vector3>.Create())
+					      //   {
+						     //    list.Add(pos);
+						     //    for (int i = 0; i < unitInfo.MoveInfo.X.Count; ++i)
+						     //    {
+							    //     list.Add(new Vector3(unitInfo.MoveInfo.X[i], unitInfo.MoveInfo.Y[i], unitInfo.MoveInfo.Z[i]));
+						     //    }
+			        //
+						     //    unit.MoveToAsync(list).Coroutine();
+					      //   }
+				       //  }
+			        // }
+			        // unit.AddComponent<AOIUnitComponent,Vector3,Quaternion, UnitType>(pos,unit.Rotation,unit.Type);
+			        // CombatUnitComponent combatU;
+			        // if (unitInfo.SkillIds != null)
+			        // {
+				       //  combatU = unit.AddComponent<CombatUnitComponent,List<int>>(unitInfo.SkillIds);
+				       //  
+			        // }
+			        // else
+			        // {
+				       //  combatU = unit.AddComponent<CombatUnitComponent>();
+			        // }
+			        //
+			        // if (unitInfo.BuffIds != null&&unitInfo.BuffIds.Count>0)
+			        // {
+				       //  var buffC = combatU.GetComponent<BuffComponent>();
+				       //  buffC.Init(unitInfo.BuffIds, unitInfo.BuffTimestamp,unitInfo.BuffSourceIds);
+			        //
+			        // }
+			        //
+			        // unit.AddComponent<ObjectWait>();
+			        //
+			        // unit.AddComponent<XunLuoPathComponent>();
+			        // unit.Position = pos;//触发客户端加载场景预制体
 			        break;
 		        }
 		        case UnitType.Skill:

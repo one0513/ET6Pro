@@ -52,3 +52,13 @@ message RecursiveEntitys
 	int32 ParentIndex = 2;
 	int32 ChildIndex = 3;
 }
+
+message UnitCache2Other_GetUnit //IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+
+	repeated Entity EntityList = 4;
+	repeated string ComponentNameList = 5;
+}

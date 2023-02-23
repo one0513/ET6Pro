@@ -147,23 +147,23 @@
                 {
                     for (int i = 0; i < self.AttrConfig.AttributeType.Length; i++)
                     {
-                        if (NumericType.Map.TryGetValue(self.AttrConfig.AttributeType[i], out var attr))
-                        {
-                            if (self.AttrConfig.AttributeAdd != null && self.AttrConfig.AttributeAdd.Length > i)
-                                numc.Set(attr * 10 + 2, numc.GetAsInt(attr * 10 + 2) + self.AttrConfig.AttributeAdd[i]);
-                            if (self.AttrConfig.AttributePct != null && self.AttrConfig.AttributePct.Length > i)
-                                numc.Set(attr * 10 + 3, numc.GetAsInt(attr * 10 + 3) + self.AttrConfig.AttributePct[i]);
-                            if (self.AttrConfig.AttributeFinalAdd != null && self.AttrConfig.AttributeFinalAdd.Length > i)
-                                numc.Set(attr * 10 + 4,
-                                    numc.GetAsInt(attr * 10 + 4) + self.AttrConfig.AttributeFinalAdd[i]);
-                            if (self.AttrConfig.AttributeFinalPct != null && self.AttrConfig.AttributeFinalPct.Length > i)
-                                numc.Set(attr * 10 + 5,
-                                    numc.GetAsInt(attr * 10 + 5) + self.AttrConfig.AttributeFinalPct[i]);
-                        }
-                        else
-                        {
-                            Log.Info("BuffConfig属性没找到 【" + self.AttrConfig.AttributeType[i]+"】");
-                        }
+                        // if (NumericType.Map.TryGetValue(self.AttrConfig.AttributeType[i], out var attr))
+                        // {
+                        //     if (self.AttrConfig.AttributeAdd != null && self.AttrConfig.AttributeAdd.Length > i)
+                        //         numc.Set(attr * 10 + 2, numc.GetAsInt(attr * 10 + 2) + self.AttrConfig.AttributeAdd[i]);
+                        //     if (self.AttrConfig.AttributePct != null && self.AttrConfig.AttributePct.Length > i)
+                        //         numc.Set(attr * 10 + 3, numc.GetAsInt(attr * 10 + 3) + self.AttrConfig.AttributePct[i]);
+                        //     if (self.AttrConfig.AttributeFinalAdd != null && self.AttrConfig.AttributeFinalAdd.Length > i)
+                        //         numc.Set(attr * 10 + 4,
+                        //             numc.GetAsInt(attr * 10 + 4) + self.AttrConfig.AttributeFinalAdd[i]);
+                        //     if (self.AttrConfig.AttributeFinalPct != null && self.AttrConfig.AttributeFinalPct.Length > i)
+                        //         numc.Set(attr * 10 + 5,
+                        //             numc.GetAsInt(attr * 10 + 5) + self.AttrConfig.AttributeFinalPct[i]);
+                        // }
+                        // else
+                        // {
+                        //     Log.Info("BuffConfig属性没找到 【" + self.AttrConfig.AttributeType[i]+"】");
+                        // }
                     }
                 }
                 else
@@ -186,23 +186,23 @@
                 {
                     for (int i = 0; i < self.AttrConfig.AttributeType.Length; i++)
                     {
-                        if (NumericType.Map.TryGetValue(self.AttrConfig.AttributeType[i], out var attr))
-                        {
-                            if (self.AttrConfig.AttributeAdd != null && self.AttrConfig.AttributeAdd.Length > i)
-                                numc.Set(attr * 10 + 2, numc.GetAsInt(attr * 10 + 2) - self.AttrConfig.AttributeAdd[i]);
-                            if (self.AttrConfig.AttributePct != null && self.AttrConfig.AttributePct.Length > i)
-                                numc.Set(attr * 10 + 3, numc.GetAsInt(attr * 10 + 3) - self.AttrConfig.AttributePct[i]);
-                            if (self.AttrConfig.AttributeFinalAdd != null && self.AttrConfig.AttributeFinalAdd.Length > i)
-                                numc.Set(attr * 10 + 4,
-                                    numc.GetAsInt(attr * 10 + 4) - self.AttrConfig.AttributeFinalAdd[i]);
-                            if (self.AttrConfig.AttributeFinalPct != null && self.AttrConfig.AttributeFinalPct.Length > i)
-                                numc.Set(attr * 10 + 5,
-                                    numc.GetAsInt(attr * 10 + 5) - self.AttrConfig.AttributeFinalPct[i]);
-                        }
-                        else
-                        {
-                            Log.Info("BuffConfig属性没找到 【" + self.AttrConfig.AttributeType[i]+"】");
-                        }
+                        // if (NumericType.Map.TryGetValue(self.AttrConfig.AttributeType[i], out var attr))
+                        // {
+                        //     if (self.AttrConfig.AttributeAdd != null && self.AttrConfig.AttributeAdd.Length > i)
+                        //         numc.Set(attr * 10 + 2, numc.GetAsInt(attr * 10 + 2) - self.AttrConfig.AttributeAdd[i]);
+                        //     if (self.AttrConfig.AttributePct != null && self.AttrConfig.AttributePct.Length > i)
+                        //         numc.Set(attr * 10 + 3, numc.GetAsInt(attr * 10 + 3) - self.AttrConfig.AttributePct[i]);
+                        //     if (self.AttrConfig.AttributeFinalAdd != null && self.AttrConfig.AttributeFinalAdd.Length > i)
+                        //         numc.Set(attr * 10 + 4,
+                        //             numc.GetAsInt(attr * 10 + 4) - self.AttrConfig.AttributeFinalAdd[i]);
+                        //     if (self.AttrConfig.AttributeFinalPct != null && self.AttrConfig.AttributeFinalPct.Length > i)
+                        //         numc.Set(attr * 10 + 5,
+                        //             numc.GetAsInt(attr * 10 + 5) - self.AttrConfig.AttributeFinalPct[i]);
+                        // }
+                        // else
+                        // {
+                        //     Log.Info("BuffConfig属性没找到 【" + self.AttrConfig.AttributeType[i]+"】");
+                        // }
                     }
                 }
                 else

@@ -26,8 +26,7 @@ namespace ET
         
         public static void SendToClient(Unit unit, IActorMessage message)
         {
-            if(unit.GetComponent<UnitGateComponent>()!=null)
-                SendActor(unit.GetComponent<UnitGateComponent>().GateSessionActorId, message);
+            SendActor(unit.GetComponent<UnitGateComponent>().GateSessionActorId, message);
         }
         
         

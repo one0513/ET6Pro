@@ -35,7 +35,22 @@ namespace ET
             {
                 using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.LoginAccount, request.AccountId))
                 {
-                    //StartSceneConfig startSceneConfig = RealmGateAddressHelper.GetRealm
+                    StartSceneConfig realmStartSceneConfig = RealmGateAddressHelper.GetRealm(request.ServerId);
+
+                    R2A_GetRealmKey r2AGetRealmKey =  (R2A_GetRealmKey) await MessageHelper.CallActor(realmStartSceneConfig.InstanceId, new A2R_GetRealmKey() { AccountId = request.AccountId });
+
+                    if (r2AGetRealmKey.Error != ErrorCode.ERR_Success)
+                    {
+                        response.Error = r2AGetRealmKey.Error;
+                        reply();
+                        session?.Disconnect().Coroutine();
+                        return;
+                    }
+
+                    response.RealmKey = r2AGetRealmKey.RealmKey;
+                    response.RealmAddress = realmStartSceneConfig.OuterIPPort.ToString();
+                    reply();
+                    session?.Disconnect().Coroutine();
                     
                 }
             }

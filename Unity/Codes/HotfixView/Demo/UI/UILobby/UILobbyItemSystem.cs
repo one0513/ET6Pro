@@ -32,6 +32,7 @@ namespace ET
 	[FriendClass(typeof(UILobbyItem))]
 	[FriendClass(typeof(UITextmesh))]
 	[FriendClass(typeof(ServerInfo))]
+	[FriendClass(typeof(ServerInfosComponent))]
 	public static class UILobbyItemSystem
 	{
 
@@ -42,6 +43,7 @@ namespace ET
 				Game.EventSystem.PublishAsync(new UIEventType.ShowToast() { Text = "当前服务器正在维护" }).Coroutine();
 				return;
 			}
+			self.scene.GetComponent<ServerInfosComponent>().curServerId = (int)self.itemData.Id;
 			Game.EventSystem.Publish(new EventType.ChangServer(){serverInfo = self.itemData});
 			
 		}

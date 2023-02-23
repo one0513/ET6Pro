@@ -113,4 +113,25 @@ namespace ET
 
 	}
 
+	[Message(MongoOpcode.UnitCache2Other_GetUnit)]
+	[ProtoContract]
+	public partial class UnitCache2Other_GetUnit: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(4)]
+		public List<Entity> EntityList = new List<Entity>();
+
+		[ProtoMember(5)]
+		public List<string> ComponentNameList = new List<string>();
+
+	}
+
 }

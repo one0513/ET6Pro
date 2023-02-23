@@ -37,5 +37,22 @@ namespace ET
 		 public const ushort L2A_LoginAccountResponse = 20034;
 		 public const ushort L2G_DisconnectGateUnit = 20035;
 		 public const ushort G2L_DisconnectGateUnit = 20036;
+		 public const ushort A2R_GetRealmKey = 20037;
+		 public const ushort R2A_GetRealmKey = 20038;
+		 public const ushort R2G_GetLoginGateKey = 20039;
+		 public const ushort G2R_GetLoginGateKey = 20040;
+		 public const ushort G2L_AddLoginRecord = 20041;
+		 public const ushort L2G_AddLoginRecord = 20042;
+		 public const ushort G2M_RequestExitGame = 20043;
+		 public const ushort M2G_RequestExitGame = 20044;
+		 public const ushort G2L_RemoveLoginRecord = 20045;
+		 public const ushort L2G_RemoveLoginRecord = 20046;
+		 public const ushort Other2UnitCache_AddOrUpdateUnit = 20047;
+		 public const ushort UnitCache2Other_AddOrUpdateUnit = 20048;
+		 public const ushort Other2UnitCache_GetUnit = 20049;
+		 public const ushort Other2UnitCache_DeleteUnit = 20050;
+		 public const ushort UnitCache2Other_DeleteUnit = 20051;
+		 public const ushort G2M_RequestEnterGameState = 20052;
+		 public const ushort M2G_RequestEnterGameState = 20053;
 	}
 }

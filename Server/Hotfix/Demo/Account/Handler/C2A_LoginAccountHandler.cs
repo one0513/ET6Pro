@@ -49,6 +49,16 @@ namespace ET
                 return;
             }
             
+            if (session.GetComponent<AccountsZone>() == null)
+            {
+                session.AddComponent<AccountsZone>();
+            }
+
+            if (session.GetComponent<RoleInfosZone>() == null)
+            {
+                session.AddComponent<RoleInfosZone>();
+            }
+            
 
             using (session.AddComponent<SessionLockingComponent>())
             {

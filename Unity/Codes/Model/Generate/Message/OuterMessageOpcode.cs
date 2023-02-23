@@ -49,5 +49,23 @@ namespace ET
 		 public const ushort A2C_GetServerInfos = 10048;
 		 public const ushort C2A_GetRealmKey = 10049;
 		 public const ushort A2C_GetRealmKey = 10050;
+		 public const ushort C2R_LoginRealm = 10051;
+		 public const ushort R2C_LoginRealm = 10052;
+		 public const ushort C2G_LoginGameGate = 10053;
+		 public const ushort G2C_LoginGameGate = 10054;
+		 public const ushort C2G_EnterGame = 10055;
+		 public const ushort G2C_EnterGame = 10056;
+		 public const ushort RoleInfoProto = 10057;
+		 public const ushort C2A_CreateRole = 10058;
+		 public const ushort A2C_CreateRole = 10059;
+		 public const ushort C2A_GetRoles = 10060;
+		 public const ushort A2C_GetRoles = 10061;
+		 public const ushort M2C_NoticeUnitNumeric = 10062;
+		 public const ushort C2M_TestUnitNumeric = 10063;
+		 public const ushort M2C_TestUnitNumeric = 10064;
+		 public const ushort C2M_AddAttributePoint = 10065;
+		 public const ushort M2C_AddAttributePoint = 10066;
+		 public const ushort C2M_UpRoleLevel = 10067;
+		 public const ushort M2C_UpRoleLevel = 10068;
 	}
 }

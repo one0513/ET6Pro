@@ -285,3 +285,143 @@ message G2L_DisconnectGateUnit //IActorResponse
 	int32 Error = 2;
 	string Message = 3;
 }
+
+
+//ResponseType R2A_GetRealmKey
+message A2R_GetRealmKey // IActorRequest
+{
+    int32 RpcId       = 90;
+    int64 AccountId   = 1;
+}
+
+
+message R2A_GetRealmKey // IActorResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+
+    string RealmKey = 1;
+}
+
+//ResponseType G2R_GetLoginGateKey
+message R2G_GetLoginGateKey // IActorRequest
+{
+	int32 RpcId = 90;
+	int64 AccountId = 1;
+}
+
+message G2R_GetLoginGateKey // IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+
+	string GateSessionKey = 1;
+}
+
+//ResponseType L2G_AddLoginRecord
+message G2L_AddLoginRecord // IActorRequest
+{
+    int32 RpcId       = 90;
+    int64 AccountId  = 1;
+	int32 ServerId = 2;
+}
+
+message L2G_AddLoginRecord // IActorResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+}
+
+//ResponseType M2G_RequestExitGame
+message G2M_RequestExitGame // IActorLocationRequest
+{
+    int32 RpcId = 90;
+}
+
+
+message M2G_RequestExitGame // IActorLocationResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+}
+
+//ResponseType L2G_RemoveLoginRecord
+message G2L_RemoveLoginRecord // IActorRequest
+{
+    int32 RpcId       = 90;
+    int64 AccountId  = 1;
+	int ServerId = 2;
+}
+
+message L2G_RemoveLoginRecord // IActorResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+}
+
+
+//----------玩家缓存相关----------------
+
+//增加或者更新Unit缓存
+//ResponseType UnitCache2Other_AddOrUpdateUnit
+message Other2UnitCache_AddOrUpdateUnit //IActorRequest
+{
+    int32 RpcId = 90;
+
+    int64 UnitId = 1;				  // 需要缓存的UnitId
+    repeated string EntityTypes = 2;  //实体类型
+    repeated bytes EntityBytes = 3;   //实体序列化后的bytes
+}
+
+message UnitCache2Other_AddOrUpdateUnit //IActorResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+}
+
+//获取Unit缓存
+//ResponseType UnitCache2Other_GetUnit
+message Other2UnitCache_GetUnit //IActorRequest
+{
+    int32 RpcId = 90;
+
+    int64 UnitId = 1;
+    repeated string ComponentNameList = 2; //需要获取的组件名
+}
+
+
+//删除Unit缓存
+//ResponseType UnitCache2Other_DeleteUnit
+message Other2UnitCache_DeleteUnit // IActorRequest
+{
+   int32 RpcId = 90;
+
+   int64 UnitId = 1;    
+}
+
+message UnitCache2Other_DeleteUnit // IActorResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+}
+
+//ResponseType M2G_RequestEnterGameState
+message G2M_RequestEnterGameState // IActorLocationRequest
+{
+    int32 RpcId = 90;
+}
+
+
+message M2G_RequestEnterGameState // IActorLocationResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+}

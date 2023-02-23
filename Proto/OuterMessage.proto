@@ -390,3 +390,162 @@ message A2C_GetRealmKey //IResponse
 	string RealmKey = 1;
 	string RealmAddress = 2;
 }
+
+//ResponseType R2C_LoginRealm
+message C2R_LoginRealm // IRequest
+{
+	int32  RpcId = 90;
+	int64  AccountId        = 1;
+	string  RealmTokenKey   = 2;	
+}
+
+message R2C_LoginRealm // IResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	string GateSessionKey = 1;
+	string GateAddress = 2;
+}
+
+//ResponseType G2C_LoginGameGate
+message C2G_LoginGameGate // IRequest
+{
+	int32 RpcId = 90;
+	string Key = 1;	
+	int64 RoleId = 2;
+	int64 Account = 3;
+}
+
+message G2C_LoginGameGate // IResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	int64 PlayerId = 1;
+}
+
+//ResponseType G2C_EnterGame
+message C2G_EnterGame // IRequest
+{
+	int32 RpcId = 1;
+}
+
+message G2C_EnterGame // IResponse
+{
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
+	// 自己unitId
+	int64 MyId = 4;
+}
+
+
+message RoleInfoProto
+{
+	int64 Id = 1;
+
+	string Name = 2;
+
+	int32 State = 3;
+
+	int64 AccountId = 4;
+
+	int64 LastLoginTime = 5;
+
+	int64 CreateTime = 6;
+
+	int32 ServerId = 7;
+}
+
+//ResponseType A2C_CreateRole
+message C2A_CreateRole // IRequest
+{
+	int32 RpcId     = 90;
+	string Token    = 1;
+	int64 AccountId = 2;
+	string Name     = 3;
+	int32 ServerId  = 4;
+}
+
+
+message A2C_CreateRole // IResponse
+{
+	int32 RpcId    = 90;
+	int32 Error    = 91;
+	string Message = 92;
+	RoleInfoProto RoleInfo = 1;
+}
+
+
+
+//ResponseType A2C_GetRoles
+message C2A_GetRoles // IRequest
+{
+	int32  RpcId     = 90;
+	string Token     = 1;
+	int64  AccountId = 2;
+	int32  ServerId  = 3;
+}
+
+
+message A2C_GetRoles // IResponse
+{
+	int32 RpcId    = 90;
+	int32 Error    = 91;
+	string Message = 92;
+	repeated RoleInfoProto RoleInfo = 1;
+}
+
+
+message M2C_NoticeUnitNumeric // IActorMessage
+{
+	int64 UnitId = 1;
+
+	int32 NumericType = 2;
+
+	int64 NewValue = 4;
+}
+
+
+//ResponseType M2C_TestUnitNumeric
+message C2M_TestUnitNumeric // IActorLocationRequest
+{
+	int32 RpcId = 1;
+}
+
+message M2C_TestUnitNumeric // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+
+
+//ResponseType M2C_AddAttributePoint
+message C2M_AddAttributePoint // IActorLocationRequest
+{
+	int32 RpcId = 1;
+	int32 NumericType = 2;
+}
+
+message M2C_AddAttributePoint // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+//ResponseType M2C_UpRoleLevel
+message C2M_UpRoleLevel // IActorLocationRequest
+{
+	int32 RpcId = 1;
+}
+
+message M2C_UpRoleLevel // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}

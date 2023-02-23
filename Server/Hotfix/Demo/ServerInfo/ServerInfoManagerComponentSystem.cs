@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -36,29 +37,41 @@ namespace ET
     {
         public static async ETTask Awake(this ServerInfoManagerComponent self)
         {
-            var serverInfoList = await DBManagerComponent.Instance.GetZoneDB(self.DomainZone()).Query<ServerInfo>(d => true);
-            var severInfoConfigs = ServerInfoConfigCategory.Instance.GetAll();
+            // var serverInfoList = await DBManagerComponent.Instance.GetZoneDB(self.DomainZone()).Query<ServerInfo>(d => true);
+            // var severInfoConfigs = ServerInfoConfigCategory.Instance.GetAll();
+            //
+            // if (serverInfoList.Count < severInfoConfigs.Count )
+            // {
+            //     self.ServerInfos.Clear();
+            //     foreach (var serverInfo in severInfoConfigs.Values)
+            //     {
+            //         ServerInfo newServerInfo = self.AddChildWithId<ServerInfo>(serverInfo.Id);
+            //         newServerInfo.serverName = serverInfo.ServerName;
+            //         newServerInfo.status = serverInfo.ServerStatus;
+            //         self.ServerInfos.Add(newServerInfo);
+            //         await DBManagerComponent.Instance.GetZoneDB(self.DomainZone()).Save(newServerInfo);
+            //     }
+            //     return;
+            // }
+            // self.ServerInfos.Clear();
+            //
+            // foreach (var serverInfo in serverInfoList)
+            // {
+            //     self.AddChild(serverInfo);
+            //     self.ServerInfos.Add(serverInfo);
+            // }
             
-            if (serverInfoList == null || serverInfoList.Count < severInfoConfigs.Count )
-            {
-                self.ServerInfos.Clear();
-                foreach (var serverInfo in severInfoConfigs.Values)
-                {
-                    ServerInfo newServerInfo = self.AddChildWithId<ServerInfo>(serverInfo.Id);
-                    newServerInfo.serverName = serverInfo.ServerName;
-                    newServerInfo.status = serverInfo.ServerStatus;
-                    self.ServerInfos.Add(newServerInfo);
-                    await DBManagerComponent.Instance.GetZoneDB(self.DomainZone()).Save(newServerInfo);
-                }
-                return;
-            }
+            var severInfoConfigs = ServerInfoConfigCategory.Instance.GetAll();
             self.ServerInfos.Clear();
-
-            foreach (var serverInfo in serverInfoList)
+            foreach (var serverInfo in severInfoConfigs.Values)
             {
-                self.AddChild(serverInfo);
-                self.ServerInfos.Add(serverInfo);
+                ServerInfo newServerInfo = self.AddChildWithId<ServerInfo>(serverInfo.Id);
+                newServerInfo.serverName = serverInfo.ServerName;
+                newServerInfo.status = serverInfo.ServerStatus;
+                self.ServerInfos.Add(newServerInfo);
+                await DBManagerComponent.Instance.GetZoneDB((int)newServerInfo.Id).Save(newServerInfo);
             }
+            return;
         }
     }
 }

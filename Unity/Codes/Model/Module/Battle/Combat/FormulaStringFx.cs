@@ -172,18 +172,18 @@ public class FormulaStringFx
         {
             if(!float.TryParse(tempList[i].Value,out _))
             {
-                if (NumericType.Map.TryGetValue(tempList[i].Value,out int type))
-                {
-                    if(tempList[i].IsSelf)
-                        tempList[i].Value = comp.GetAsFloat(type).ToString();
-                    else if(other!=null)
-                        tempList[i].Value = other.GetAsFloat(type).ToString();
-                    else
-                    {
-                        tempList[i].Value = "0";
-                        Log.Error("计算伤害未传入目标");
-                    }
-                }
+                // if (NumericType.Map.TryGetValue(tempList[i].Value,out int type))
+                // {
+                //     if(tempList[i].IsSelf)
+                //         tempList[i].Value = comp.GetAsFloat(type).ToString();
+                //     else if(other!=null)
+                //         tempList[i].Value = other.GetAsFloat(type).ToString();
+                //     else
+                //     {
+                //         tempList[i].Value = "0";
+                //         Log.Error("计算伤害未传入目标");
+                //     }
+                // }
                 
             }
 

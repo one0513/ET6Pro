@@ -74,7 +74,7 @@ namespace ET
 			await UIManagerComponent.Instance.CloseWindow<UILoginView>();
 
 			List<ServerInfo> serverInfos = self.scene.GetComponent<ServerInfosComponent>().serverInfoList;
-			await UIManagerComponent.Instance.OpenWindow<UILobbyView,List<ServerInfo>>(UILobbyView.PrefabPath,serverInfos);
+			await UIManagerComponent.Instance.OpenWindow<UILobbyView,List<ServerInfo>,Scene>(UILobbyView.PrefabPath,serverInfos,self.scene);
 
 			// Debug.Log("登入。。。。");
 			// Game.EventSystem.PublishAsync(new UIEventType.ShowToast() { Text = "登入。。。。" }).Coroutine();
