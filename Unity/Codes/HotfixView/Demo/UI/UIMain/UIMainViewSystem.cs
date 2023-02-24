@@ -77,8 +77,8 @@ namespace ET
 			NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 			
 			self.lblExp.SetText(numericComponent.GetAsInt((int)NumericType.Exp).ToString());
-			self.lblCoin.SetText(numericComponent.GetAsInt((int)NumericType.Gold).ToString());
-			self.lblLevel.SetText($"Lv:{numericComponent.GetAsInt((int)NumericType.Level).ToString()}");
+			//self.lblCoin.SetText(numericComponent.GetAsInt((int)NumericType.Gold).ToString());
+			self.lblLevel.SetText($"Lv:{numericComponent.GetAsInt((int)NumericType.Lv).ToString()}");
 
 		}
 	}

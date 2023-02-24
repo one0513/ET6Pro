@@ -23,13 +23,13 @@ namespace ET
                         var numericComponent = unit.GetComponent<NumericComponent>();
 
                         // 加入aoi
-                        var aoiu = unit.AddComponent<AOIUnitComponent, Vector3, Quaternion, UnitType, int,bool>(unit.Position, unit.Rotation, unit.Type,
-                            numericComponent.GetAsInt(NumericType.AOI),type!=CreateUnitFromMsgType.Create);
-                        aoiu.AddSphereCollider(0.5f);
-                        if (type != CreateUnitFromMsgType.Create)
-                        {
-                            aoiu.GetComponent<GhostComponent>().IsGoast = type == CreateUnitFromMsgType.Add;
-                        }
+                        // var aoiu = unit.AddComponent<AOIUnitComponent, Vector3, Quaternion, UnitType, int,bool>(unit.Position, unit.Rotation, unit.Type,
+                        //     numericComponent.GetAsInt(NumericType.AOI),type!=CreateUnitFromMsgType.Create);
+                        // aoiu.AddSphereCollider(0.5f);
+                        // if (type != CreateUnitFromMsgType.Create)
+                        // {
+                        //     aoiu.GetComponent<GhostComponent>().IsGoast = type == CreateUnitFromMsgType.Add;
+                        // }
                     }
                     else
                     {
@@ -106,6 +106,24 @@ namespace ET
                     // unit.Position = new Vector3(-10, 0, -10);
 			
                     NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
+                    foreach (var config in PlayerNumericConfigCategory.Instance.GetAll())
+                    {
+                        if ( config.Value.BaseValue == 0 )
+                        {
+                            continue;
+                        }
+
+                        if ( config.Key < 3000 ) //小于3000的值都用加成属性推导
+                        {
+                            int baseKey = config.Key * 10 + 1;
+                            numericComponent.SetNoEvent(baseKey,config.Value.BaseValue);
+                        }
+                        else
+                        {
+                            //大于3000的值 直接使用
+                            numericComponent.SetNoEvent(config.Key,config.Value.BaseValue);
+                        }
+                    }
                     
                     // numericComponent.Set(NumericType.SpeedBase, 6f); // 速度是6米每秒
                     // numericComponent.Set(NumericType.AOIBase, 2); // 视野2格
@@ -137,7 +155,7 @@ namespace ET
             if (collider.ColliderType == ColliderType.Target)//朝指定位置方向飞行碰撞体
             {
                 var numc = unit.AddComponent<NumericComponent>();
-                numc.Set(NumericType.SpeedBase, collider.Speed);
+                //numc.Set(NumericType.SpeedBase, collider.Speed);
                 var moveComp = unit.AddComponent<MoveComponent>();
                 List<Vector3> target = new List<Vector3>();
                 target.Add(pos);
@@ -148,7 +166,7 @@ namespace ET
             else if (collider.ColliderType == ColliderType.Aim) //锁定目标飞行
             {
                 var numc = unit.AddComponent<NumericComponent>();
-                numc.Set(NumericType.SpeedBase,collider.Speed);
+                //numc.Set(NumericType.SpeedBase,collider.Speed);
                 unit.AddComponent<MoveComponent>();
                 unit.AddComponent<ZhuiZhuAimComponent, Unit, Action>(para.To.unit, () =>
                 {

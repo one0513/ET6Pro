@@ -2,7 +2,7 @@
 
 namespace ET
 {
-    [NumericWatcher(NumericType.Level)]
+    [NumericWatcher(NumericType.Lv)]
     public class NumericWatcher_UpdateUIMainView : INumericWatcher
     {
         public void Run(NumbericChange args)

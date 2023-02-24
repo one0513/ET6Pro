@@ -3,8 +3,10 @@
 namespace ET
 {
 
-    [NumericWatcher(NumericType.PhysicalStrength)]
-    [NumericWatcher(NumericType.Power)]
+    [NumericWatcher(NumericType.Atk)]
+    [NumericWatcher(NumericType.Def)]
+    [NumericWatcher(NumericType.Hp)]
+    [NumericWatcher(NumericType.Dmg)]
     public class NumericWatcher_AddAttributePoint : INumericWatcher
     {
         public void Run(EventType.NumbericChange args)
@@ -14,17 +16,21 @@ namespace ET
                 return;
             }
             
-            //力量+1点 伤害值+5
-            if (args.NumericType == NumericType.Power)
+            //攻击防御 一点5战斗力 生命 一点1战斗力 伤害 一点30战斗力
+            if (args.NumericType == NumericType.Atk || args.NumericType == NumericType.Def)
             {
-                unit.GetComponent<NumericComponent>()[NumericType.DamageValueAdd] += 5;
+                
+                unit.GetComponent<NumericComponent>()[NumericType.CE] += (args.New -args.Old) * 5;
             }
-            
-            //体力+1点 最大生命值 +1%
-            if (args.NumericType == NumericType.PhysicalStrength)
+            if (args.NumericType == NumericType.Hp)
             {
-                unit.GetComponent<NumericComponent>()[NumericType.MaxHpPct] += 1*10000;
+                unit.GetComponent<NumericComponent>()[NumericType.CE] += (args.New -args.Old) * 1;
             }
+            if (args.NumericType == NumericType.Dmg)
+            {
+                unit.GetComponent<NumericComponent>()[NumericType.CE] += (args.New -args.Old) * 30;
+            }
+
             
 
         }

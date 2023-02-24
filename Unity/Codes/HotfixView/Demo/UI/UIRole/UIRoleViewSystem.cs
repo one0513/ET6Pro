@@ -76,14 +76,21 @@ namespace ET
 			Unit unit = UnitHelper.GetMyUnitFromCurrentScene(self.scene.CurrentScene());
 			NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 			
-			self.lblLevel.SetText((numericComponent.GetAsInt((int)NumericType.Level)).ToString());
+			self.lblLevel.SetText((numericComponent.GetAsInt((int)NumericType.Lv)).ToString());
 			self.lblAtk.SetText($"攻击:{numericComponent.GetAsInt((int)NumericType.Atk).ToString()}");
 			self.lblDef.SetText($"防御:{numericComponent.GetAsInt((int)NumericType.Def).ToString()}");
-			self.lblHp.SetText($"生命:{numericComponent.GetAsInt((int)NumericType.NewHp).ToString()}");
+			self.lblHp.SetText($"生命:{numericComponent.GetAsInt((int)NumericType.Hp).ToString()}");
 			self.lblDmg.SetText($"伤害:{numericComponent.GetAsInt((int)NumericType.Dmg).ToString()}");
 			self.lblNowAddPoint.SetText($"当前可加点数:{numericComponent.GetAsInt((int)NumericType.AttributePoint).ToString()}");
+			self.lblCE.SetText($"战斗力:{numericComponent.GetAsInt((int)NumericType.CE).ToString()}");
 			
+			int UnitLevel = numericComponent.GetAsInt(NumericType.Lv);
+			var needExp = PlayerLevelConfigCategory.Instance.Get(UnitLevel+1).NeedExp;
+			long nowExp = numericComponent.GetAsLong(NumericType.Exp);
 			
+			self.lblExpProgress.SetText($"{nowExp}/{needExp}");
+			float slideValue = nowExp > needExp? 1 : (float)nowExp / (float)needExp;
+			self.SliderLevel.SetValue(slideValue);
 
 		}
 		public static async ETTask OnClickbtnClose(this UIRoleView self)
@@ -104,7 +111,7 @@ namespace ET
 		}
 		public static void OnClickbtnUpHp(this UIRoleView self)
 		{
-			NumericHelper.ReqeustAddAttributePoint(self.scene, NumericType.NewHp).Coroutine();
+			NumericHelper.ReqeustAddAttributePoint(self.scene, NumericType.Hp).Coroutine();
 		}
 		public static void OnClickbtnUpDmg(this UIRoleView self)
 		{

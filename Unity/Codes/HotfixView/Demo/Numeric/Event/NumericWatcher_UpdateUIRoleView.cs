@@ -2,12 +2,13 @@
 
 namespace ET
 {
-    [NumericWatcher(NumericType.Level)]
+    [NumericWatcher(NumericType.Lv)]
     [NumericWatcher(NumericType.AttributePoint)]
     [NumericWatcher(NumericType.Atk)]
     [NumericWatcher(NumericType.Def)]
-    [NumericWatcher(NumericType.NewHp)]
+    [NumericWatcher(NumericType.Hp)]
     [NumericWatcher(NumericType.Dmg)]
+    [NumericWatcher(NumericType.CE)]
     public class NumericWatcher_UpdateUIRoleView: INumericWatcher
     {
         public void Run(NumbericChange args)

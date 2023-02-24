@@ -8,7 +8,7 @@ namespace ET
         {
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 
-            int UnitLevel = numericComponent.GetAsInt(NumericType.Level);
+            int UnitLevel = numericComponent.GetAsInt(NumericType.Lv);
 
             var config = PlayerLevelConfigCategory.Instance.Get(UnitLevel);
 
@@ -30,8 +30,8 @@ namespace ET
             }
 
             numericComponent[NumericType.Exp]   = newExp;
-            numericComponent[NumericType.Level] = UnitLevel + 1;
-            numericComponent[NumericType.AttributePoint] += 10;
+            numericComponent[NumericType.Lv] = UnitLevel + 1;
+            numericComponent[NumericType.AttributePoint] += 5;
 
             reply();
             await ETTask.CompletedTask;

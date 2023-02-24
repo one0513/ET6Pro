@@ -62,8 +62,8 @@ namespace ET
                 return;
             }
             self.Num.text = nc.GetAsInt(NumericType.Hp).ToString();
-            float fCurrentHpPercent = nc.GetAsFloat(NumericType.Hp) / nc.GetAsFloat(NumericType.MaxHp);
-            self.HpBg.fillAmount = fCurrentHpPercent;
+            // float fCurrentHpPercent = nc.GetAsFloat(NumericType.Hp) / nc.GetAsFloat(NumericType.MaxHp);
+            // self.HpBg.fillAmount = fCurrentHpPercent;
         }
         
     }

@@ -148,7 +148,7 @@ namespace ET
 	        {
 		        var numc = unit.AddComponent<NumericComponent>();
 
-		        numc.Set(NumericType.SpeedBase, collider.Speed);
+		        //numc.Set(NumericType.SpeedBase, collider.Speed);
 		        var moveComp = unit.AddComponent<MoveComponent>();
 		        Log.Info(pos + " " + pos + (para.Position - pos).normalized * collider.Speed * collider.Time / 1000f);
 		        List<Vector3> target = new List<Vector3>();
@@ -160,7 +160,7 @@ namespace ET
 	        else if (collider.ColliderType == ColliderType.Aim) //锁定目标飞行
 	        {
 		        var numc = unit.AddComponent<NumericComponent>();
-		        numc.Set(NumericType.SpeedBase,collider.Speed);
+		        //numc.Set(NumericType.SpeedBase,collider.Speed);
 		        unit.AddComponent<MoveComponent>();
 		        unit.AddComponent<ZhuiZhuAimComponent, Unit, Action>(para.To.unit, () =>
 		        {

@@ -3,121 +3,93 @@ namespace ET
 {
     public class NumericType
     {
+        public int this[string key]
+        {
+            get
+            {
+                if (Map.TryGetValue(key, out var res))
+                {
+                    return res;
+                }
+                Log.Error($"{key}属性不存在");
+                return -1;
+            }
+        }
+        private static Dictionary<string, int> __Map;
+        public static Dictionary<string, int> Map
+        {
+            get
+            {
+                if (__Map == null)
+                {
+                    __Map = new Dictionary<string, int>();
+                    __Map.Add("Lv",Lv);
+                    __Map.Add("LvBase",LvBase);
+                    __Map.Add("Exp",Exp);
+                    __Map.Add("ExpBase",ExpBase);
+                    __Map.Add("Atk",Atk);
+                    __Map.Add("AtkBase",AtkBase);
+                    __Map.Add("Def",Def);
+                    __Map.Add("DefBase",DefBase);
+                    __Map.Add("Hp",Hp);
+                    __Map.Add("HpBase",HpBase);
+                    __Map.Add("Dmg",Dmg);
+                    __Map.Add("DmgBase",DmgBase);
+                    __Map.Add("BattleRandomSeed",BattleRandomSeed);
+                    __Map.Add("BattleRandomSeedBase",BattleRandomSeedBase);
+                    __Map.Add("AttributePoint",AttributePoint);
+                    __Map.Add("AttributePointBase",AttributePointBase);
+                    __Map.Add("CE",CE);
+                    __Map.Add("CEBase",CEBase);
+                }
+                return __Map;
+            }
+        }
 		public const int Max = 10000;
 
-	    public const int Speed = 1000;
-	    public const int SpeedBase = Speed * 10 + 1; 
-	    public const int SpeedAdd = Speed * 10 + 2;
-	    public const int SpeedPct = Speed * 10 + 3;
-	    public const int SpeedFinalAdd = Speed * 10 + 4;
-	    public const int SpeedFinalPct = Speed * 10 + 5;
-	    
-	    public const int MaxHp = 1002;
-	    public const int MaxHpBase = MaxHp * 10 + 1;
-	    public const int MaxHpAdd = MaxHp * 10 + 2;
-	    public const int MaxHpPct = MaxHp * 10 + 3;
-	    public const int MaxHpFinalAdd = MaxHp * 10 + 4;
-	    public const int MaxHpFinalPct = MaxHp * 10 + 5;
+		/// <summary> 等级 </summary>
+		public const int Lv = 3001;
+		/// <summary> 等级Base </summary>
+		public const int LvBase = 3001 * 10 + 1;
 
-	    public const int AOI = 1003;
-	    public const int AOIBase = AOI * 10 + 1;
-	    public const int AOIAdd = AOI * 10 + 2;
-	    public const int AOIPct = AOI * 10 + 3;
-	    public const int AOIFinalAdd = AOI * 10 + 4;
-	    public const int AOIFinalPct = AOI * 10 + 5;
-	    
-	    public const int MaxMp = 1004;
-	    public const int MaxMpBase = MaxMp * 10 + 1;
-	    public const int MaxMpAdd = MaxMp * 10 + 2;
-	    public const int MaxMpPct = MaxMp * 10 + 3;
-	    public const int MaxMpFinalAdd = MaxMp * 10 + 4;
-	    public const int MaxMpFinalPct = MaxMp * 10 + 5;
+		/// <summary> 经验 </summary>
+		public const int Exp = 3002;
+		/// <summary> 经验Base </summary>
+		public const int ExpBase = 3002 * 10 + 1;
 
-	    
-	    public const int DamageValue = 1011;         //伤害
-	    public const int DamageValueBase = DamageValue * 10 + 1;
-	    public const int DamageValueAdd = DamageValue * 10 + 2;
-	    public const int DamageValuePct = DamageValue * 10 + 3;
-	    public const int DamageValueFinalAdd = DamageValue * 10 + 4;
-	    public const int DamageValueFinalPct = DamageValue * 10 + 5;
-	    
-	    public const int AdditionalDdamage = 1012;         //伤害追加
+		/// <summary> 攻击 </summary>
+		public const int Atk = 3003;
+		/// <summary> 攻击Base </summary>
+		public const int AtkBase = 3003 * 10 + 1;
 
-	    
-	    public const int Hp = 1013;  // 生命值
-	    public const int HpBase = Hp * 10 + 1;
-	    public const int HpAdd = Hp * 10 + 2;
-	    public const int HpPct = Hp * 10 + 3;
-	    public const int HpFinalAdd = Hp * 10 + 4;
-	    public const int HpFinalPct = Hp * 10 + 5;
-	    
+		/// <summary> 防御 </summary>
+		public const int Def = 3004;
+		/// <summary> 防御Base </summary>
+		public const int DefBase = 3004 * 10 + 1;
 
-	    
-	    public const int MP = 1014; //法力值
-	    public const int MPBase = MP * 10 + 1;
-	    public const int MPAdd = MP * 10 + 2;
-	    public const int MPPct = MP * 10 + 3;
-	    public const int MPFinalAdd = MP * 10 + 4;
-	    public const int MPFinalPct = MP * 10 + 5;
-	    
+		/// <summary> 生命 </summary>
+		public const int Hp = 3005;
+		/// <summary> 生命Base </summary>
+		public const int HpBase = 3005 * 10 + 1;
 
-	    public const int Armor = 1015; //护甲
-	    public const int ArmorBase = Armor * 10 + 1;
-	    public const int ArmorAdd = Armor * 10 + 2;
-	    public const int ArmorPct = Armor * 10 + 3;
-	    public const int ArmorFinalAdd = Armor * 10 + 4;
-	    public const int ArmorFinalPct = Armor * 10 + 5;
-	    
-	    public const int ArmorAddition = 1015; //护甲追加
-	    
-	    public const int Dodge = 1017;           //闪避
-	    public const int DodgeBase = Dodge * 10 + 1;
-	    public const int DodgeAdd = Dodge * 10 + 2;
-	    public const int DodgePct = Dodge * 10 + 3;
-	    public const int DodgeFinalAdd = Dodge * 10 + 4;
-	    public const int DodgeFinalPct = Dodge * 10 + 5;
+		/// <summary> 伤害 </summary>
+		public const int Dmg = 3006;
+		/// <summary> 伤害Base </summary>
+		public const int DmgBase = 3006 * 10 + 1;
 
-	    public const int DodgeAddition = 1018;   // 闪避追加
-	    
-	    public const int CriticalHitRate = 1019; //暴击率
-	    public const int CriticalHitRateBase = CriticalHitRate * 10 + 1;
-	    public const int CriticalHitRateAdd = CriticalHitRate * 10 + 2;
-	    public const int CriticalHitRatePct = CriticalHitRate * 10 + 3;
-	    public const int CriticalHitRateFinalAdd = CriticalHitRate * 10 + 4;
-	    public const int CriticalHitRateFinalPct = CriticalHitRate * 10 + 5;
-	    
-	    public const int Power = 3001; //力量
-	    
-	    public const int PhysicalStrength = 3002; //体力
-	    
-	    public const int AttributePoint = 3005; //属性点
-	    
-	    public const int CombatEffectiveness = 3006; //战力值
-	    
-	    public const int Level = 3007;
-	    
-	    public const int Gold  = 3008;
-	    
-	    public const int Exp   = 3009;
+		/// <summary> 战斗随机数 </summary>
+		public const int BattleRandomSeed = 3007;
+		/// <summary> 战斗随机数Base </summary>
+		public const int BattleRandomSeedBase = 3007 * 10 + 1;
 
-	    public const int AdventureState = 3010;   //关卡冒险状态
-	    
-	    public const int DyingState     = 3011;      //垂死状态
-	    
-	    public const int AdventureStartTime = 3012;   //关卡开始冒险的时间
+		/// <summary> 属性点 </summary>
+		public const int AttributePoint = 3008;
+		/// <summary> 属性点Base </summary>
+		public const int AttributePointBase = 3008 * 10 + 1;
 
-	    public const int IsAlive = 3013;    //存活状态  0为死亡 1为活着
-
-
-	    public const int BattleRandomSeed = 3014;    //战斗随机数种子
-
-
-	    public const int LeftAddPoint = 5000;
-	    public const int Atk = 5001;
-	    public const int Def = 5002;
-	    public const int Dmg = 5003;
-	    public const int NewHp = 5004;
-
-
+		/// <summary> 战斗力 </summary>
+		public const int CE = 3009;
+		/// <summary> 战斗力Base </summary>
+		public const int CEBase = 3009 * 10 + 1;
     }
 }

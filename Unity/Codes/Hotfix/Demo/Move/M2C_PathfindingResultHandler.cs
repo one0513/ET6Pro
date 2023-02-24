@@ -10,7 +10,7 @@ namespace ET
 		{
 			Unit unit = session.DomainScene().CurrentScene().GetComponent<UnitComponent>().Get(message.Id);
 
-			float speed = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Speed);
+			//float speed = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Speed);
 
 			using (ListComponent<Vector3> list = ListComponent<Vector3>.Create())
 			{
@@ -19,7 +19,7 @@ namespace ET
 					list.Add(new Vector3(message.Xs[i], message.Ys[i], message.Zs[i]));
 				}
 
-				unit.GetComponent<MoveComponent>().MoveToAsync(list, speed).Coroutine();
+				//unit.GetComponent<MoveComponent>().MoveToAsync(list, speed).Coroutine();
 			}
 		}
 	}

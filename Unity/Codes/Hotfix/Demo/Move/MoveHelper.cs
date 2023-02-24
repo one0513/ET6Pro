@@ -28,10 +28,13 @@ namespace ET
         
         public static async ETTask<bool> MoveToAsync(this Unit unit, List<Vector3> path)
         {
-            float speed = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Speed);
+            //float speed = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Speed);
             MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
-            bool ret = await moveComponent.MoveToAsync(path, speed);
-            return ret;
+            //bool ret = await moveComponent.MoveToAsync(path, speed);
+            //return ret;
+            await ETTask.CompletedTask;
+            return true;
+           
         }
 
         public static void Stop(this Unit unit, int error)
