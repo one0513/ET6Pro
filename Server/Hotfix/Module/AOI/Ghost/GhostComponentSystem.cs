@@ -50,8 +50,8 @@ namespace ET
                 if (!self.IsGoast)
                 {
                     var scene = StartSceneConfigCategory.Instance.Get(sceneId);
-                    if (scene.InstanceId != self.DomainScene().InstanceId)
-                        TransferHelper.AreaAdd(self.Parent.GetParent<Unit>(), scene.InstanceId);
+                    // if (scene.InstanceId != self.DomainScene().InstanceId)
+                    //     TransferHelper.AreaAdd(self.Parent.GetParent<Unit>(), scene.InstanceId);
                 }
             }
             else
@@ -106,8 +106,8 @@ namespace ET
                     {
                         if (Vector3.SqrMagnitude((Vector3) self.LeavePos, pos) > 16)
                         {
-                            await TransferHelper.AreaTransfer(self.GetParent<AOIUnitComponent>(),
-                                StartSceneConfigCategory.Instance.Get(newSceneId).InstanceId);
+                            // await TransferHelper.AreaTransfer(self.GetParent<AOIUnitComponent>(),
+                            //     StartSceneConfigCategory.Instance.Get(newSceneId).InstanceId);
                         }
                     }
                     else
@@ -120,6 +120,8 @@ namespace ET
                     self.LeavePos = null;
                 }
             }
+
+            await ETTask.CompletedTask;
         }
 
         #region 需要同步的协议

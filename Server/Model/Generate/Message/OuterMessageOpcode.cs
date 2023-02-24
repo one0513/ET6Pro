@@ -67,5 +67,7 @@ namespace ET
 		 public const ushort M2C_AddAttributePoint = 10066;
 		 public const ushort C2M_UpRoleLevel = 10067;
 		 public const ushort M2C_UpRoleLevel = 10068;
+		 public const ushort C2M_TestLoaction = 10069;
+		 public const ushort M2C_TestLoaction = 10070;
 	}
 }

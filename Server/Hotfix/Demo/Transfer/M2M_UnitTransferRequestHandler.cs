@@ -12,10 +12,11 @@ namespace ET
             UnitComponent unitComponent = scene.GetComponent<UnitComponent>();
             Unit unit = request.Unit;
 
-            if (unitComponent.GetChild<Unit>(unit.Id) != null)
-            {
-	            unitComponent.GetChild<Unit>(unit.Id).Dispose();
-            }
+            // if (unitComponent.GetChild<Unit>(unit.Id) != null)
+            // {
+	           //  unitComponent.GetChild<Unit>(unit.Id).Dispose();
+            // }
+            unitComponent.GetChild<Unit>(unit.Id)?.Dispose();
             unitComponent.AddChild(unit);
             unitComponent.Add(unit);
             if (unit.GetComponent<UnitDBSaveComponent>() == null)

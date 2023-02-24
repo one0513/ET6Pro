@@ -1048,7 +1048,7 @@ namespace ET
 	[ProtoContract]
 	public partial class C2M_TestUnitNumeric: Object, IActorLocationRequest
 	{
-		[ProtoMember(1)]
+		[ProtoMember(90)]
 		public int RpcId { get; set; }
 
 	}
@@ -1073,7 +1073,7 @@ namespace ET
 	[ProtoContract]
 	public partial class C2M_AddAttributePoint: Object, IActorLocationRequest
 	{
-		[ProtoMember(1)]
+		[ProtoMember(90)]
 		public int RpcId { get; set; }
 
 		[ProtoMember(2)]
@@ -1101,7 +1101,7 @@ namespace ET
 	[ProtoContract]
 	public partial class C2M_UpRoleLevel: Object, IActorLocationRequest
 	{
-		[ProtoMember(1)]
+		[ProtoMember(90)]
 		public int RpcId { get; set; }
 
 	}
@@ -1109,6 +1109,31 @@ namespace ET
 	[Message(OuterOpcode.M2C_UpRoleLevel)]
 	[ProtoContract]
 	public partial class M2C_UpRoleLevel: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_TestLoaction))]
+	[Message(OuterOpcode.C2M_TestLoaction)]
+	[ProtoContract]
+	public partial class C2M_TestLoaction: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_TestLoaction)]
+	[ProtoContract]
+	public partial class M2C_TestLoaction: Object, IActorLocationResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }

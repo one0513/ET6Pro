@@ -9,6 +9,17 @@ namespace ET
             M2C_TestUnitNumeric m2CTestUnitNumeric = null;
             try
             {
+                try
+                {
+                    var a = zoneScene.GetComponent<SessionComponent>();
+                    var b = a.Session;
+                    var session = zoneScene.GetComponent<SessionComponent>().Session;
+                }
+                catch (Exception e)
+                {
+                    Log.Error(e.ToString());
+                }
+                
                 m2CTestUnitNumeric  =  (M2C_TestUnitNumeric) await zoneScene.GetComponent<SessionComponent>().Session.Call(new C2M_TestUnitNumeric() { });
             }
             catch (Exception e)

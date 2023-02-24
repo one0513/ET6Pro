@@ -8,7 +8,7 @@
     }
 	
     [ChildOf(typeof(PlayerComponent))]
-    public sealed class Player : Entity,IAwake<string>, IAwake<long,long>,IDestroy
+    public sealed class Player : Entity,IAwake<string>, IAwake<long,long>
     {
         public string Accout { get; set; }
         public long AccountId { get;  set; }

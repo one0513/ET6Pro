@@ -66,13 +66,15 @@ namespace ET
 				}
 				SessionStateComponent.State = SessionState.Normal;
 			
-				Player player =  scene.GetComponent<PlayerComponent>().Get(request.Account);
+				Player player =  scene.GetComponent<PlayerComponent>().Get(request.RoleId);
 
 				if (player == null)
 				{           
 					// 添加一个新的GateUnit
-					player = scene.GetComponent<PlayerComponent>().AddChildWithId<Player,long,long>(request.Account,request.Account,request.RoleId);
+					player = scene.GetComponent<PlayerComponent>().AddChildWithId<Player,long,long>(request.RoleId,request.Account,request.RoleId);
 					player.PlayerState = PlayerState.Gate;
+					
+					//scene.GetComponent<PlayerComponent>().Get(player.Id)?.Dispose();
 					scene.GetComponent<PlayerComponent>().Add(player);
 					session.AddComponent<MailBoxComponent, MailboxType>(MailboxType.GateSession);
 				}

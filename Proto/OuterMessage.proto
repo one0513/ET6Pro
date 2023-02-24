@@ -511,7 +511,7 @@ message M2C_NoticeUnitNumeric // IActorMessage
 //ResponseType M2C_TestUnitNumeric
 message C2M_TestUnitNumeric // IActorLocationRequest
 {
-	int32 RpcId = 1;
+	int32 RpcId = 90;
 }
 
 message M2C_TestUnitNumeric // IActorLocationResponse
@@ -523,10 +523,13 @@ message M2C_TestUnitNumeric // IActorLocationResponse
 
 
 
+
+
+
 //ResponseType M2C_AddAttributePoint
 message C2M_AddAttributePoint // IActorLocationRequest
 {
-	int32 RpcId = 1;
+	int32 RpcId = 90;
 	int32 NumericType = 2;
 }
 
@@ -540,12 +543,25 @@ message M2C_AddAttributePoint // IActorLocationResponse
 //ResponseType M2C_UpRoleLevel
 message C2M_UpRoleLevel // IActorLocationRequest
 {
-	int32 RpcId = 1;
+	int32 RpcId = 90;
 }
 
 message M2C_UpRoleLevel // IActorLocationResponse
 {
 	int32 RpcId = 90;
 	int32 Error = 91;
+	string Message = 92;
+}
+
+//ResponseType M2C_TestLoaction
+message C2M_TestLoaction // IActorLocationRequest
+{
+	int32  RpcId     = 90;
+}
+
+message M2C_TestLoaction // IActorLocationResponse
+{
+	int32 RpcId    = 90;
+	int32 Error    = 91;
 	string Message = 92;
 }

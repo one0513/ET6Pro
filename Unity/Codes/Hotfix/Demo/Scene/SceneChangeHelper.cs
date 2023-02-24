@@ -30,6 +30,11 @@
             zoneScene.GetComponent<ObjectWait>().Notify(new WaitType.Wait_SceneChangeFinish());
         }
 
+        
+        
+        
+        
+        
         public static async ETTask WaitChangeScene(Scene zoneScene,string sceneName)
         {
             await Game.EventSystem.PublishAsync(new EventType.SceneChangeStart() { ZoneScene = zoneScene, Name = sceneName });

@@ -20,14 +20,14 @@ namespace ET
             unitInfo.UnitId = unit.Id;
             unitInfo.ConfigId = unit.ConfigId;
             unitInfo.Type = (int)unit.Type;
-            Vector3 position = unit.Position;
-            unitInfo.X = position.x;
-            unitInfo.Y = position.y;
-            unitInfo.Z = position.z;
-            Vector3 forward = unit.Forward;
-            unitInfo.ForwardX = forward.x;
-            unitInfo.ForwardY = forward.y;
-            unitInfo.ForwardZ = forward.z;
+            // Vector3 position = unit.Position;
+            // unitInfo.X = position.x;
+            // unitInfo.Y = position.y;
+            // unitInfo.Z = position.z;
+            // Vector3 forward = unit.Forward;
+            // unitInfo.ForwardX = forward.x;
+            // unitInfo.ForwardY = forward.y;
+            // unitInfo.ForwardZ = forward.z;
 
             // #region 移动信息
             // MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
@@ -52,16 +52,10 @@ namespace ET
             #region 数值信息
 
             NumericComponent nc = unit.GetComponent<NumericComponent>();
-            if(nc!=null)
+            foreach ((int key, long value) in nc.NumericDic)
             {
-                foreach ((int key, long value) in nc.NumericDic)
-                {
-                    if (key > NumericType.Max) //不需要同步最终值
-                    {
-                        unitInfo.Ks.Add(key);
-                        unitInfo.Vs.Add(value);
-                    }
-                }
+                unitInfo.Ks.Add(key);
+                unitInfo.Vs.Add(value);
             }
             #endregion
             //

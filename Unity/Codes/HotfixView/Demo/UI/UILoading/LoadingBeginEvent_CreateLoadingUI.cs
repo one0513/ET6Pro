@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Threading.Tasks;
+using UnityEngine;
 
 namespace ET
 {
@@ -7,7 +8,8 @@ namespace ET
         protected override async ETTask Run(UIEventType.LoadingBegin args)
         {
             //await UIHelper.Create(args.Scene, UIType.UILoading);
-            await UIManagerComponent.Instance.OpenWindow<UILoadingView>(UILoadingView.PrefabPath);
+            //await UIManagerComponent.Instance.OpenWindow<UILoadingView>(UILoadingView.PrefabPath);
+            await Task.CompletedTask;
         }
     }
 }

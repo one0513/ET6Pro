@@ -98,6 +98,7 @@ namespace ET
 			{
 				return;
 			}
+			//await EnterMapHelper.EnterMapAsync(self.scene);
 			// await UIManagerComponent.Instance.CloseWindow<UILobbyView>();
 			//
 			// await UIManagerComponent.Instance.OpenWindow<UIMainView,Scene>(UIMainView.PrefabPath,self.scene);

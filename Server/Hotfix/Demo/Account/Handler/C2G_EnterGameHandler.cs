@@ -85,8 +85,6 @@ namespace ET
                                 try
                                 {
                                     StartSceneConfig startSceneConfig = StartSceneConfigCategory.Instance.Games[player.DomainZone()];
-                                    M2C_StartSceneChange m2CStartSceneChange = new M2C_StartSceneChange() {SceneInstanceId = startSceneConfig.InstanceId, SceneName = startSceneConfig.Name};
-                                    MessageHelper.SendToClient(unit, m2CStartSceneChange);
                                     await TransferHelper.Transfer(unit, startSceneConfig.InstanceId, startSceneConfig.Name);
                                 }
                                 catch (Exception e)
@@ -133,19 +131,8 @@ namespace ET
                         response.MyId = unit.Id;
                         reply();
 
-                        try
-                        {
-                            StartSceneConfig startSceneConfig = StartSceneConfigCategory.Instance.Games[player.DomainZone()];
-                            M2C_StartSceneChange m2CStartSceneChange = new M2C_StartSceneChange() {SceneInstanceId = startSceneConfig.InstanceId, SceneName = startSceneConfig.Name};
-                            MessageHelper.SendToClient(unit, m2CStartSceneChange);
-                            await TransferHelper.Transfer(unit, startSceneConfig.InstanceId, startSceneConfig.Name);
-                        }
-                        catch (Exception e)
-                        {
-                           Log.Error(e.ToString());
-                        }
-                       
-                       
+                        StartSceneConfig startSceneConfig = StartSceneConfigCategory.Instance.Games[player.DomainZone()];
+                        await TransferHelper.Transfer(unit, startSceneConfig.InstanceId, startSceneConfig.Name);
                         
                         SessionStateComponent SessionStateComponent = session.GetComponent<SessionStateComponent>();
                         if (SessionStateComponent == null)

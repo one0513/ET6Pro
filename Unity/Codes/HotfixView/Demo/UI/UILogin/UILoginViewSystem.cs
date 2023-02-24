@@ -71,6 +71,7 @@ namespace ET
 			}
 			
 			
+			
 			await UIManagerComponent.Instance.CloseWindow<UILoginView>();
 
 			List<ServerInfo> serverInfos = self.scene.GetComponent<ServerInfosComponent>().serverInfoList;
