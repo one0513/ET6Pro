@@ -98,6 +98,9 @@ namespace ET
 			{
 				return;
 			}
+
+			GameObject bundleGameObject =  AssetsBundleHelper.LoadOneAssetSync("UI/UICommon/Prefabs/Bg.prefab") as GameObject;
+			GameObject go = UnityEngine.Object.Instantiate(bundleGameObject);
 			//await EnterMapHelper.EnterMapAsync(self.scene);
 			// await UIManagerComponent.Instance.CloseWindow<UILobbyView>();
 			//

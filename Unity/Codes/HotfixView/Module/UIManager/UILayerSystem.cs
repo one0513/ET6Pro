@@ -25,6 +25,7 @@ namespace ET
             }
             self.unityCanvas.renderMode = RenderMode.ScreenSpaceCamera;
             self.unityCanvas.worldCamera = UILayersComponent.Instance.UICamera;
+            self.unityCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
             self.unityCanvas.planeDistance = layer.PlaneDistance;
             self.unityCanvas.sortingLayerName = SortingLayerNames.UI;
             self.unityCanvas.sortingOrder = layer.OrderInLayer;
@@ -76,6 +77,7 @@ namespace ET
             if (old_camera != camera)
             {
                 self.unityCanvas.worldCamera = camera;
+                self.unityCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
             }
         }
 

@@ -13,6 +13,7 @@ namespace ET
 		public UITextmesh lblRoleName;
 		public UITextmesh lblLevel;
 		public UITextmesh lblExp;
+		public UITextmesh lblCoin;
 		public UIButton btnRole;
 		public UIButton btnAdventure;
 		public UIButton btnTask;

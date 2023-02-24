@@ -89,10 +89,6 @@ namespace ET
 	    public const int Power = 3001; //力量
 	    
 	    public const int PhysicalStrength = 3002; //体力
-
-	    public const int Agile = 3003; //敏捷值
-
-	    public const int Spirit = 3004; //精神
 	    
 	    public const int AttributePoint = 3005; //属性点
 	    
@@ -114,12 +110,14 @@ namespace ET
 
 
 	    public const int BattleRandomSeed = 3014;    //战斗随机数种子
-	    
-	    public const int MaxBagCapacity  = 3015;   //背包最大负重
 
 
-	    public const int IronStone = 3016; //铁矿石
+	    public const int LeftAddPoint = 5000;
+	    public const int Atk = 5001;
+	    public const int Def = 5002;
+	    public const int Dmg = 5003;
+	    public const int NewHp = 5004;
 
-	    public const int Fur       = 3017; //皮毛
+
     }
 }

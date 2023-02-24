@@ -10,20 +10,20 @@ namespace ET
             int targetNumericType = request.NumericType;
 
            
-            if ( !PlayerNumericConfigCategory.Instance.Contain(targetNumericType) )
-            {
-                response.Error = ErrorCode.ERR_NumericTypeNotExist;
-                reply();
-                return;
-            }
-
-            PlayerNumericConfig config = PlayerNumericConfigCategory.Instance.Get(targetNumericType);
-            if (config.isAddPoint == 0)
-            {
-                response.Error = ErrorCode.ERR_NumericTypeNotAddPoint;
-                reply();
-                return;
-            }
+            // if ( !PlayerNumericConfigCategory.Instance.Contain(targetNumericType) )
+            // {
+            //     response.Error = ErrorCode.ERR_NumericTypeNotExist;
+            //     reply();
+            //     return;
+            // }
+            //
+            // PlayerNumericConfig config = PlayerNumericConfigCategory.Instance.Get(targetNumericType);
+            // if (config.isAddPoint == 0)
+            // {
+            //     response.Error = ErrorCode.ERR_NumericTypeNotAddPoint;
+            //     reply();
+            //     return;
+            // }
 
             int AttributePointCount = numericComponent.GetAsInt(NumericType.AttributePoint);
 
@@ -38,7 +38,23 @@ namespace ET
             --AttributePointCount;
             numericComponent.Set(NumericType.AttributePoint,AttributePointCount);
 
-            int targetAttributeCount = numericComponent.GetAsInt(targetNumericType) + 1;
+            int targetAttributeCount = numericComponent.GetAsInt(targetNumericType);
+            if (targetNumericType == NumericType.Atk  || targetNumericType == NumericType.Def)
+            {
+                targetAttributeCount += 5;
+            }
+            else if(targetNumericType == NumericType.NewHp)
+            {
+                targetAttributeCount += 20;
+            }   
+            else if(targetNumericType == NumericType.Dmg)
+            {
+                targetAttributeCount += 1;
+            }
+
+ 
+
+
             numericComponent.Set(targetNumericType,targetAttributeCount);
             
             //await numericComponent.AddOrUpdateUnitCache();  //关键数据立即存库 

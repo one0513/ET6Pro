@@ -476,6 +476,15 @@ TextureImporter:
   - first:
       213: -3007446265649999167
     second: frame_cardframe_00_s_inner
+  - first:
+      213: 4134470982481670237
+    second: Head
+  - first:
+      213: -3081342102305074965
+    second: btn_icon_clear
+  - first:
+      213: 6181516414531474959
+    second: icon_white_add_l
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -601,8 +610,8 @@ TextureImporter:
       name: frame_iconframe_diamond
       rect:
         serializedVersion: 2
-        x: 1552
-        y: 651
+        x: 1834
+        y: 1651
         width: 80
         height: 80
       alignment: 0
@@ -614,6 +623,27 @@ TextureImporter:
       bones: []
       spriteID: f9ff9df275fcbe9d0800000000000000
       internalID: -2743871574580265057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: label_ribbon_02
+      rect:
+        serializedVersion: 2
+        x: 1782
+        y: 1073
+        width: 262
+        height: 105
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 125, y: 0, z: 127, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 724fd7912d859ba60800000000000000
+      internalID: 7690275498105893927
       vertices: []
       indices: 
       edges: []
@@ -644,7 +674,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1724
-        y: 1112
+        y: 1153
         width: 56
         height: 61
       alignment: 0
@@ -656,6 +686,27 @@ TextureImporter:
       bones: []
       spriteID: e0e61ec0f7d4ab1f0800000000000000
       internalID: -1028424356828451314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: label_flag_02_blue
+      rect:
+        serializedVersion: 2
+        x: 1724
+        y: 957
+        width: 52
+        height: 75
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee7102988be233350800000000000000
+      internalID: 5995186899069704174
       vertices: []
       indices: 
       edges: []
@@ -685,8 +736,8 @@ TextureImporter:
       name: whiteblock
       rect:
         serializedVersion: 2
-        x: 2038
-        y: 2037
+        x: 1834
+        y: 1866
         width: 4
         height: 4
       alignment: 0
@@ -706,8 +757,8 @@ TextureImporter:
       name: frame_iconframe_square_01_n
       rect:
         serializedVersion: 2
-        x: 333
-        y: 305
+        x: 1975
+        y: 536
         width: 48
         height: 53
       alignment: 0
@@ -727,8 +778,8 @@ TextureImporter:
       name: frame_itemframe_00_n_gold
       rect:
         serializedVersion: 2
-        x: 429
-        y: 835
+        x: 133
+        y: 887
         width: 130
         height: 138
       alignment: 0
@@ -748,7 +799,7 @@ TextureImporter:
       name: frame_iconframe_square_00_frame_blue
       rect:
         serializedVersion: 2
-        x: 1258
+        x: 1242
         y: 724
         width: 110
         height: 110
@@ -766,13 +817,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: btn_rectangle_01_n_bluegray
+      name: Head
       rect:
         serializedVersion: 2
-        x: 193
-        y: 627
-        width: 180
-        height: 111
+        x: 1765
+        y: 405
+        width: 208
+        height: 184
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -780,8 +831,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3ccc1b84ba25c39c0800000000000000
-      internalID: -3946188277870900029
+      spriteID: d50faf40477906930800000000000000
+      internalID: 4134470982481670237
       vertices: []
       indices: 
       edges: []
@@ -811,8 +862,8 @@ TextureImporter:
       name: frame_cardframe_00_d_front2
       rect:
         serializedVersion: 2
-        x: 313
-        y: 91
+        x: 1599
+        y: 705
         width: 113
         height: 112
       alignment: 0
@@ -832,8 +883,8 @@ TextureImporter:
       name: frame_cardframe_02_back_red
       rect:
         serializedVersion: 2
-        x: 2018
-        y: 738
+        x: 2016
+        y: 872
         width: 20
         height: 199
       alignment: 0
@@ -871,32 +922,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: frame_tableframe_00_1
-      rect:
-        serializedVersion: 2
-        x: 571
-        y: 1027
-        width: 133
-        height: 152
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e11c2664a8a7ec1f0800000000000000
-      internalID: -1022745331061571298
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: frame_basicframe_square_l
       rect:
         serializedVersion: 2
-        x: 1791
-        y: 1419
+        x: 1916
+        y: 1651
         width: 40
         height: 40
       alignment: 0
@@ -916,8 +946,8 @@ TextureImporter:
       name: frame_itemframe_00_n_red
       rect:
         serializedVersion: 2
-        x: 561
-        y: 607
+        x: 578
+        y: 246
         width: 130
         height: 138
       alignment: 0
@@ -937,13 +967,13 @@ TextureImporter:
       name: frame_itemframe_00_n_purple
       rect:
         serializedVersion: 2
-        x: 429
-        y: 695
+        x: 565
+        y: 747
         width: 130
         height: 138
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 36, y: 52, z: 35, w: 50}
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -958,8 +988,8 @@ TextureImporter:
       name: frame_stageframe_00_d
       rect:
         serializedVersion: 2
-        x: 1834
-        y: 1612
+        x: 1833
+        y: 1444
         width: 198
         height: 205
       alignment: 0
@@ -1021,8 +1051,8 @@ TextureImporter:
       name: frame_stageframe_01_n
       rect:
         serializedVersion: 2
-        x: 1702
-        y: 959
+        x: 1599
+        y: 819
         width: 75
         height: 88
       alignment: 0
@@ -1042,8 +1072,8 @@ TextureImporter:
       name: frame_tabmenu_focus_00
       rect:
         serializedVersion: 2
-        x: 1659
-        y: 915
+        x: 1681
+        y: 919
         width: 41
         height: 172
       alignment: 0
@@ -1063,8 +1093,8 @@ TextureImporter:
       name: frame_listframe_01_s
       rect:
         serializedVersion: 2
-        x: 1139
-        y: 556
+        x: 265
+        y: 937
         width: 98
         height: 102
       alignment: 0
@@ -1084,8 +1114,8 @@ TextureImporter:
       name: btn_circle_02
       rect:
         serializedVersion: 2
-        x: 1239
-        y: 512
+        x: 265
+        y: 837
         width: 92
         height: 98
       alignment: 0
@@ -1126,8 +1156,8 @@ TextureImporter:
       name: btn_rectangle_02
       rect:
         serializedVersion: 2
-        x: 693
-        y: 609
+        x: 1061
+        y: 660
         width: 179
         height: 111
       alignment: 0
@@ -1147,8 +1177,8 @@ TextureImporter:
       name: btn_rectangle_01_n_dark
       rect:
         serializedVersion: 2
-        x: 183
-        y: 514
+        x: 1
+        y: 18
         width: 180
         height: 111
       alignment: 0
@@ -1168,8 +1198,8 @@ TextureImporter:
       name: frame_listframe_01_d
       rect:
         serializedVersion: 2
-        x: 365
-        y: 473
+        x: 1714
+        y: 689
         width: 50
         height: 55
       alignment: 0
@@ -1189,8 +1219,8 @@ TextureImporter:
       name: frame_stageframe_05_s_red
       rect:
         serializedVersion: 2
-        x: 91
-        y: 3
+        x: 365
+        y: 86
         width: 88
         height: 148
       alignment: 0
@@ -1210,8 +1240,8 @@ TextureImporter:
       name: btn_rectangle_01_n_mint
       rect:
         serializedVersion: 2
-        x: 1370
-        y: 709
+        x: 697
+        y: 700
         width: 180
         height: 111
       alignment: 0
@@ -1228,13 +1258,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: label_flag_02_blue
+      name: frame_tableframe_00_1
       rect:
         serializedVersion: 2
-        x: 375
-        y: 663
-        width: 52
-        height: 75
+        x: 571
+        y: 1027
+        width: 133
+        height: 152
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1242,8 +1272,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ee7102988be233350800000000000000
-      internalID: 5995186899069704174
+      spriteID: e11c2664a8a7ec1f0800000000000000
+      internalID: -1022745331061571298
       vertices: []
       indices: 
       edges: []
@@ -1252,8 +1282,8 @@ TextureImporter:
       name: frame_listframe_00_dd
       rect:
         serializedVersion: 2
-        x: 333
-        y: 360
+        x: 1714
+        y: 576
         width: 49
         height: 54
       alignment: 0
@@ -1273,8 +1303,8 @@ TextureImporter:
       name: frame_itemframe_01_n_green
       rect:
         serializedVersion: 2
-        x: 421
-        y: 415
+        x: 710
+        y: 246
         width: 130
         height: 138
       alignment: 0
@@ -1315,13 +1345,13 @@ TextureImporter:
       name: btn_rectangle_01_n_yellow
       rect:
         serializedVersion: 2
-        x: 1076
-        y: 660
+        x: 879
+        y: 700
         width: 180
         height: 111
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 61, y: 48, z: 65, w: 33}
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -1336,8 +1366,8 @@ TextureImporter:
       name: frame_itemframe_00_n_green
       rect:
         serializedVersion: 2
-        x: 561
-        y: 747
+        x: 565
+        y: 887
         width: 130
         height: 138
       alignment: 0
@@ -1357,8 +1387,8 @@ TextureImporter:
       name: frame_stageframe_00_s2
       rect:
         serializedVersion: 2
-        x: 229
-        y: 740
+        x: 697
+        y: 813
         width: 198
         height: 205
       alignment: 0
@@ -1379,7 +1409,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1778
-        y: 682
+        y: 591
         width: 234
         height: 239
       alignment: 0
@@ -1441,8 +1471,8 @@ TextureImporter:
       name: frame_linetextframe_00_2
       rect:
         serializedVersion: 2
-        x: 2018
-        y: 939
+        x: 1782
+        y: 1182
         width: 24
         height: 19
       alignment: 0
@@ -1459,11 +1489,32 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
+      name: icon_white_add_l
+      rect:
+        serializedVersion: 2
+        x: 1923
+        y: 1923
+        width: 124
+        height: 124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f06156d8d6829c550800000000000000
+      internalID: 6181516414531474959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
       name: btn_rectangle_01_n_white
       rect:
         serializedVersion: 2
-        x: 1370
-        y: 596
+        x: 1061
+        y: 773
         width: 179
         height: 111
       alignment: 0
@@ -1525,8 +1576,8 @@ TextureImporter:
       name: frame_stageframe_04_n
       rect:
         serializedVersion: 2
-        x: 1782
-        y: 923
+        x: 1780
+        y: 832
         width: 234
         height: 239
       alignment: 0
@@ -1546,8 +1597,8 @@ TextureImporter:
       name: label_tag_04
       rect:
         serializedVersion: 2
-        x: 2014
-        y: 695
+        x: 2016
+        y: 795
         width: 17
         height: 41
       alignment: 0
@@ -1585,13 +1636,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: label_ribbon_01
+      name: frame_stageframe_05_s_blue
       rect:
         serializedVersion: 2
-        x: 906
-        y: 1394
-        width: 481
-        height: 95
+        x: 340
+        y: 236
+        width: 88
+        height: 148
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1599,8 +1650,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a01bfaacaff6b10f0800000000000000
-      internalID: -1145198557302640374
+      spriteID: 611418a1fcee58240800000000000000
+      internalID: 4793499951676080406
       vertices: []
       indices: 
       edges: []
@@ -1609,8 +1660,8 @@ TextureImporter:
       name: Red_gradient
       rect:
         serializedVersion: 2
-        x: 363
-        y: 41
+        x: 1
+        y: 836
         width: 48
         height: 48
       alignment: 0
@@ -1651,8 +1702,8 @@ TextureImporter:
       name: Green_gradient
       rect:
         serializedVersion: 2
-        x: 313
-        y: 205
+        x: 1975
+        y: 436
         width: 48
         height: 48
       alignment: 0
@@ -1693,8 +1744,8 @@ TextureImporter:
       name: frame_itemframe_01_n_red
       rect:
         serializedVersion: 2
-        x: 181
-        y: 25
+        x: 842
+        y: 246
         width: 130
         height: 138
       alignment: 0
@@ -1735,8 +1786,8 @@ TextureImporter:
       name: frame_iconframe_circle_00
       rect:
         serializedVersion: 2
-        x: 1634
-        y: 584
+        x: 439
+        y: 432
         width: 142
         height: 142
       alignment: 0
@@ -1756,8 +1807,8 @@ TextureImporter:
       name: frame_iconframe_square_00_inner
       rect:
         serializedVersion: 2
-        x: 133
-        y: 165
+        x: 269
+        y: 652
         width: 89
         height: 26
       alignment: 0
@@ -1769,27 +1820,6 @@ TextureImporter:
       bones: []
       spriteID: 3a167b8dd9cea8ea0800000000000000
       internalID: -5869619001634102877
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: frame_stageframe_05_s_blue
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 3
-        width: 88
-        height: 148
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 611418a1fcee58240800000000000000
-      internalID: 4793499951676080406
       vertices: []
       indices: 
       edges: []
@@ -1840,8 +1870,8 @@ TextureImporter:
       name: frame_stageframe_03_yellow
       rect:
         serializedVersion: 2
-        x: 1708
-        y: 1049
+        x: 1724
+        y: 1090
         width: 56
         height: 61
       alignment: 0
@@ -1903,8 +1933,8 @@ TextureImporter:
       name: frame_cardframe_00_n_front3
       rect:
         serializedVersion: 2
-        x: 1921
-        y: 1819
+        x: 1916
+        y: 1693
         width: 113
         height: 113
       alignment: 0
@@ -1924,8 +1954,8 @@ TextureImporter:
       name: frame_stageframe_00_s1
       rect:
         serializedVersion: 2
-        x: 229
-        y: 947
+        x: 365
+        y: 740
         width: 198
         height: 205
       alignment: 0
@@ -1966,8 +1996,8 @@ TextureImporter:
       name: btn_circle_01_green
       rect:
         serializedVersion: 2
-        x: 874
-        y: 503
+        x: 193
+        y: 680
         width: 148
         height: 155
       alignment: 0
@@ -1987,8 +2017,8 @@ TextureImporter:
       name: btn_rectangle_04
       rect:
         serializedVersion: 2
-        x: 429
-        y: 975
+        x: 1
+        y: 397
         width: 139
         height: 177
       alignment: 0
@@ -2008,8 +2038,8 @@ TextureImporter:
       name: btn_circle_01_red
       rect:
         serializedVersion: 2
-        x: 183
-        y: 357
+        x: 360
+        y: 583
         width: 148
         height: 155
       alignment: 0
@@ -2030,7 +2060,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1724
-        y: 1175
+        y: 1216
         width: 57
         height: 11
       alignment: 0
@@ -2050,8 +2080,8 @@ TextureImporter:
       name: frame_cardframe_02_front
       rect:
         serializedVersion: 2
-        x: 1
-        y: 922
+        x: 1371
+        y: 697
         width: 226
         height: 230
       alignment: 0
@@ -2092,8 +2122,8 @@ TextureImporter:
       name: frame_iconframe_circle_01_s
       rect:
         serializedVersion: 2
-        x: 1635
-        y: 728
+        x: 455
+        y: 96
         width: 140
         height: 140
       alignment: 0
@@ -2113,8 +2143,8 @@ TextureImporter:
       name: btn_rectangle_01_n_brown
       rect:
         serializedVersion: 2
-        x: 1
-        y: 554
+        x: 183
+        y: 1041
         width: 180
         height: 111
       alignment: 0
@@ -2155,8 +2185,8 @@ TextureImporter:
       name: frame_tableframe_01_1
       rect:
         serializedVersion: 2
-        x: 365
-        y: 530
+        x: 1724
+        y: 1034
         width: 54
         height: 54
       alignment: 0
@@ -2194,13 +2224,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: label_ribbon_02
+      name: frame_basicframe_square_s
       rect:
         serializedVersion: 2
-        x: 1371
-        y: 865
-        width: 262
-        height: 105
+        x: 1686
+        y: 1093
+        width: 28
+        height: 28
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2208,8 +2238,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 724fd7912d859ba60800000000000000
-      internalID: 7690275498105893927
+      spriteID: 5dcb9c2cee94ebc80800000000000000
+      internalID: -8305119373005570859
       vertices: []
       indices: 
       edges: []
@@ -2218,13 +2248,13 @@ TextureImporter:
       name: frame_itemframe_00_s1
       rect:
         serializedVersion: 2
-        x: 1
-        y: 293
+        x: 430
+        y: 238
         width: 146
         height: 146
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 59, y: 58, z: 56, w: 54}
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -2239,8 +2269,8 @@ TextureImporter:
       name: label_flag_02_red
       rect:
         serializedVersion: 2
-        x: 1960
-        y: 605
+        x: 1724
+        y: 803
         width: 52
         height: 75
       alignment: 0
@@ -2260,8 +2290,8 @@ TextureImporter:
       name: frame_itemframe_01_n_orange
       rect:
         serializedVersion: 2
-        x: 553
-        y: 327
+        x: 715
+        y: 436
         width: 130
         height: 138
       alignment: 0
@@ -2344,8 +2374,8 @@ TextureImporter:
       name: btn_rectangle_01_n_green
       rect:
         serializedVersion: 2
-        x: 1076
-        y: 773
+        x: 692
+        y: 584
         width: 180
         height: 111
       alignment: 0
@@ -2365,8 +2395,8 @@ TextureImporter:
       name: frame_listframe_00_s
       rect:
         serializedVersion: 2
-        x: 1139
-        y: 556
+        x: 265
+        y: 937
         width: 98
         height: 102
       alignment: 0
@@ -2407,8 +2437,8 @@ TextureImporter:
       name: btn_rectangle_01_n_red
       rect:
         serializedVersion: 2
-        x: 894
-        y: 660
+        x: 874
+        y: 584
         width: 180
         height: 111
       alignment: 0
@@ -2428,8 +2458,8 @@ TextureImporter:
       name: label_flag_02_purple
       rect:
         serializedVersion: 2
-        x: 375
-        y: 586
+        x: 1724
+        y: 880
         width: 52
         height: 75
       alignment: 0
@@ -2449,8 +2479,8 @@ TextureImporter:
       name: frame_stageframe_02_d
       rect:
         serializedVersion: 2
-        x: 384
-        y: 251
+        x: 142
+        y: 412
         width: 145
         height: 162
       alignment: 0
@@ -2491,8 +2521,8 @@ TextureImporter:
       name: frame_cardframe_00_n_front2
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 546
+        x: 1599
+        y: 591
         width: 113
         height: 112
       alignment: 0
@@ -2575,8 +2605,8 @@ TextureImporter:
       name: frame_cardframe_00_d_front1
       rect:
         serializedVersion: 2
-        x: 702
-        y: 722
+        x: 1
+        y: 131
         width: 190
         height: 253
       alignment: 0
@@ -2596,8 +2626,8 @@ TextureImporter:
       name: btn_rectangle_01_n_purple
       rect:
         serializedVersion: 2
-        x: 1778
-        y: 569
+        x: 847
+        y: 463
         width: 180
         height: 111
       alignment: 0
@@ -2639,7 +2669,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2036
-        y: 1392
+        y: 1381
         width: 10
         height: 540
       alignment: 0
@@ -2660,7 +2690,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2027
-        y: 1191
+        y: 1180
         width: 20
         height: 199
       alignment: 0
@@ -2743,8 +2773,8 @@ TextureImporter:
       name: btn_rectangle_01_n_darkgray
       rect:
         serializedVersion: 2
-        x: 1
-        y: 441
+        x: 183
+        y: 18
         width: 180
         height: 111
       alignment: 0
@@ -2782,32 +2812,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: frame_basicframe_square_s
-      rect:
-        serializedVersion: 2
-        x: 2018
-        y: 960
-        width: 28
-        height: 28
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5dcb9c2cee94ebc80800000000000000
-      internalID: -8305119373005570859
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: frame_itemframe_00_n_yellow
       rect:
         serializedVersion: 2
-        x: 429
-        y: 555
+        x: 583
+        y: 436
         width: 130
         height: 138
       alignment: 0
@@ -2827,7 +2836,7 @@ TextureImporter:
       name: frame_itemframe_00_n_blue
       rect:
         serializedVersion: 2
-        x: 570
+        x: 1
         y: 887
         width: 130
         height: 138
@@ -2854,7 +2863,7 @@ TextureImporter:
         height: 105
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 33, y: 47, z: 36, w: 34}
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -2890,7 +2899,7 @@ TextureImporter:
       name: frame_iconframe_square_00_frame_red
       rect:
         serializedVersion: 2
-        x: 1258
+        x: 1242
         y: 612
         width: 110
         height: 110
@@ -2953,8 +2962,8 @@ TextureImporter:
       name: frame_stageframe_02_s1
       rect:
         serializedVersion: 2
-        x: 1960
-        y: 542
+        x: 1605
+        y: 909
         width: 51
         height: 61
       alignment: 0
@@ -2996,7 +3005,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1791
-        y: 1164
+        y: 1203
         width: 234
         height: 239
       alignment: 0
@@ -3016,8 +3025,8 @@ TextureImporter:
       name: Blue_gradient
       rect:
         serializedVersion: 2
-        x: 313
-        y: 255
+        x: 1975
+        y: 486
         width: 48
         height: 48
       alignment: 0
@@ -3037,8 +3046,8 @@ TextureImporter:
       name: frame_tabmenu_focus_01_s
       rect:
         serializedVersion: 2
-        x: 702
-        y: 977
+        x: 51
+        y: 843
         width: 192
         height: 41
       alignment: 0
@@ -3058,8 +3067,8 @@ TextureImporter:
       name: btn_circle_01_purple
       rect:
         serializedVersion: 2
-        x: 693
-        y: 452
+        x: 289
+        y: 419
         width: 148
         height: 155
       alignment: 0
@@ -3100,8 +3109,8 @@ TextureImporter:
       name: frame_stageframe_02_n
       rect:
         serializedVersion: 2
-        x: 149
-        y: 193
+        x: 193
+        y: 222
         width: 145
         height: 162
       alignment: 0
@@ -3121,8 +3130,8 @@ TextureImporter:
       name: frame_stageframe_05_n
       rect:
         serializedVersion: 2
-        x: 1552
-        y: 733
+        x: 1834
+        y: 1733
         width: 80
         height: 87
       alignment: 0
@@ -3143,7 +3152,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1371
-        y: 822
+        y: 929
         width: 232
         height: 41
       alignment: 0
@@ -3181,11 +3190,32 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
+      name: btn_icon_clear
+      rect:
+        serializedVersion: 2
+        x: 1681
+        y: 876
+        width: 41
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be096a00fafdc35d0800000000000000
+      internalID: -3081342102305074965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
       name: frame_cardframe_00_d_front3
       rect:
         serializedVersion: 2
-        x: 1923
-        y: 1934
+        x: 1921
+        y: 1808
         width: 113
         height: 113
       alignment: 0
@@ -3227,7 +3257,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1724
-        y: 1188
+        y: 1229
         width: 61
         height: 30
       alignment: 0
@@ -3247,8 +3277,8 @@ TextureImporter:
       name: frame_itemframe_01_n_blue
       rect:
         serializedVersion: 2
-        x: 561
-        y: 467
+        x: 597
+        y: 106
         width: 130
         height: 138
       alignment: 0
@@ -3290,7 +3320,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1
-        y: 667
+        y: 581
         width: 190
         height: 253
       alignment: 0
@@ -3307,11 +3337,32 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
+      name: btn_rectangle_01_n_bluegray
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1041
+        width: 180
+        height: 111
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 59, y: 47, z: 57, w: 38}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ccc1b84ba25c39c0800000000000000
+      internalID: -3946188277870900029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
       name: Orange_gradient
       rect:
         serializedVersion: 2
-        x: 313
-        y: 41
+        x: 1975
+        y: 386
         width: 48
         height: 48
       alignment: 0
@@ -3394,8 +3445,8 @@ TextureImporter:
       name: label_tag_03
       rect:
         serializedVersion: 2
-        x: 1724
-        y: 1220
+        x: 1958
+        y: 1652
         width: 61
         height: 39
       alignment: 0
@@ -3415,8 +3466,8 @@ TextureImporter:
       name: frame_itemframe_01_n_purple
       rect:
         serializedVersion: 2
-        x: 1
-        y: 153
+        x: 729
+        y: 106
         width: 130
         height: 138
       alignment: 0
@@ -3457,8 +3508,8 @@ TextureImporter:
       name: frame_cardframe_02_back_purple
       rect:
         serializedVersion: 2
-        x: 2027
-        y: 990
+        x: 1659
+        y: 913
         width: 20
         height: 199
       alignment: 0
@@ -3478,8 +3529,8 @@ TextureImporter:
       name: label_tag_00
       rect:
         serializedVersion: 2
-        x: 1686
-        y: 1089
+        x: 2016
+        y: 838
         width: 20
         height: 32
       alignment: 0
@@ -3499,8 +3550,8 @@ TextureImporter:
       name: frame_listframe_01_n
       rect:
         serializedVersion: 2
-        x: 333
-        y: 416
+        x: 1714
+        y: 632
         width: 50
         height: 55
       alignment: 0
@@ -3541,8 +3592,8 @@ TextureImporter:
       name: btn_rectangle_01_n_gray
       rect:
         serializedVersion: 2
-        x: 894
-        y: 773
+        x: 510
+        y: 584
         width: 180
         height: 111
       alignment: 0
@@ -3562,8 +3613,8 @@ TextureImporter:
       name: frame_listframe_00_n
       rect:
         serializedVersion: 2
-        x: 1551
-        y: 594
+        x: 1714
+        y: 746
         width: 50
         height: 55
       alignment: 0
@@ -3583,8 +3634,8 @@ TextureImporter:
       name: frame_stageframe_01_s1
       rect:
         serializedVersion: 2
-        x: 1702
-        y: 870
+        x: 193
+        y: 591
         width: 74
         height: 87
       alignment: 0
@@ -3604,8 +3655,8 @@ TextureImporter:
       name: frame_stageframe_00_n
       rect:
         serializedVersion: 2
-        x: 1833
-        y: 1405
+        x: 365
+        y: 947
         width: 198
         height: 205
       alignment: 0
@@ -3643,11 +3694,32 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
+      name: label_ribbon_01
+      rect:
+        serializedVersion: 2
+        x: 906
+        y: 1394
+        width: 481
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a01bfaacaff6b10f0800000000000000
+      internalID: -1145198557302640374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
       name: frame_cardframe_00_s_inner
       rect:
         serializedVersion: 2
-        x: 2038
-        y: 2043
+        x: 1834
+        y: 1872
         width: 4
         height: 4
       alignment: 0
