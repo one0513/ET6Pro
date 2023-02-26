@@ -14,7 +14,9 @@ namespace ET
 		public UITextmesh lblReward;
 		public UIButton btnGetReward;
 		public UITextmesh lblTaskStatue;
-		 
+		public Scene scene;
+		public bool canGetReward = false;
+		public int configId;
 
 	}
 }

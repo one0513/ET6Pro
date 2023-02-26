@@ -7,6 +7,7 @@ using System.Runtime.Serialization;
 using HybridCLR;
 using UnityEngine;
 using YooAsset;
+using DG.Tweening;
 
 namespace ET
 {
@@ -14,7 +15,7 @@ namespace ET
 	{
 		[IgnoreDataMember]//防裁剪
 		public static CodeLoader Instance = new CodeLoader();
-
+		
 		public Action Update;
 		public Action LateUpdate;
 		public Action OnApplicationQuit;

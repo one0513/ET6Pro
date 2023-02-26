@@ -480,6 +480,7 @@ GameObject:
   - component: {fileID: 386594704936340752}
   - component: {fileID: 2617819215718731087}
   - component: {fileID: 7999014614254555008}
+  - component: {fileID: 6232989836033319965}
   m_Layer: 0
   m_Name: btnGetReward
   m_TagString: Untagged
@@ -620,6 +621,25 @@ MonoBehaviour:
   moduleName: btn
   isListItem: 0
   isMarked: 0
+--- !u!114 &6232989836033319965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4982727789275924545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 158fde81360d3344fa0545152b2ed04c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orginScale: {x: 1, y: 1, z: 1}
+  pressDownTime: 0.08
+  pressDownScale: 0.95
+  pressDownEase: 1
+  pressUpTime: 0.5
+  pressUpScale: 1
+  pressUpEase: 24
 --- !u!1 &4999306449344533744
 GameObject:
   m_ObjectHideFlags: 0

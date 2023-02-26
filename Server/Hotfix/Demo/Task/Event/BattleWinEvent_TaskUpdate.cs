@@ -6,7 +6,7 @@ namespace ET
     {
         protected override void Run(BattleWin args)
         {
-            args.Unit.GetComponent<TasksComponent>().TriggerTaskAction(TaskActionType.Adverture,count:1, targetId : args.LevelId);
+            args.Unit.GetComponent<TasksComponent>().TriggerTaskAction(TaskActionType.Adverture,count:1, targetId : 0);
         }
     }
 }

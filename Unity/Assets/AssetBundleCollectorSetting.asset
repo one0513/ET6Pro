@@ -22,14 +22,14 @@ MonoBehaviour:
     Groups:
     - GroupName: ui
       GroupDesc: 
-      AssetTags: 
+      AssetTags: ui
       ActiveRuleName: EnableGroup
       Collectors:
       - CollectPath: Assets/AssetsPackage/UI
         CollectorGUID: 091c1aa864e5e764f940f0fd16fbe13f
         CollectorType: 0
         AddressRuleName: AddressByPath
-        PackRuleName: PackDirectory
+        PackRuleName: PackSeparately
         FilterRuleName: CollectPrefab
         AssetTags: 
     - GroupName: code

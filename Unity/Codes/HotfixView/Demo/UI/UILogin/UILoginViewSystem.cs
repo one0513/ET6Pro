@@ -21,7 +21,7 @@ namespace ET
 			self.account = self.AddUIComponent<UIInput>("Panel/Account");
 			self.password = self.AddUIComponent<UIInput>("Panel/Password");
 			self.ipaddr = self.AddUIComponent<UIInputTextmesh>("Panel/GM/InputField");
-			self.loginBtn.AddUIComponent<UIRedDotComponent, string>("","Test");
+			//self.loginBtn.AddUIComponent<UIRedDotComponent, string>("","Test");
 			self.settingView = self.AddUIComponent<UILoopListView2>("Panel/GM/Setting");
 			self.settingView.InitListView(ServerConfigCategory.Instance.GetAll().Count, (a, b) => { return self.GetItemByIndex(a, b); });
 			self.account.SetOnEndEdit(() =>

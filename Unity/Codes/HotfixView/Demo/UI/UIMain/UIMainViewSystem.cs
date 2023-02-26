@@ -38,6 +38,7 @@ namespace ET
 			self.btnAdventure = self.AddUIComponent<UIButton>("btnAdventure");
 			self.btnNextAdventure = self.AddUIComponent<UIButton>("btnNextAdventure");
 			self.btnTask = self.AddUIComponent<UIButton>("btnTask");
+			self.btnTask.AddUIComponent<UIRedDotComponent, string>("","UIMainTask");
 			self.btnRole.SetOnClick(()=>{self.OnClickbtnRole().Coroutine();});
 			self.btnAdventure.SetOnClick(()=>{self.OnClickbtnAdventure().Coroutine();});
 			self.btnNextAdventure.SetOnClick(()=>{self.OnClickbtnNextAdventure().Coroutine();});
@@ -100,7 +101,7 @@ namespace ET
 		}
 		public static void OnClickbtnTask(this UIMainView self)
 		{
-
+			UIManagerComponent.Instance.OpenWindow<UITaskView, Scene>(UITaskView.PrefabPath, self.scene).Coroutine();
 		}
 
 		public static void UpdateView(this UIMainView self)

@@ -9,14 +9,16 @@ namespace ET
 	
 	[UISystem]
 	[FriendClass(typeof(UITaskView))]
+	[FriendClass(typeof(TasksComponent))]
 	public class UITaskViewOnEnableSystem : OnEnableSystem<UITaskView,Scene>
 	{
 		public override void OnEnable(UITaskView self, Scene scene)
 		{
 			self.scene = scene;
-			
-			// self.listData = data;
-			// self.ScrollView.SetListItemCount(data.Count);
+
+			int count = self.scene.GetComponent<TasksComponent>().GetTaskInfoCount();
+			self.listData = self.scene.GetComponent<TasksComponent>().TaskInfoList;
+			self.ScrollView.SetListItemCount(count);
 
 		}
 	}
@@ -48,6 +50,8 @@ namespace ET
 
 	}
 	[FriendClass(typeof(UITaskView))]
+	[FriendClass(typeof(UITaskItem))]
+	[FriendClass(typeof(TasksComponent))]
 	public static class UITaskViewSystem
 	{
 		public static LoopListViewItem2 GetScrollViewItemByIndex(this UITaskView self, LoopListView2 listView, int index)
@@ -61,13 +65,20 @@ namespace ET
 			}
 
 			var item = self.ScrollView.GetUIItemView<UITaskItem>(itemView);
-			// item.SetData(data);
-			// item.scene = self.scene;
+			item.SetData(data);
+			item.scene = self.scene;
 			return itemView;
 		}
 		public static void OnClickbtnClose(this UITaskView self)
 		{
 			UIManagerComponent.Instance.CloseWindow<UITaskView>().Coroutine();
+		}
+		public static void UpdateView(this UITaskView self)
+		{
+			int count = self.scene.GetComponent<TasksComponent>().GetTaskInfoCount();
+			self.listData = self.scene.GetComponent<TasksComponent>().TaskInfoList;
+			self.ScrollView.SetListItemCount(count);
+			self.ScrollView.RefreshAllShownItem();
 		}
 	}
 

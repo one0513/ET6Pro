@@ -17,6 +17,6 @@ MonoBehaviour:
   BuildPackage: DefaultPackage
   CompressOption: 2
   OutputNameStyle: 1
-  CopyBuildinFileOption: 0
-  CopyBuildinFileTags: 
+  CopyBuildinFileOption: 2
+  CopyBuildinFileTags: ui
   EncyptionClassName: YooAsset.GameEncryption
