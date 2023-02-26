@@ -54,5 +54,6 @@ namespace ET
 			public Unit Unit;
 			public int LevelId;
 		}
+		
 	}
 }

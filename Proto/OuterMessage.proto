@@ -595,3 +595,39 @@ message M2C_EndGameLevel // IActorLocationResponse
 	int32 Error = 91;
 	string Message = 92;
 }
+
+
+message TaskInfoProto
+{
+	int32 ConfigId  = 1;
+
+	int32 TaskState = 2;
+
+	int32 TaskPogress = 3;
+}
+
+message M2C_UpdateTaskInfo // IActorMessage
+{
+	TaskInfoProto TaskInfoProto = 1;
+}
+
+
+message M2C_AllTaskInfoList // IActorMessage
+{
+	repeated TaskInfoProto TaskInfoProtoList = 1;
+}
+
+
+//ResponseType M2C_ReceiveTaskReward
+message C2M_ReceiveTaskReward // IActorLocationRequest
+{
+	int32 RpcId        = 1;
+	int32 TaskConfigId = 2;
+}
+
+message M2C_ReceiveTaskReward // IActorLocationResponse
+{
+	int32 RpcId    = 90;
+	int32 Error    = 91;
+	string Message = 92;
+}

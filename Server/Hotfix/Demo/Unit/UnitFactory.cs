@@ -100,11 +100,6 @@ namespace ET
                 case UnitType.Player:
                 {
                     Unit unit = unitComponent.AddChildWithId<Unit, int>(id, 1001);
-                    //ChildType测试代码 取消注释 编译Server.hotfix 可发现报错
-                    //unitComponent.AddChild<Player, string>("Player");
-                    // unit.AddComponent<MoveComponent>();
-                    // unit.Position = new Vector3(-10, 0, -10);
-			
                     NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
                     foreach (var config in PlayerNumericConfigCategory.Instance.GetAll())
                     {
@@ -124,16 +119,7 @@ namespace ET
                             numericComponent.SetNoEvent(config.Key,config.Value.BaseValue);
                         }
                     }
-                    
-                    // numericComponent.Set(NumericType.SpeedBase, 6f); // 速度是6米每秒
-                    // numericComponent.Set(NumericType.AOIBase, 2); // 视野2格
-                    // numericComponent.Set(NumericType.HpBase, 1000); // 生命1000
-                    // numericComponent.Set(NumericType.MaxHpBase, 1000); // 最大生命1000
-                    // numericComponent.Set(NumericType.LvBase,1); //1级
-                    // numericComponent.Set(NumericType.ATKBase,100); //100攻击
-                    // numericComponent.Set(NumericType.DEFBase,500); //500防御
-                    // var SkillIds = new List<int>(){1001,1002,1003,1004,1005,1006};//初始技能
-                    // unit.AddComponent<CombatUnitComponent,List<int>>(SkillIds);
+                    unit.AddComponent<TasksComponent>();
                     unitComponent.Add(unit);
                     // 进入地图再加入aoi
                     

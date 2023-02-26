@@ -1205,4 +1205,65 @@ namespace ET
 
 	}
 
+	[Message(OuterOpcode.TaskInfoProto)]
+	[ProtoContract]
+	public partial class TaskInfoProto: Object
+	{
+		[ProtoMember(1)]
+		public int ConfigId { get; set; }
+
+		[ProtoMember(2)]
+		public int TaskState { get; set; }
+
+		[ProtoMember(3)]
+		public int TaskPogress { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_UpdateTaskInfo)]
+	[ProtoContract]
+	public partial class M2C_UpdateTaskInfo: Object, IActorMessage
+	{
+		[ProtoMember(1)]
+		public TaskInfoProto TaskInfoProto { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_AllTaskInfoList)]
+	[ProtoContract]
+	public partial class M2C_AllTaskInfoList: Object, IActorMessage
+	{
+		[ProtoMember(1)]
+		public List<TaskInfoProto> TaskInfoProtoList = new List<TaskInfoProto>();
+
+	}
+
+	[ResponseType(nameof(M2C_ReceiveTaskReward))]
+	[Message(OuterOpcode.C2M_ReceiveTaskReward)]
+	[ProtoContract]
+	public partial class C2M_ReceiveTaskReward: Object, IActorLocationRequest
+	{
+		[ProtoMember(1)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(2)]
+		public int TaskConfigId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_ReceiveTaskReward)]
+	[ProtoContract]
+	public partial class M2C_ReceiveTaskReward: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 }

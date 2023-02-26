@@ -34,6 +34,9 @@
     <Compile Include="..\..\Unity\Codes\Hotfix\Demo\ServerInfo\ServerInfoSystem.cs">
       <Link>Demo\ServerInfo\ServerInfoSystem.cs</Link>
     </Compile>
+    <Compile Include="..\..\Unity\Codes\Hotfix\Demo\Task\TaskInfoSystem.cs">
+      <Link>Demo\Task\TaskInfoSystem.cs</Link>
+    </Compile>
     <Compile Include="..\..\Unity\Codes\Hotfix\Demo\Unit\UnitNumericHelper.cs">
       <Link>Demo\Unit\UnitNumericHelper.cs</Link>
     </Compile>

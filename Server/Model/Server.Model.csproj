@@ -34,6 +34,14 @@
       <Link>Demo\Role\RoleInfo.cs</Link>
     </Compile>
 
+    <Compile Include="..\..\Unity\Codes\Model\Demo\Task\TaskInfo.cs">
+      <Link>Demo\Task\TaskInfo.cs</Link>
+    </Compile>
+
+    <Compile Include="..\..\Unity\Codes\Model\Demo\Task\TasksComponent.cs">
+      <Link>Demo\Task\TasksComponent.cs</Link>
+    </Compile>
+
     <Compile Include="..\..\Unity\Codes\Model\Demo\Unit\UnitType.cs">
       <Link>Demo\Unit\UnitType.cs</Link>
     </Compile>

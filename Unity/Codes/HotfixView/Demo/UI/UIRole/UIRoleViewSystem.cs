@@ -69,6 +69,7 @@ namespace ET
 
 	}
 	[FriendClass(typeof(UIRoleView))]
+	[FriendClass(typeof(AdventureComponent))]
 	public static class UIRoleViewSystem
 	{
 		public static void UpdateView(this UIRoleView self)
@@ -103,23 +104,35 @@ namespace ET
 		}
 		public static void OnClickbtnUpAtk(this UIRoleView self)
 		{
-			NumericHelper.ReqeustAddAttributePoint(self.scene, NumericType.Atk).Coroutine();
+			AddAtrPoint(self,NumericType.Atk);
 		}
 		public static void OnClickbtnUpDef(this UIRoleView self)
 		{
-			NumericHelper.ReqeustAddAttributePoint(self.scene, NumericType.Def).Coroutine();
+			AddAtrPoint(self,NumericType.Def);
 		}
 		public static void OnClickbtnUpHp(this UIRoleView self)
 		{
-			NumericHelper.ReqeustAddAttributePoint(self.scene, NumericType.MaxHp).Coroutine();
+			AddAtrPoint(self,NumericType.MaxHp);
 		}
 		public static void OnClickbtnUpDmg(this UIRoleView self)
 		{
-			NumericHelper.ReqeustAddAttributePoint(self.scene, NumericType.Dmg).Coroutine();
+			AddAtrPoint(self,NumericType.Dmg);
 		}
 		public static void OnClickbtnUpTip(this UIRoleView self)
 		{
 			Game.EventSystem.PublishAsync(new UIEventType.ShowToast() { Text = "一次加点可选择提升5点攻击、5点防御、20点生命、1点伤害" }).Coroutine();
+		}
+		
+		static void AddAtrPoint(this UIRoleView self,int type)
+		{
+			if (self.scene.CurrentScene().GetComponent<AdventureComponent>().isFighting)
+			{
+				Game.EventSystem.PublishAsync(new UIEventType.ShowToast() { Text = "战斗中无法加点" }).Coroutine();
+			}
+			else
+			{
+				NumericHelper.ReqeustAddAttributePoint(self.scene, type).Coroutine();
+			}
 		}
 	}
 

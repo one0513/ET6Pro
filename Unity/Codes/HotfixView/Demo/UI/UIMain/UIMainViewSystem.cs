@@ -23,6 +23,7 @@ namespace ET
 	
 	[UISystem]
 	[FriendClass(typeof(UIMainView))]
+	[FriendClass(typeof(AdventureComponent))]
 	public class UIMainViewOnCreateSystem : OnCreateSystem<UIMainView>
 	{
 
@@ -59,21 +60,12 @@ namespace ET
 
 	}
 	[FriendClass(typeof(UIMainView))]
+	[FriendClass(typeof(AdventureComponent))]
 	public static class UIMainViewSystem
 	{
 		public static async ETTask OnClickbtnRole(this UIMainView self)
 		{
-			Unit unit = UnitHelper.GetMyUnitFromCurrentScene(self.scene.CurrentScene());
-			NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-			if (self.scene.CurrentScene().GetComponent<AdventureComponent>().isFighting)
-			{
-				Game.EventSystem.PublishAsync(new UIEventType.ShowToast() { Text = "战斗中无法查看角色" }).Coroutine();
-			}
-			else
-			{
-				await UIManagerComponent.Instance.OpenWindow<UIRoleView, Scene>(UIRoleView.PrefabPath, self.scene);
-			}
-			
+			await UIManagerComponent.Instance.OpenWindow<UIRoleView, Scene>(UIRoleView.PrefabPath, self.scene);
 		}
 		public static async ETTask OnClickbtnAdventure(this UIMainView self)
 		{

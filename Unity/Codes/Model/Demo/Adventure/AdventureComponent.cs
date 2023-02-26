@@ -16,6 +16,6 @@ namespace ET
 
         public SRandom Random = null;
 
-        public  bool isFighting { get; set; }
+        public bool isFighting = false;
     }
 }

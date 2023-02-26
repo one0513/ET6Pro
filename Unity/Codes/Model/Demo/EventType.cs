@@ -191,5 +191,10 @@ namespace ET
             public bool isEnoughUpLevel;
         }
         
+        public struct UpdateTaskInfo
+        {
+            public Scene ZoneScene;
+        }
+        
     }
 }

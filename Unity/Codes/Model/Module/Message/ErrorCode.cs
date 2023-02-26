@@ -43,10 +43,15 @@ namespace ET
         public const int ERR_AdventureResultError = 200026;
         public const int ERR_AdventureWinResultError = 200027;
         public const int ERR_AlreadyAdventureState = 200028;
-        
         public const int ERR_AdventureInDying = 200029;
         public const int ERR_AdventureErrorLevel = 200030;
         public const int ERR_AdventureLevelNotEnough = 200031;
+        
+        public const int ERR_NoTaskExist = 200032;
+        public const int ERR_NoTaskInfoExist = 200033;
+        public const int ERR_BeforeTaskNoOver = 200034;
+        public const int ERR_TaskRewarded = 200035;
+        public const int ERR_TaskNoCompleted = 200036;
 
 
     }
