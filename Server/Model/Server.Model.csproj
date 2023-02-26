@@ -26,6 +26,10 @@
       <Link>Core\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </Compile>
 
+    <Compile Include="..\..\Unity\Codes\Model\Demo\Adventure\BattleRoundResult.cs">
+      <Link>Demo\Adventure\BattleRoundResult.cs</Link>
+    </Compile>
+
     <Compile Include="..\..\Unity\Codes\Model\Demo\Role\RoleInfo.cs">
       <Link>Demo\Role\RoleInfo.cs</Link>
     </Compile>

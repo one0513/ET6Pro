@@ -116,10 +116,10 @@ MonoBehaviour:
       AssetTags: 
       ActiveRuleName: EnableGroup
       Collectors:
-      - CollectPath: Assets/AssetsPackage/Unit/Knight Files
-        CollectorGUID: fa6f50fbdb804a140928c056c052d460
+      - CollectPath: Assets/AssetsPackage/Unit
+        CollectorGUID: 20054f3f410561544a8b77946c75836d
         CollectorType: 0
-        AddressRuleName: AddressByPath
+        AddressRuleName: AddressByFileName
         PackRuleName: PackDirectory
-        FilterRuleName: CollectAll
+        FilterRuleName: CollectPrefab
         AssetTags: 

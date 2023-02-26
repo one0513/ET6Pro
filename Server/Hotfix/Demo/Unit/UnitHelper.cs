@@ -16,20 +16,19 @@ namespace ET
         public static UnitInfo CreateUnitInfo(Unit unit)
         {
             UnitInfo unitInfo = new UnitInfo();
-            
+            NumericComponent nc = unit.GetComponent<NumericComponent>();
             unitInfo.UnitId = unit.Id;
             unitInfo.ConfigId = unit.ConfigId;
             unitInfo.Type = (int)unit.Type;
-            // Vector3 position = unit.Position;
-            // unitInfo.X = position.x;
-            // unitInfo.Y = position.y;
-            // unitInfo.Z = position.z;
-            // Vector3 forward = unit.Forward;
-            // unitInfo.ForwardX = forward.x;
-            // unitInfo.ForwardY = forward.y;
-            // unitInfo.ForwardZ = forward.z;
+            Vector3 position = unit.Position;
+            unitInfo.X = position.x;
+            unitInfo.Y = position.y;
+            unitInfo.Z = position.z;
+            Vector3 forward = unit.Forward;
+            unitInfo.ForwardX = forward.x;
+            unitInfo.ForwardY = forward.y;
+            unitInfo.ForwardZ = forward.z;
 
-            // #region 移动信息
             // MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
             // if (moveComponent != null)
             // {
@@ -45,43 +44,13 @@ namespace ET
             //         }
             //     }
             // }
-            //
-            //
-            // #endregion
 
-            #region 数值信息
-
-            NumericComponent nc = unit.GetComponent<NumericComponent>();
             foreach ((int key, long value) in nc.NumericDic)
             {
                 unitInfo.Ks.Add(key);
                 unitInfo.Vs.Add(value);
             }
-            #endregion
-            //
-            // #region 战斗数据
-            //
-            // var cuc = unit.GetComponent<CombatUnitComponent>();
-            // if (cuc != null)
-            // {
-            //     //技能
-            //     unitInfo.SkillIds.AddRange(cuc.IdSkillMap.Keys);
-            //     var buffC = cuc.GetComponent<BuffComponent>();
-            //     if (buffC != null)
-            //     {
-            //         for (int i = 0; i < buffC.AllBuff.Count; i++)
-            //         {
-            //             var buff = buffC.GetChild<Buff>(buffC.AllBuff[i]);
-            //             unitInfo.BuffIds.Add(buff.ConfigId);
-            //             unitInfo.BuffTimestamp.Add(buff.Timestamp);
-            //             unitInfo.BuffSourceIds.Add(buff.FromUnitId);
-            //         }
-            //     }
-            // }
-            //
-            // #endregion
-           
-            
+
             return unitInfo;
         }
         

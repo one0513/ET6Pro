@@ -3,13 +3,15 @@ using UnityEngine;
 
 namespace ET
 {
-	public enum MotionType:byte
+	public enum MotionType
 	{
 		None,
 		Idle,
 		Run,
-		Died,
-		Damage,
+		Attack,
+		Hurt,
+		Die,
+		Win
 	}
 
 	[ComponentOf(typeof(Unit))]

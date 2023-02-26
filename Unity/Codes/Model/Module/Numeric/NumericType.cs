@@ -41,6 +41,18 @@ namespace ET
                     __Map.Add("AttributePointBase",AttributePointBase);
                     __Map.Add("CE",CE);
                     __Map.Add("CEBase",CEBase);
+                    __Map.Add("MaxHp",MaxHp);
+                    __Map.Add("MaxHpBase",MaxHpBase);
+                    __Map.Add("IsAlive",IsAlive);
+                    __Map.Add("IsAliveBase",IsAliveBase);
+                    __Map.Add("AdventureState",AdventureState);
+                    __Map.Add("AdventureStateBase",AdventureStateBase);
+                    __Map.Add("DyingState",DyingState);
+                    __Map.Add("DyingStateBase",DyingStateBase);
+                    __Map.Add("AdventureStartTime",AdventureStartTime);
+                    __Map.Add("AdventureStartTimeBase",AdventureStartTimeBase);
+                    __Map.Add("CurLevel",CurLevel);
+                    __Map.Add("CurLevelBase",CurLevelBase);
                 }
                 return __Map;
             }
@@ -91,5 +103,35 @@ namespace ET
 		public const int CE = 3009;
 		/// <summary> 战斗力Base </summary>
 		public const int CEBase = 3009 * 10 + 1;
+
+		/// <summary> 最大生命 </summary>
+		public const int MaxHp = 3010;
+		/// <summary> 最大生命Base </summary>
+		public const int MaxHpBase = 3010 * 10 + 1;
+
+		/// <summary> 是否存活 </summary>
+		public const int IsAlive = 3011;
+		/// <summary> 是否存活Base </summary>
+		public const int IsAliveBase = 3011 * 10 + 1;
+
+		/// <summary> 冒险状态 </summary>
+		public const int AdventureState = 3012;
+		/// <summary> 冒险状态Base </summary>
+		public const int AdventureStateBase = 3012 * 10 + 1;
+
+		/// <summary> 垂死状态 </summary>
+		public const int DyingState = 3013;
+		/// <summary> 垂死状态Base </summary>
+		public const int DyingStateBase = 3013 * 10 + 1;
+
+		/// <summary> 战斗开始时间 </summary>
+		public const int AdventureStartTime = 3014;
+		/// <summary> 战斗开始时间Base </summary>
+		public const int AdventureStartTimeBase = 3014 * 10 + 1;
+
+		/// <summary> 当前关卡 </summary>
+		public const int CurLevel = 3015;
+		/// <summary> 当前关卡Base </summary>
+		public const int CurLevelBase = 3015 * 10 + 1;
     }
 }

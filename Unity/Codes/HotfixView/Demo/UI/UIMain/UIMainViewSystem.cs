@@ -32,11 +32,14 @@ namespace ET
 			self.lblLevel = self.AddUIComponent<UITextmesh>("sp/lblLevel");
 			self.lblExp = self.AddUIComponent<UITextmesh>("sp/lblExp");
 			self.lblCoin = self.AddUIComponent<UITextmesh>("sp/lblCoin");
+			self.lblCurLevel = self.AddUIComponent<UITextmesh>("lblCurLevel");
 			self.btnRole = self.AddUIComponent<UIButton>("btnRole");
 			self.btnAdventure = self.AddUIComponent<UIButton>("btnAdventure");
+			self.btnNextAdventure = self.AddUIComponent<UIButton>("btnNextAdventure");
 			self.btnTask = self.AddUIComponent<UIButton>("btnTask");
 			self.btnRole.SetOnClick(()=>{self.OnClickbtnRole().Coroutine();});
 			self.btnAdventure.SetOnClick(()=>{self.OnClickbtnAdventure().Coroutine();});
+			self.btnNextAdventure.SetOnClick(()=>{self.OnClickbtnNextAdventure().Coroutine();});
 			self.btnTask.SetOnClick(()=>{self.OnClickbtnTask();});
 		}
 
@@ -50,6 +53,7 @@ namespace ET
 		{
 			self.btnRole.SetOnClick(()=>{self.OnClickbtnRole().Coroutine();});
 			self.btnAdventure.SetOnClick(()=>{self.OnClickbtnAdventure().Coroutine();});
+			self.btnNextAdventure.SetOnClick(()=>{self.OnClickbtnNextAdventure().Coroutine();});
 			self.btnTask.SetOnClick(()=>{self.OnClickbtnTask();});
 		}
 
@@ -59,12 +63,48 @@ namespace ET
 	{
 		public static async ETTask OnClickbtnRole(this UIMainView self)
 		{
-			await UIManagerComponent.Instance.OpenWindow<UIRoleView, Scene>(UIRoleView.PrefabPath, self.scene);
+			Unit unit = UnitHelper.GetMyUnitFromCurrentScene(self.scene.CurrentScene());
+			NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+			if (self.scene.CurrentScene().GetComponent<AdventureComponent>().isFighting)
+			{
+				Game.EventSystem.PublishAsync(new UIEventType.ShowToast() { Text = "战斗中无法查看角色" }).Coroutine();
+			}
+			else
+			{
+				await UIManagerComponent.Instance.OpenWindow<UIRoleView, Scene>(UIRoleView.PrefabPath, self.scene);
+			}
+			
 		}
 		public static async ETTask OnClickbtnAdventure(this UIMainView self)
 		{
-			Session session = self.scene.GetComponent<SessionComponent>().Session;
-			M2C_TestUnitNumeric m2CTestUnitNumeric = (M2C_TestUnitNumeric) await session.Call(new C2M_TestUnitNumeric() { });
+			Unit unit = UnitHelper.GetMyUnitFromCurrentScene(self.scene.CurrentScene());
+			NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+			if (self.scene.CurrentScene().GetComponent<AdventureComponent>().isFighting)
+			{
+				Game.EventSystem.PublishAsync(new UIEventType.ShowToast() { Text = "当前正在战斗中！！" }).Coroutine();
+			}
+			else
+			{
+				self.scene.CurrentScene().GetComponent<AdventureComponent>().SetFightStatue(true);
+				await AdventureHelper.RequestStartGameLevel(self.scene, numericComponent.GetAsInt((int)NumericType.CurLevel));
+				await self.scene.CurrentScene().GetComponent<AdventureComponent>().StartAdventure();
+			}
+		}
+		
+		public static async ETTask OnClickbtnNextAdventure(this UIMainView self)
+		{
+			Unit unit = UnitHelper.GetMyUnitFromCurrentScene(self.scene.CurrentScene());
+			NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+			if (self.scene.CurrentScene().GetComponent<AdventureComponent>().isFighting)
+			{
+				Game.EventSystem.PublishAsync(new UIEventType.ShowToast() { Text = "当前正在战斗中！！" }).Coroutine();
+			}
+			else
+			{
+				self.scene.CurrentScene().GetComponent<AdventureComponent>().SetFightStatue(true);
+				await AdventureHelper.RequestStartGameLevel(self.scene, numericComponent.GetAsInt((int)NumericType.CurLevel)+1);
+				await self.scene.CurrentScene().GetComponent<AdventureComponent>().StartAdventure();
+			}
 		}
 		public static void OnClickbtnTask(this UIMainView self)
 		{
@@ -79,7 +119,7 @@ namespace ET
 			self.lblExp.SetText(numericComponent.GetAsInt((int)NumericType.Exp).ToString());
 			//self.lblCoin.SetText(numericComponent.GetAsInt((int)NumericType.Gold).ToString());
 			self.lblLevel.SetText($"Lv:{numericComponent.GetAsInt((int)NumericType.Lv).ToString()}");
-
+			self.lblCurLevel.SetText($"当前关卡:{numericComponent.GetAsInt((int)NumericType.CurLevel).ToString()}关");
 		}
 	}
 

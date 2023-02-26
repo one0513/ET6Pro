@@ -13,7 +13,7 @@
             currentScenesComponent.Scene?.Dispose(); // 删除之前的CurrentScene，创建新的
             Scene currentScene = SceneFactory.CreateCurrentScene(sceneInstanceId, zoneScene.Zone, sceneName, currentScenesComponent);
             UnitComponent unitComponent = currentScene.AddComponent<UnitComponent>();
-            //currentScene.AddComponent<AdventureComponent>();
+            currentScene.AddComponent<AdventureComponent>();
          
             // 可以订阅这个事件中创建Loading界面
             //Game.EventSystem.Publish(new EventType.SceneChangeStart() {ZoneScene = zoneScene});

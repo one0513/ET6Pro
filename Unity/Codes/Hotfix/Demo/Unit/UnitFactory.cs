@@ -7,6 +7,30 @@ namespace ET
     public static class UnitFactory
     {
 	    
+	    public static async ETTask<Unit> CreateMonster(Scene currentScene, int configId)
+	    {
+		    UnitComponent unitComponent = currentScene.GetComponent<UnitComponent>();
+		    Unit unit = unitComponent.AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), configId);
+		    unitComponent.Add(unit);
+		    
+		    Unit myUnit = UnitHelper.GetMyUnitFromCurrentScene(currentScene);
+		    int curLevel = myUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.CurLevel);
+		    double atrAdd = 1 + 0.1 * curLevel;
+		   
+		    NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
+		    numericComponent.SetNoEvent(NumericType.IsAlive,1);
+		    numericComponent.SetNoEvent(NumericType.Dmg, (long)Math.Ceiling(unit.Config.Dmg * atrAdd));
+		    numericComponent.SetNoEvent(NumericType.Atk,(long)Math.Ceiling(unit.Config.Atk * atrAdd));
+		    numericComponent.SetNoEvent(NumericType.Def,(long)Math.Ceiling(unit.Config.Def * atrAdd));
+		    numericComponent.SetNoEvent(NumericType.MaxHp,(long)Math.Ceiling(unit.Config.MaxHP * atrAdd));
+		    numericComponent.SetNoEvent(NumericType.Hp,(long)Math.Ceiling(unit.Config.MaxHP * atrAdd));
+	        
+		    unit.AddComponent<ObjectWait>();
+	        
+		    await Game.EventSystem.PublishAsync(new EventType.AfterUnitCreate() {Unit = unit});
+		    return unit;
+	    }
+	    
 	    public static Unit CreatePlayer(Scene currentScene, UnitInfo unitInfo)
 	    {
 		    UnitComponent unitComponent = currentScene.GetComponent<UnitComponent>();

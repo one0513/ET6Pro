@@ -16,16 +16,16 @@ namespace ET
             await ETTask.CompletedTask;
         }
 
-        public SceneLoadComponent EnterMap(Entity self)
-        {
-            var slc = self.AddComponent<SceneLoadComponent>();
-            var role = UnitConfigCategory.Instance.GetAll();
-            foreach (var item in role)
-                slc.AddPreloadGameObject(item.Value.Perfab, 1);
-            //可以走配表
-            slc.AddPreloadGameObject("GameAssets/Map/Prefabs/Ground.prefab", 1);
-            slc.AddPreloadGameObject("GameAssets/Map/Prefabs/Cube.prefab", 10);
-            return slc;
-        }
+        // public SceneLoadComponent EnterMap(Entity self)
+        // {
+        //     var slc = self.AddComponent<SceneLoadComponent>();
+        //     var role = UnitConfigCategory.Instance.GetAll();
+        //     foreach (var item in role)
+        //         slc.AddPreloadGameObject(item.Value.Perfab, 1);
+        //     //可以走配表
+        //     slc.AddPreloadGameObject("GameAssets/Map/Prefabs/Ground.prefab", 1);
+        //     slc.AddPreloadGameObject("GameAssets/Map/Prefabs/Cube.prefab", 10);
+        //     return slc;
+        // }
     }
 }

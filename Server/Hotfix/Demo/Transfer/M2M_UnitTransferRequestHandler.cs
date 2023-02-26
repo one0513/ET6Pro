@@ -51,7 +51,7 @@ namespace ET
             //TaskNoticeHelper.SyncAllTaskInfo(unit);
 			
             unit.AddComponent<NumericNoticeComponent>();
-            //unit.AddComponent<AdventureCheckComponent>();
+            unit.AddComponent<AdventureCheckComponent>();
 			
 			
 			

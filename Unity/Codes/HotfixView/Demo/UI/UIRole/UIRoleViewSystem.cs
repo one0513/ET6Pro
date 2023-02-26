@@ -79,7 +79,7 @@ namespace ET
 			self.lblLevel.SetText((numericComponent.GetAsInt((int)NumericType.Lv)).ToString());
 			self.lblAtk.SetText($"攻击:{numericComponent.GetAsInt((int)NumericType.Atk).ToString()}");
 			self.lblDef.SetText($"防御:{numericComponent.GetAsInt((int)NumericType.Def).ToString()}");
-			self.lblHp.SetText($"生命:{numericComponent.GetAsInt((int)NumericType.Hp).ToString()}");
+			self.lblHp.SetText($"生命:{numericComponent.GetAsInt((int)NumericType.MaxHp).ToString()}");
 			self.lblDmg.SetText($"伤害:{numericComponent.GetAsInt((int)NumericType.Dmg).ToString()}");
 			self.lblNowAddPoint.SetText($"当前可加点数:{numericComponent.GetAsInt((int)NumericType.AttributePoint).ToString()}");
 			self.lblCE.SetText($"战斗力:{numericComponent.GetAsInt((int)NumericType.CE).ToString()}");
@@ -111,7 +111,7 @@ namespace ET
 		}
 		public static void OnClickbtnUpHp(this UIRoleView self)
 		{
-			NumericHelper.ReqeustAddAttributePoint(self.scene, NumericType.Hp).Coroutine();
+			NumericHelper.ReqeustAddAttributePoint(self.scene, NumericType.MaxHp).Coroutine();
 		}
 		public static void OnClickbtnUpDmg(this UIRoleView self)
 		{

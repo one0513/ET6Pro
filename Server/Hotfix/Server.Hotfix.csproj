@@ -19,6 +19,9 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\..\Unity\Codes\Hotfix\Demo\Adventure\DamageCalcuateHelper.cs">
+      <Link>Demo\Adventure\DamageCalcuateHelper.cs</Link>
+    </Compile>
     <Compile Include="..\..\Unity\Codes\Hotfix\Demo\Move\MoveComponentSystem.cs">
       <Link>Demo\Move\MoveComponentSystem.cs</Link>
     </Compile>
@@ -30,6 +33,9 @@
     </Compile>
     <Compile Include="..\..\Unity\Codes\Hotfix\Demo\ServerInfo\ServerInfoSystem.cs">
       <Link>Demo\ServerInfo\ServerInfoSystem.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Unity\Codes\Hotfix\Demo\Unit\UnitNumericHelper.cs">
+      <Link>Demo\Unit\UnitNumericHelper.cs</Link>
     </Compile>
     <Compile Include="..\..\Unity\Codes\Hotfix\Module\Config\ConfigComponentSystem.cs">
       <Link>Module\Config\ConfigComponentSystem.cs</Link>

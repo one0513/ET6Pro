@@ -36,6 +36,17 @@ namespace ET
         public const int ERR_ExpNotEnough = 200021;
         public const int ERR_ExpNumError = 200022;
         public const int ERR_OtherAccountLogin = 200023;
+        
+        
+        public const int ERR_AdventureLevelIdError = 200024;
+        public const int ERR_AdventureRoundError = 200025;
+        public const int ERR_AdventureResultError = 200026;
+        public const int ERR_AdventureWinResultError = 200027;
+        public const int ERR_AlreadyAdventureState = 200028;
+        
+        public const int ERR_AdventureInDying = 200029;
+        public const int ERR_AdventureErrorLevel = 200030;
+        public const int ERR_AdventureLevelNotEnough = 200031;
 
 
     }

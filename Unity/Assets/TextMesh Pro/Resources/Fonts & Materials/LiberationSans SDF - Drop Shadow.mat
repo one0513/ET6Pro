@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: LiberationSans SDF - Drop Shadow
-  m_Shader: {fileID: 4800000, guid: fe393ace9b354375a9cb14cdbbc28be4, type: 3}
+  m_Shader: {fileID: 4800000, guid: a6b1cd21d703fbf45812ecb047c719a8, type: 3}
   m_ShaderKeywords: OUTLINE_ON UNDERLAY_ON
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
@@ -50,6 +50,7 @@ Material:
     - _BumpFace: 0
     - _BumpOutline: 0
     - _ColorMask: 15
+    - _CullMode: 0
     - _Diffuse: 0.5
     - _DiffusePower: 1
     - _FaceDilate: 0.1
@@ -104,3 +105,4 @@ Material:
     - _ReflectOutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
     - _UnderlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_BuildTextureStacks: []

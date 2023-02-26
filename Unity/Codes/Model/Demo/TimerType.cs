@@ -15,6 +15,8 @@
         public const int LoginTimeOut = 1010;//登录超时
         public const int SaveChangeDBData = 1011;
         public const int PlayerOfflineOutTime = 1011;//离线超时
+
+        public const int BattleRound = 1012;
         // 不能超过10000
     }
 }

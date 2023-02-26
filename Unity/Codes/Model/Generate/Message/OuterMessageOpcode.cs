@@ -69,5 +69,9 @@ namespace ET
 		 public const ushort M2C_UpRoleLevel = 10068;
 		 public const ushort C2M_TestLoaction = 10069;
 		 public const ushort M2C_TestLoaction = 10070;
+		 public const ushort C2M_StartGameLevel = 10071;
+		 public const ushort M2C_StartGameLevel = 10072;
+		 public const ushort C2M_EndGameLevel = 10073;
+		 public const ushort M2C_EndGameLevel = 10074;
 	}
 }

@@ -1,17 +1,11 @@
-using System;
 using UnityEngine;
 
 namespace ET
 {
-    [ComponentOf]
-    [ChildOf]
-    public class GameObjectComponent: Entity, IAwake,IAwake<GameObject>,IAwake<GameObject,Action>, IDestroy
+    [ComponentOf(typeof(Unit))]
+    public class GameObjectComponent: Entity, IAwake, IDestroy
     {
         public GameObject GameObject { get; set; }
-        public Action OnDestroyAction;
-        public bool IsDebug;
-        public SpriteRenderer SpriteRenderer;
-
-        public ReferenceCollector Collector;
+        public SpriteRenderer SpriteRenderer{ get; set; }
     }
 }

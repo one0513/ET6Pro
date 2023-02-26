@@ -10,10 +10,10 @@
             {
                 if(args.Unit.unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Hp)<=0)
                 {
-                    anim.Play(MotionType.Died);
+                    anim.Play(MotionType.Die);
                 }
                 else
-                    anim.Play(MotionType.Damage);
+                    anim.Play(MotionType.Hurt);
             }
             else if(args.Unit.unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Hp)<=0)//直接死了
             {

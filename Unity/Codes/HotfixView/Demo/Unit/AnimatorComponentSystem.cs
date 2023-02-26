@@ -32,6 +32,7 @@ namespace ET
 		}
 	}
 
+	[FriendClass(typeof(GameObjectComponent))]
 	[FriendClass(typeof(AnimatorComponent))]
 	public static class AnimatorComponentSystem
 	{
@@ -78,7 +79,7 @@ namespace ET
 
 			try
 			{
-				self.Animator.SetFloat("MotionSpeed", self.MontionSpeed);
+				//self.Animator.SetFloat("MotionSpeed", self.MontionSpeed);
 
 				self.Animator.SetTrigger(self.MotionType.ToString());
 

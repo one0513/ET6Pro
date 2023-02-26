@@ -47,6 +47,12 @@ namespace ET
 		{
 			public Unit Unit;
 		}
-		
+
+
+		public struct BattleWin
+		{
+			public Unit Unit;
+			public int LevelId;
+		}
 	}
 }
