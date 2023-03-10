@@ -1591,7 +1591,7 @@ MonoBehaviour:
   text: {fileID: 9035870767941922326}
   _effectColor: {r: 0.6415094, g: 0.1250741, b: 0.1250741, a: 1}
   faceDilate: 0
-  outlineWidth: 0
+  outlineWidth: 2
   shadowWidth: 0
   shadowOffsetX: 0
   shadowOffsetY: 0
@@ -2114,9 +2114,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 4215270870000415367}
-  _effectColor: {r: 1, g: 1, b: 1, a: 1}
+  _effectColor: {r: 0.5943396, g: 0.23264092, b: 0.13830541, a: 1}
   faceDilate: 0
-  outlineWidth: 0
+  outlineWidth: 2
   shadowWidth: 0
   shadowOffsetX: 0
   shadowOffsetY: 0
