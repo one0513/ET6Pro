@@ -60,14 +60,15 @@ namespace ET
             }
             UnityEngine.Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             UnityEngine.RaycastHit hit;
-            if (UnityEngine.Physics.Raycast(ray, out hit, 1000, self.mapMask))
+            
+            if (UnityEngine.Physics.Raycast(ray, out hit, 1000, (1 << 8)))
             {
                 self.ClickPoint = hit.point;
                 self.frameClickMap.X = self.ClickPoint.x;
                 self.frameClickMap.Y = self.ClickPoint.y;
                 self.frameClickMap.Z = self.ClickPoint.z;
                 self.ZoneScene().GetComponent<SessionComponent>().Session.Send(self.frameClickMap);
-                unit.GetComponent<CombatUnitComponent>().GetComponent<MoveAndSpellComponent>().Cancel();//取消施法
+                //unit.GetComponent<CombatUnitComponent>().GetComponent<MoveAndSpellComponent>().Cancel();//取消施法
             }
         }
     }

@@ -13,7 +13,10 @@ namespace ET
 				if (!self.isLoginAgain && self.PlayerInstanceId != 0)
 				{
 					Player player = Game.EventSystem.Get(self.PlayerInstanceId) as Player;
-					DisconnectHelper.KickPlayer(player).Coroutine();
+					// if (self.Parent.Id == player.ClientSession.Id)
+					// {
+					// 	DisconnectHelper.KickPlayer(player).Coroutine();
+					// }
 				}
 
 				self.AccountId = 0;

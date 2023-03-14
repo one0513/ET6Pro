@@ -131,8 +131,7 @@ namespace ET
             if (isNewUnit)
             {
                 unit =  UnitFactory.Create(gateMapComponent.Scene, player.UnitId, UnitType.Player);
-
-                int a = player.DomainZone();
+                
                 var roleInfos = await DBManagerComponent.Instance.GetZoneDB(player.DomainZone()).Query<RoleInfo>(d => d.Id == player.UnitId);
                 unit.AddComponent(roleInfos[0]);
                 

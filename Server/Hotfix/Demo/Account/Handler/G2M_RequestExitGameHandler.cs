@@ -16,9 +16,9 @@ namespace ET
             reply();
 
             //正式释放Unit
-            await unit.RemoveLocation();
-            UnitComponent unitComponent = unit.DomainScene().GetComponent<UnitComponent>();
-            unitComponent.Remove(unit.Id);
+            // await unit.RemoveLocation();
+            // UnitComponent unitComponent = unit.DomainScene().GetComponent<UnitComponent>();
+            // unitComponent.Remove(unit.Id);
             
             await ETTask.CompletedTask;
         }

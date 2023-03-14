@@ -114,11 +114,7 @@ namespace ET
 
                     try
                     {
-
-                        //GateMapComponent gateMapComponent = player.AddComponent<GateMapComponent>();
-                        //gateMapComponent.Scene = await SceneFactory.Create(gateMapComponent, "GateMap", SceneType.Map);
-
-                        //从数据库或者缓存中加载出Unit实体及其相关组件
+                        
                         (bool isNewPlayer, Unit unit) = await UnitHelper.LoadUnit(player);
 
                         //unit.AddComponent<UnitGateComponent, long>(session.InstanceId);
@@ -126,7 +122,7 @@ namespace ET
                         
                         //player.ChatInfoInstanceId = await this.EnterWorldChatServer(unit); //登录聊天服
                         
-                        //玩家Unit上线后的初始化操作
+                        //玩家Unit上线后的初始化操作 目前没做实际操作
                         await UnitHelper.InitUnit(unit, isNewPlayer);
                         response.MyId = unit.Id;
                         reply();
@@ -145,7 +141,6 @@ namespace ET
                     }
                     catch (Exception e)
                     {
-
                         Log.Error($"角色进入游戏逻辑服出现问题 账号Id: {player.AccountId}  角色Id: {player.Id}   异常信息： {e.ToString()}");
                         response.Error = ErrorCode.ERR_EnterGameError;
                         reply();

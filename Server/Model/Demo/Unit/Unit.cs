@@ -17,12 +17,23 @@ namespace ET
 
         private Vector3 position; //坐标
 
+        private Vector3 oldPosition = new Vector3(); //坐标
+        public Vector3 OldPosition
+        {
+            get => this.oldPosition;
+            set
+            {
+                this.oldPosition = value;
+            }
+        }
+
         public Vector3 Position
         {
             get => this.position;
             set
             {
                 EventType.ChangePosition.Instance.OldPos = this.position;
+                oldPosition = this.position;
                 this.position = value;
                 EventType.ChangePosition.Instance.Unit = this;
                 Game.EventSystem.PublishClass(EventType.ChangePosition.Instance);

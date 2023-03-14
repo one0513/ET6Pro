@@ -23,6 +23,14 @@ namespace ET
                 SendToClient(u.GetParent<Unit>(), message);
             }
         }
+        //简易版广播 不考虑aoi
+        public static void BroadcastSomeUnit(List<Unit> units, IActorMessage message)
+        {
+            foreach (Unit unit in units)
+            {
+                SendToClient(unit, message);
+            }
+        }
         
         public static void SendToClient(Unit unit, IActorMessage message)
         {

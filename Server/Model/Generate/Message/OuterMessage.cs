@@ -1266,4 +1266,167 @@ namespace ET
 
 	}
 
+	[Message(OuterOpcode.MonsterInfoProto)]
+	[ProtoContract]
+	public partial class MonsterInfoProto: Object
+	{
+		[ProtoMember(1)]
+		public int ConfigId { get; set; }
+
+		[ProtoMember(2)]
+		public int CurHp { get; set; }
+
+		[ProtoMember(3)]
+		public int PosX { get; set; }
+
+		[ProtoMember(4)]
+		public int PosY { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_InitMonsterInfoList)]
+	[ProtoContract]
+	public partial class M2C_InitMonsterInfoList: Object, IActorMessage
+	{
+		[ProtoMember(1)]
+		public List<UnitInfo> UnitList = new List<UnitInfo>();
+
+	}
+
+	[Message(OuterOpcode.BattleRoomInfoProto)]
+	[ProtoContract]
+	public partial class BattleRoomInfoProto: Object
+	{
+		[ProtoMember(1)]
+		public long RoomId { get; set; }
+
+		[ProtoMember(2)]
+		public string RoomName { get; set; }
+
+		[ProtoMember(3)]
+		public int RoomPlayerNum { get; set; }
+
+		[ProtoMember(4)]
+		public List<UnitInfo> UnitList = new List<UnitInfo>();
+
+		[ProtoMember(5)]
+		public List<long> PlayerList = new List<long>();
+
+	}
+
+	[Message(OuterOpcode.M2C_UpdateBattleRoomInfo)]
+	[ProtoContract]
+	public partial class M2C_UpdateBattleRoomInfo: Object, IActorMessage
+	{
+		[ProtoMember(1)]
+		public BattleRoomInfoProto BattleRoomInfo { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_CreateBattleRoom))]
+	[Message(OuterOpcode.C2M_CreateBattleRoom)]
+	[ProtoContract]
+	public partial class C2M_CreateBattleRoom: Object, IActorLocationRequest
+	{
+		[ProtoMember(1)]
+		public int RpcId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_CreateBattleRoom)]
+	[ProtoContract]
+	public partial class M2C_CreateBattleRoom: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_GetBattleRoomInfoList))]
+	[Message(OuterOpcode.C2M_GetBattleRoomInfoList)]
+	[ProtoContract]
+	public partial class C2M_GetBattleRoomInfoList: Object, IActorLocationRequest
+	{
+		[ProtoMember(1)]
+		public int RpcId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_GetBattleRoomInfoList)]
+	[ProtoContract]
+	public partial class M2C_GetBattleRoomInfoList: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public List<BattleRoomInfoProto> BattleRoomInfoList = new List<BattleRoomInfoProto>();
+
+	}
+
+	[ResponseType(nameof(M2C_JoinBattleRoom))]
+	[Message(OuterOpcode.C2M_JoinBattleRoom)]
+	[ProtoContract]
+	public partial class C2M_JoinBattleRoom: Object, IActorLocationRequest
+	{
+		[ProtoMember(1)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(2)]
+		public long RoomId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_JoinBattleRoom)]
+	[ProtoContract]
+	public partial class M2C_JoinBattleRoom: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_OutBattleRoom))]
+	[Message(OuterOpcode.C2M_OutBattleRoom)]
+	[ProtoContract]
+	public partial class C2M_OutBattleRoom: Object, IActorLocationRequest
+	{
+		[ProtoMember(1)]
+		public int RpcId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_OutBattleRoom)]
+	[ProtoContract]
+	public partial class M2C_OutBattleRoom: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 }

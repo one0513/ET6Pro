@@ -52,7 +52,7 @@ namespace ET
             flyDamageValueGameObject.GetComponentInChildren<TextMeshPro>().text = DamageValue <= 0? "Miss" : $"-{DamageValue}";
             flyDamageValueGameObject.transform.position =startPos;
             
-            flyDamageValueGameObject.transform.DOMoveY(startPos.y + 1.5f, 0.8f).onComplete = () =>
+            flyDamageValueGameObject.transform.DOMoveZ(startPos.z + 1.5f, 0.8f).onComplete = () =>
             {
                 flyDamageValueGameObject.SetActive(false);
                 self.FlyingDamageSet.Remove(flyDamageValueGameObject);

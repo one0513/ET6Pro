@@ -78,5 +78,17 @@ namespace ET
 		 public const ushort M2C_AllTaskInfoList = 10077;
 		 public const ushort C2M_ReceiveTaskReward = 10078;
 		 public const ushort M2C_ReceiveTaskReward = 10079;
+		 public const ushort MonsterInfoProto = 10080;
+		 public const ushort M2C_InitMonsterInfoList = 10081;
+		 public const ushort BattleRoomInfoProto = 10082;
+		 public const ushort M2C_UpdateBattleRoomInfo = 10083;
+		 public const ushort C2M_CreateBattleRoom = 10084;
+		 public const ushort M2C_CreateBattleRoom = 10085;
+		 public const ushort C2M_GetBattleRoomInfoList = 10086;
+		 public const ushort M2C_GetBattleRoomInfoList = 10087;
+		 public const ushort C2M_JoinBattleRoom = 10088;
+		 public const ushort M2C_JoinBattleRoom = 10089;
+		 public const ushort C2M_OutBattleRoom = 10090;
+		 public const ushort M2C_OutBattleRoom = 10091;
 	}
 }

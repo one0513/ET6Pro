@@ -17,8 +17,20 @@ namespace ET
             args.Unit.GetComponent<GameObjectComponent>().SpriteRenderer = go.GetComponent<SpriteRenderer>();
             args.Unit.AddComponent<AnimatorComponent>();
             args.Unit.AddComponent<HeadHpViewComponent>();
+            if (args.Unit.Type == UnitType.Player)
+            {
+                float x =  args.Unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.PosX);
+                float z =  args.Unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.PosZ);
+                args.Unit.Position = new Vector3(x, 0, z);
+            }
+            else
+            {
+                args.Unit.Position = args.Unit.Position;
+            }
             
-            args.Unit.Position = args.Unit.Type == UnitType.Player? new Vector3(-1.5f, 0, 0) : new Vector3(1.5f,RandomHelper.RandomNumber(-1,1) , 0);
+    
+            
+            //args.Unit.Position = args.Unit.Type == UnitType.Player? new Vector3(-1.5f, 0, 0) : new Vector3(1.5f,RandomHelper.RandomNumber(-1,1) , 0);
             
             await ETTask.CompletedTask;
         }

@@ -139,10 +139,10 @@ namespace ET
                 if (moveTime >= self.NeedTime)
                 {
                     unit.Position = self.NextTarget;
-                    if (self.TurnTime > 0)
-                    {
-                        unit.Rotation = self.To;
-                    }
+                    // if (self.TurnTime > 0)
+                    // {
+                    //     unit.Rotation = self.To;
+                    // }
                 }
                 else
                 {
@@ -155,16 +155,16 @@ namespace ET
                     }
                     
                     // 计算方向插值
-                    if (self.TurnTime > 0)
-                    {
-                        amount = moveTime * 1f / self.TurnTime;
-                        if (amount > 1)
-                        {
-                            amount = 1f;
-                        }
-                        Quaternion q = Quaternion.Slerp(self.From, self.To, amount);
-                        unit.Rotation = q;
-                    }
+                    // if (self.TurnTime > 0)
+                    // {
+                    //     amount = moveTime * 1f / self.TurnTime;
+                    //     if (amount > 1)
+                    //     {
+                    //         amount = 1f;
+                    //     }
+                    //     Quaternion q = Quaternion.Slerp(self.From, self.To, amount);
+                    //     unit.Rotation = q;
+                    // }
                 }
 
                 moveTime -= self.NeedTime;
@@ -181,7 +181,7 @@ namespace ET
                 if (self.N >= self.Targets.Count - 1)
                 {
                     unit.Position = self.NextTarget;
-                    unit.Rotation = self.To;
+                    //unit.Rotation = self.To;
 
                     self.MoveFinish(ret);
                     return;
@@ -218,43 +218,43 @@ namespace ET
             
             self.NeedTime = (long) (distance / self.Speed * 1000);
             
-            if (self.TurnTime > 0)
-            {
-                // 要用unit的位置
-                Vector3 faceV = self.GetFaceV();
-                if (faceV.sqrMagnitude < 0.0001f)
-                {
-                    return;
-                }
-                self.From = unit.Rotation;
-                
-                if (self.IsTurnHorizontal)
-                {
-                    faceV.y = 0;
-                }
-
-                if (Math.Abs(faceV.x) > 0.01 || Math.Abs(faceV.z) > 0.01)
-                {
-                    self.To = Quaternion.LookRotation(faceV, Vector3.up);
-                }
-
-                return;
-            }
+            // if (self.TurnTime > 0)
+            // {
+            //     // 要用unit的位置
+            //     Vector3 faceV = self.GetFaceV();
+            //     if (faceV.sqrMagnitude < 0.0001f)
+            //     {
+            //         return;
+            //     }
+            //     self.From = unit.Rotation;
+            //     
+            //     if (self.IsTurnHorizontal)
+            //     {
+            //         faceV.y = 0;
+            //     }
+            //
+            //     if (Math.Abs(faceV.x) > 0.01 || Math.Abs(faceV.z) > 0.01)
+            //     {
+            //         self.To = Quaternion.LookRotation(faceV, Vector3.up);
+            //     }
+            //
+            //     return;
+            // }
             
-            if (self.TurnTime == 0) // turn time == 0 立即转向
-            {
-                Vector3 faceV = self.GetFaceV();
-                if (self.IsTurnHorizontal)
-                {
-                    faceV.y = 0;
-                }
-
-                if (Math.Abs(faceV.x) > 0.01 || Math.Abs(faceV.z) > 0.01)
-                {
-                    self.To = Quaternion.LookRotation(faceV, Vector3.up);
-                    unit.Rotation = self.To;
-                }
-            }
+            // if (self.TurnTime == 0) // turn time == 0 立即转向
+            // {
+            //     Vector3 faceV = self.GetFaceV();
+            //     if (self.IsTurnHorizontal)
+            //     {
+            //         faceV.y = 0;
+            //     }
+            //
+            //     if (Math.Abs(faceV.x) > 0.01 || Math.Abs(faceV.z) > 0.01)
+            //     {
+            //         self.To = Quaternion.LookRotation(faceV, Vector3.up);
+            //         unit.Rotation = self.To;
+            //     }
+            // }
         }
 
         private static Vector3 GetFaceV(this MoveComponent self)

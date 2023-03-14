@@ -183,6 +183,16 @@ namespace ET
             numericComponent.SetNoEvent(NumericType.IsAlive,1);
             
             unitComponent.Add(unit);
+
+            unit.AddComponent<MoveComponent>();
+            unit.AddComponent<PathfindingComponent, string>("Map");
+            
+            unit.AddComponent<AIComponent,int>(3);
+            unit.AddComponent<CombatUnitComponent>();
+            var aoiu = unit.AddComponent<AOIUnitComponent,Vector3,Quaternion, UnitType,int>
+                    (unit.Position,unit.Rotation,unit.Type,5);
+			
+            aoiu.AddSphereCollider(0.5f);
             return unit;
         }
     }

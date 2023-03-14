@@ -32,6 +32,9 @@ namespace ET
                     break;
                 case SceneType.Map:
                     scene.AddComponent<UnitComponent>();
+                    scene.AddComponent<MonsterFactoryComponent>();
+                    scene.AddComponent<RoomInfoComponent>();
+                    scene.AddComponent<AIDispatcherComponent>();
                     scene.AddComponent<AOISceneComponent,int>(Define.CellLen);//测试值，实际可以设置大一点
                     break;
                 case SceneType.Location:

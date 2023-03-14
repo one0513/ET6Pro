@@ -53,6 +53,16 @@ namespace ET
                     __Map.Add("AdventureStartTimeBase",AdventureStartTimeBase);
                     __Map.Add("CurLevel",CurLevel);
                     __Map.Add("CurLevelBase",CurLevelBase);
+                    __Map.Add("Speed",Speed);
+                    __Map.Add("SpeedBase",SpeedBase);
+                    __Map.Add("PosX",PosX);
+                    __Map.Add("PosXBase",PosXBase);
+                    __Map.Add("PosZ",PosZ);
+                    __Map.Add("PosZBase",PosZBase);
+                    __Map.Add("AOI",AOI);
+                    __Map.Add("AOIBase",AOIBase);
+                    __Map.Add("RoomID",RoomID);
+                    __Map.Add("RoomIDBase",RoomIDBase);
                 }
                 return __Map;
             }
@@ -133,5 +143,30 @@ namespace ET
 		public const int CurLevel = 3015;
 		/// <summary> 当前关卡Base </summary>
 		public const int CurLevelBase = 3015 * 10 + 1;
+
+		/// <summary> 移动速度 </summary>
+		public const int Speed = 3016;
+		/// <summary> 移动速度Base </summary>
+		public const int SpeedBase = 3016 * 10 + 1;
+
+		/// <summary> 坐标X </summary>
+		public const int PosX = 3017;
+		/// <summary> 坐标XBase </summary>
+		public const int PosXBase = 3017 * 10 + 1;
+
+		/// <summary> 坐标Z </summary>
+		public const int PosZ = 3018;
+		/// <summary> 坐标ZBase </summary>
+		public const int PosZBase = 3018 * 10 + 1;
+
+		/// <summary> 视野 </summary>
+		public const int AOI = 3019;
+		/// <summary> 视野Base </summary>
+		public const int AOIBase = 3019 * 10 + 1;
+
+		/// <summary> 小队ID </summary>
+		public const int RoomID = 3020;
+		/// <summary> 小队IDBase </summary>
+		public const int RoomIDBase = 3020 * 10 + 1;
     }
 }

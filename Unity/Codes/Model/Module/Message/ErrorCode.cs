@@ -52,6 +52,9 @@ namespace ET
         public const int ERR_BeforeTaskNoOver = 200034;
         public const int ERR_TaskRewarded = 200035;
         public const int ERR_TaskNoCompleted = 200036;
+        
+        public const int ERR_AreadyHasRoom = 200037; //已在房间内
+        public const int ERR_NotInRoom = 200038; //不在房间内
 
 
     }

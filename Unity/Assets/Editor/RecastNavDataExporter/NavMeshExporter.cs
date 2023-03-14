@@ -98,7 +98,7 @@ namespace ETEditor
             // 导出Recast可用的*.Obj文件
             WriteRecastObjFile();
             // 拷贝Obj和Bytes文件到服务器目录下 TODO 暂不需要
-            //CopyObjFiles();
+            CopyObjFiles();
 
             Debug.Log($"NavMesh Output Info - Vertices:[{vertList.Count}] - Faces:[{faceList.Count}]");
         }

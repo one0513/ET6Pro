@@ -17,7 +17,7 @@ namespace ET
     {
         public static void Arrived(this ZhuiZhuAimComponent self)
         {
-            self.Aim = null;
+            //self.Aim = null;
             self.OnArrived?.Invoke();
             self.OnArrived = null;
         }

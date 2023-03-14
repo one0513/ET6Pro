@@ -19,6 +19,10 @@ namespace ET
 		public UIButton btnAdventure;
 		public UIButton btnNextAdventure;
 		public UIButton btnTask;
+		
+		public UIButton btnCreateRoom;
+		public UIButton btnRoomList;
+		public UIButton btnOutRoom;
 		public Scene scene;
 
 	}

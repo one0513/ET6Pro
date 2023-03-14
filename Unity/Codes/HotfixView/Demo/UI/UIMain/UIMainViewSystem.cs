@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System;
+using ET.Room;
 using UnityEngine;
 using UnityEngine.UI;
 using SuperScrollView;
@@ -39,10 +40,20 @@ namespace ET
 			self.btnNextAdventure = self.AddUIComponent<UIButton>("btnNextAdventure");
 			self.btnTask = self.AddUIComponent<UIButton>("btnTask");
 			self.btnTask.AddUIComponent<UIRedDotComponent, string>("","UIMainTask");
+			
+			self.btnCreateRoom = self.AddUIComponent<UIButton>("btnCreateRoom");
+			self.btnRoomList = self.AddUIComponent<UIButton>("btnRoomList");
+			self.btnOutRoom = self.AddUIComponent<UIButton>("btnOutRoom");
+			
 			self.btnRole.SetOnClick(()=>{self.OnClickbtnRole().Coroutine();});
 			self.btnAdventure.SetOnClick(()=>{self.OnClickbtnAdventure().Coroutine();});
 			self.btnNextAdventure.SetOnClick(()=>{self.OnClickbtnNextAdventure().Coroutine();});
 			self.btnTask.SetOnClick(()=>{self.OnClickbtnTask();});
+			
+			self.btnCreateRoom.SetOnClick(()=>{self.OnClickbtnCreateRoom().Coroutine();});
+			self.btnRoomList.SetOnClick(()=>{self.OnClickbtnRoomList().Coroutine();});
+			self.btnOutRoom.SetOnClick(()=>{self.OnClickbtnOutRoom().Coroutine();});
+			
 		}
 
 	}
@@ -57,6 +68,9 @@ namespace ET
 			self.btnAdventure.SetOnClick(()=>{self.OnClickbtnAdventure().Coroutine();});
 			self.btnNextAdventure.SetOnClick(()=>{self.OnClickbtnNextAdventure().Coroutine();});
 			self.btnTask.SetOnClick(()=>{self.OnClickbtnTask();});
+			self.btnCreateRoom.SetOnClick(()=>{self.OnClickbtnCreateRoom().Coroutine();});
+			self.btnRoomList.SetOnClick(()=>{self.OnClickbtnRoomList().Coroutine();});
+			self.btnOutRoom.SetOnClick(()=>{self.OnClickbtnOutRoom().Coroutine();});
 		}
 
 	}
@@ -104,6 +118,34 @@ namespace ET
 			UIManagerComponent.Instance.OpenWindow<UITaskView, Scene>(UITaskView.PrefabPath, self.scene).Coroutine();
 		}
 
+		public static async ETTask OnClickbtnCreateRoom(this UIMainView self)
+		{
+			M2C_CreateBattleRoom m2CCreateBattleRoom = (M2C_CreateBattleRoom) await self.scene.GetComponent<SessionComponent>().Session.Call(new C2M_CreateBattleRoom() {});
+		}
+		public static async ETTask OnClickbtnRoomList(this UIMainView self)
+		{
+			
+			M2C_GetBattleRoomInfoList m2CGetBattleRoomInfoList= (M2C_GetBattleRoomInfoList) await self.scene.GetComponent<SessionComponent>().Session.Call(new C2M_GetBattleRoomInfoList() {});
+			if (m2CGetBattleRoomInfoList.Error == ErrorCode.ERR_Success)
+			{
+				await UIManagerComponent.Instance.OpenWindow<UIRoomListView, Scene>(UIRoomListView.PrefabPath, self.scene);
+				List<RoomInfo> infos = new List<RoomInfo>();
+				foreach (var battleRoomInfo in m2CGetBattleRoomInfoList.BattleRoomInfoList)
+				{
+					RoomInfo info = new RoomInfo();
+					info.FromMessage(battleRoomInfo);
+					infos.Add(info);
+				}
+				UIManagerComponent.Instance.GetWindow<UIRoomListView>()?.UpdateView(infos);
+			}
+			
+		}
+		
+		public static async ETTask OnClickbtnOutRoom(this UIMainView self)
+		{
+			M2C_OutBattleRoom m2COutBattleRoom = (M2C_OutBattleRoom) await self.scene.GetComponent<SessionComponent>().Session.Call(new C2M_OutBattleRoom() {});
+		}
+		
 		public static void UpdateView(this UIMainView self)
 		{
 			Unit unit = UnitHelper.GetMyUnitFromCurrentScene(self.scene.CurrentScene());

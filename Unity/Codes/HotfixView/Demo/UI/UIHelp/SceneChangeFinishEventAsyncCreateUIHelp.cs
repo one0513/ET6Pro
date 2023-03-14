@@ -9,7 +9,7 @@ namespace ET
             await UIManagerComponent.Instance.CloseWindow<UILobbyView>();
 
             await UIManagerComponent.Instance.OpenWindow<UIMainView,Scene>(UIMainView.PrefabPath,args.CurrentScene);
-            // args.CurrentScene.AddComponent<OperaComponent>();
+            args.CurrentScene.AddComponent<OperaComponent>();
             await Task.CompletedTask;
         }
     }

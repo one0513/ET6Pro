@@ -522,10 +522,6 @@ message M2C_TestUnitNumeric // IActorLocationResponse
 }
 
 
-
-
-
-
 //ResponseType M2C_AddAttributePoint
 message C2M_AddAttributePoint // IActorLocationRequest
 {
@@ -631,3 +627,90 @@ message M2C_ReceiveTaskReward // IActorLocationResponse
 	int32 Error    = 91;
 	string Message = 92;
 }
+
+
+message MonsterInfoProto
+{
+	int32 ConfigId  = 1;
+	int32 CurHp = 2;
+	int32 PosX = 3;
+	int32 PosY = 4;
+}
+
+message M2C_InitMonsterInfoList // IActorMessage
+{
+	repeated UnitInfo UnitList = 1;
+}
+
+message BattleRoomInfoProto
+{
+	int64 RoomId = 1;
+	string RoomName = 2;
+	int32 RoomPlayerNum = 3;
+	repeated UnitInfo UnitList = 4;
+	repeated int64 PlayerList = 5;
+}
+
+
+message M2C_UpdateBattleRoomInfo // IActorMessage
+{
+	BattleRoomInfoProto BattleRoomInfo = 1;
+}
+
+//ResponseType M2C_CreateBattleRoom
+message C2M_CreateBattleRoom // IActorLocationRequest
+{
+	int32 RpcId        = 1;
+
+}
+
+message M2C_CreateBattleRoom // IActorLocationResponse
+{
+	int32 RpcId    = 90;
+	int32 Error    = 91;
+	string Message = 92;
+}
+
+//ResponseType M2C_GetBattleRoomInfoList
+message C2M_GetBattleRoomInfoList // IActorLocationRequest
+{
+	int32 RpcId        = 1;
+}
+
+message M2C_GetBattleRoomInfoList // IActorLocationResponse
+{
+	int32 RpcId    = 90;
+	int32 Error    = 91;
+	string Message = 92;
+	repeated BattleRoomInfoProto BattleRoomInfoList = 1;
+}
+
+//ResponseType M2C_JoinBattleRoom
+message C2M_JoinBattleRoom // IActorLocationRequest
+{
+	int32 RpcId        = 1;
+	int64 RoomId = 2;
+	
+}
+
+message M2C_JoinBattleRoom // IActorLocationResponse
+{
+	int32 RpcId    = 90;
+	int32 Error    = 91;
+	string Message = 92;
+}
+
+//ResponseType M2C_OutBattleRoom
+message C2M_OutBattleRoom // IActorLocationRequest
+{
+	int32 RpcId        = 1;
+}
+
+message M2C_OutBattleRoom // IActorLocationResponse
+{
+	int32 RpcId    = 90;
+	int32 Error    = 91;
+	string Message = 92;
+}
+
+
