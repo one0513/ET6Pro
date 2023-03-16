@@ -97,7 +97,7 @@ namespace ET
             
             for (int i = 0; i < monsterNum ; i++)
             {
-                Unit monsterUnit = UnitFactory.CreateMonster(self.DomainScene(),1002);
+                Unit monsterUnit = UnitFactory.CreateMonster(self.DomainScene(),0,1002);
                 self.CacheEnemyIdList.Add(monsterUnit.Id);
             }
             

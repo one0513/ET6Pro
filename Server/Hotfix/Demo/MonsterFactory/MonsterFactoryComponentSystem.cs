@@ -32,9 +32,9 @@ namespace ET
     public static class MonsterFactoryComponentSystem
     {
 
-        public static Unit CreateMonsterUnit(this MonsterFactoryComponent self,long roomId)
+        public static Unit CreateMonsterUnit(this MonsterFactoryComponent self,long roomId,int config = 1002)
         {
-            Unit monsterUnit = UnitFactory.CreateMonster(self.DomainScene(),1002);
+            Unit monsterUnit = UnitFactory.CreateMonster(self.DomainScene(),roomId,config);
             
             self.Add(roomId,monsterUnit.Id);
             return monsterUnit;
@@ -52,7 +52,12 @@ namespace ET
             }
         }
         
-        public static void Remove(this MonsterFactoryComponent self, long roomId,long unitId)
+        public static void Remove(this MonsterFactoryComponent self, long roomId)
+        {
+            self.roomIdAndEnemyId.Remove(roomId);
+        }
+        
+        public static void RemoveOneUnit(this MonsterFactoryComponent self, long roomId,long unitId)
         {
             if (self.roomIdAndEnemyId.ContainsKey(roomId))
             {

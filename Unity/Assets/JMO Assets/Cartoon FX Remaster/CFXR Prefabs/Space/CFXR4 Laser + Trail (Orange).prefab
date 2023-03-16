@@ -1,0 +1,121 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &1431696828437891184
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6607758546971478332, guid: e0d633a8a1e38a54c9e434281e3983ea,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6607758546980435399, guid: e0d633a8a1e38a54c9e434281e3983ea,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6607758546980435399, guid: e0d633a8a1e38a54c9e434281e3983ea,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6607758546980435399, guid: e0d633a8a1e38a54c9e434281e3983ea,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6607758546980435399, guid: e0d633a8a1e38a54c9e434281e3983ea,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6607758546980435448, guid: e0d633a8a1e38a54c9e434281e3983ea,
+        type: 3}
+      propertyPath: m_Name
+      value: CFXR4 Laser + Trail (Orange)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6607758546980435448, guid: e0d633a8a1e38a54c9e434281e3983ea,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e0d633a8a1e38a54c9e434281e3983ea, type: 3}
+--- !u!4 &5218847117762231735 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6607758546980435399, guid: e0d633a8a1e38a54c9e434281e3983ea,
+    type: 3}
+  m_PrefabInstance: {fileID: 1431696828437891184}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6165557875478015174
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5218847117762231735}
+    m_Modifications:
+    - target: {fileID: 1108985202419178323, guid: 58f8015a7cfd4d540b43de74e251b2e0,
+        type: 3}
+      propertyPath: m_Name
+      value: CFXR4 Laser Trail
+      objectReference: {fileID: 0}
+    - target: {fileID: 6494192527234774988, guid: 58f8015a7cfd4d540b43de74e251b2e0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6494192527234774988, guid: 58f8015a7cfd4d540b43de74e251b2e0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6494192527234774988, guid: 58f8015a7cfd4d540b43de74e251b2e0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6494192527234774988, guid: 58f8015a7cfd4d540b43de74e251b2e0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6494192527234774988, guid: 58f8015a7cfd4d540b43de74e251b2e0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6494192527234774988, guid: 58f8015a7cfd4d540b43de74e251b2e0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6494192527234774988, guid: 58f8015a7cfd4d540b43de74e251b2e0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6494192527234774988, guid: 58f8015a7cfd4d540b43de74e251b2e0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6494192527234774988, guid: 58f8015a7cfd4d540b43de74e251b2e0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6494192527234774988, guid: 58f8015a7cfd4d540b43de74e251b2e0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6494192527234774988, guid: 58f8015a7cfd4d540b43de74e251b2e0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 58f8015a7cfd4d540b43de74e251b2e0, type: 3}

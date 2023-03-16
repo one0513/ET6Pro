@@ -64,7 +64,7 @@ namespace ET
                     myUnit.MonsterChangePosAsync(nextTarget,units).Coroutine();
                 }
               
-                await TimerComponent.Instance.WaitAsync(10,cancellationToken);
+                await TimerComponent.Instance.WaitAsync(100,cancellationToken);
 #else
                 myUnit.MoveToAsync(nextTarget, cancellationToken).Coroutine(); 
                 await TimerComponent.Instance.WaitAsync(10,cancellationToken);

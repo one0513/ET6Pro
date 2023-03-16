@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &163544606068426977
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5386875010281837604, guid: 29a5d6bd61f32a9429ede395747c5195,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5386875010281837604, guid: 29a5d6bd61f32a9429ede395747c5195,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5386875010281837604, guid: 29a5d6bd61f32a9429ede395747c5195,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5386875010281837604, guid: 29a5d6bd61f32a9429ede395747c5195,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5386875010281837604, guid: 29a5d6bd61f32a9429ede395747c5195,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5386875010281837604, guid: 29a5d6bd61f32a9429ede395747c5195,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5386875010281837604, guid: 29a5d6bd61f32a9429ede395747c5195,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5386875010281837604, guid: 29a5d6bd61f32a9429ede395747c5195,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5386875010281837604, guid: 29a5d6bd61f32a9429ede395747c5195,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5386875010281837604, guid: 29a5d6bd61f32a9429ede395747c5195,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5386875010281837604, guid: 29a5d6bd61f32a9429ede395747c5195,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5386875010281837607, guid: 29a5d6bd61f32a9429ede395747c5195,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 49.999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5386875010281837607, guid: 29a5d6bd61f32a9429ede395747c5195,
+        type: 3}
+      propertyPath: VelocityModule.x.scalar
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5386875010281837607, guid: 29a5d6bd61f32a9429ede395747c5195,
+        type: 3}
+      propertyPath: VelocityModule.x.minScalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5386875010281837607, guid: 29a5d6bd61f32a9429ede395747c5195,
+        type: 3}
+      propertyPath: VelocityModule.z.scalar
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5386875010281837607, guid: 29a5d6bd61f32a9429ede395747c5195,
+        type: 3}
+      propertyPath: VelocityModule.z.minScalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5386875010281837607, guid: 29a5d6bd61f32a9429ede395747c5195,
+        type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5386875010281837624, guid: 29a5d6bd61f32a9429ede395747c5195,
+        type: 3}
+      propertyPath: particlesPerUnit
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5386875010281837627, guid: 29a5d6bd61f32a9429ede395747c5195,
+        type: 3}
+      propertyPath: m_Name
+      value: CFXR4 Snow Falling (Light)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 29a5d6bd61f32a9429ede395747c5195, type: 3}

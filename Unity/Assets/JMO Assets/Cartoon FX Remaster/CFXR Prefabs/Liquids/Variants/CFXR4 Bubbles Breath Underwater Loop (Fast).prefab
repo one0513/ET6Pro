@@ -1,0 +1,166 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &6255041764634369541
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5683772956888084836, guid: 7f906c77905876d488e88e99d13c3d7d,
+        type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5683772956888084836, guid: 7f906c77905876d488e88e99d13c3d7d,
+        type: 3}
+      propertyPath: startDelay.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5683772956888084836, guid: 7f906c77905876d488e88e99d13c3d7d,
+        type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[1].time
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5683772956888084836, guid: 7f906c77905876d488e88e99d13c3d7d,
+        type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].time
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5683772956888084836, guid: 7f906c77905876d488e88e99d13c3d7d,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5683772956888084836, guid: 7f906c77905876d488e88e99d13c3d7d,
+        type: 3}
+      propertyPath: EmissionModule.m_BurstCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5683772956888084836, guid: 7f906c77905876d488e88e99d13c3d7d,
+        type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].probability
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5683772956888084836, guid: 7f906c77905876d488e88e99d13c3d7d,
+        type: 3}
+      propertyPath: NoiseModule.separateAxes
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5683772956888084836, guid: 7f906c77905876d488e88e99d13c3d7d,
+        type: 3}
+      propertyPath: NoiseModule.strength.scalar
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 5683772956888084836, guid: 7f906c77905876d488e88e99d13c3d7d,
+        type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[1].countCurve.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5683772956888084836, guid: 7f906c77905876d488e88e99d13c3d7d,
+        type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[1].countCurve.scalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5683772956888084836, guid: 7f906c77905876d488e88e99d13c3d7d,
+        type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[1].probability
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5683772956888084836, guid: 7f906c77905876d488e88e99d13c3d7d,
+        type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[1].countCurve.minScalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620588918006998808, guid: 7f906c77905876d488e88e99d13c3d7d,
+        type: 3}
+      propertyPath: m_Name
+      value: CFXR4 Bubbles Breath Underwater Loop (Fast)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620588918006998812, guid: 7f906c77905876d488e88e99d13c3d7d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620588918006998812, guid: 7f906c77905876d488e88e99d13c3d7d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620588918006998812, guid: 7f906c77905876d488e88e99d13c3d7d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620588918006998812, guid: 7f906c77905876d488e88e99d13c3d7d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620588918006998812, guid: 7f906c77905876d488e88e99d13c3d7d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620588918006998812, guid: 7f906c77905876d488e88e99d13c3d7d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620588918006998812, guid: 7f906c77905876d488e88e99d13c3d7d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620588918006998812, guid: 7f906c77905876d488e88e99d13c3d7d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620588918006998812, guid: 7f906c77905876d488e88e99d13c3d7d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620588918006998812, guid: 7f906c77905876d488e88e99d13c3d7d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620588918006998812, guid: 7f906c77905876d488e88e99d13c3d7d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620588918006998813, guid: 7f906c77905876d488e88e99d13c3d7d,
+        type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620588918006998813, guid: 7f906c77905876d488e88e99d13c3d7d,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620588918006998813, guid: 7f906c77905876d488e88e99d13c3d7d,
+        type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[1].time
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620588918006998813, guid: 7f906c77905876d488e88e99d13c3d7d,
+        type: 3}
+      propertyPath: EmissionModule.m_BurstCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620588918006998813, guid: 7f906c77905876d488e88e99d13c3d7d,
+        type: 3}
+      propertyPath: NoiseModule.separateAxes
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620588918006998813, guid: 7f906c77905876d488e88e99d13c3d7d,
+        type: 3}
+      propertyPath: NoiseModule.strength.scalar
+      value: 0.05
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7f906c77905876d488e88e99d13c3d7d, type: 3}

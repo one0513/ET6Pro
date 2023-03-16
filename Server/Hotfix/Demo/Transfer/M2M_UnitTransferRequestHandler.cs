@@ -11,9 +11,9 @@ namespace ET
         {
             await ETTask.CompletedTask;
             UnitComponent unitComponent = scene.GetComponent<UnitComponent>();
-            //初始化地图怪物
-            List<UnitInfo> unitInfos = new List<UnitInfo>();
-            M2C_InitMonsterInfoList m2CInitMonsterInfoList = new M2C_InitMonsterInfoList();
+            //初始化小队Unit
+	        List<UnitInfo> unitInfos = new List<UnitInfo>();
+	        M2C_InitMonsterInfoList m2CInitMonsterInfoList = new M2C_InitMonsterInfoList();
             
             if (unitComponent.Get(request.Unit.Id) == null)
             {
@@ -47,39 +47,38 @@ namespace ET
 	            m2CCreateUnits.Unit = UnitHelper.CreateUnitInfo(unit);
 	            MessageHelper.SendToClient(unit, m2CCreateUnits);
 
-	            List<long> monsterIds = scene.GetComponent<MonsterFactoryComponent>().Get(unit.Id);
-	            unitInfos.Clear();
-	            if (monsterIds != null && monsterIds.Count > 0)
+	            //初始化 小队内的Unit
+	            long roomId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.RoomID);
+	            if (roomId != 0)
 	            {
-		            for (int i = 0; i < monsterIds.Count; i++)
+		            List<long> monsterIds = scene.GetComponent<MonsterFactoryComponent>().Get(roomId);
+		            unitInfos.Clear();
+		            if (monsterIds != null && monsterIds.Count > 0)
 		            {
-			            unitInfos.Add(UnitHelper.CreateUnitInfo(scene.GetComponent<UnitComponent>().Get(monsterIds[i])));
+			            for (int i = 0; i < monsterIds.Count; i++)
+			            {
+				            unitInfos.Add(UnitHelper.CreateUnitInfo(scene.GetComponent<UnitComponent>().Get(monsterIds[i])));
+			            }
 		            }
-	            }
-	            else
-				{
-					for (int i = 0; i < 1; i++)
-					{
-						Unit monster = scene.GetComponent<MonsterFactoryComponent>().CreateMonsterUnit(unit.Id);
-						monster.Position = new Vector3(i + 1, 0, i + 1);
-						unitInfos.Add(UnitHelper.CreateUnitInfo(monster));
-					}
-				}
-      
-				m2CInitMonsterInfoList.UnitList = unitInfos;
-				MessageHelper.SendToClient(unit, m2CInitMonsterInfoList);
-
-				await TimerComponent.Instance.WaitAsync(1000);
-				List<long> monsterId = scene.GetComponent<MonsterFactoryComponent>().Get(unit.Id);
-				for (int i = 0; i < monsterId.Count; i++)
-				{
-					scene.GetComponent<UnitComponent>().Get(monsterId[i]).AddComponent<ZhuiZhuAimComponent, Unit, Action>(unit, () =>
-					{
+		            else
+		            {
+			            for (int i = 0; i < 3; i++)
+			            {
+				            Unit monster = scene.GetComponent<MonsterFactoryComponent>().CreateMonsterUnit(roomId);
+				            monster.AddComponent<ZhuiZhuAimComponent, Unit, Action>(unit, () =>
+				            {
 		            
-					});
-
-				}
-
+				            });
+				            monster.Position = new Vector3(i + 1, 0, i + 1);
+				            unitInfos.Add(UnitHelper.CreateUnitInfo(monster));
+			            }
+		            }
+      
+		            m2CInitMonsterInfoList.UnitList = unitInfos;
+		            MessageHelper.SendToClient(unit, m2CInitMonsterInfoList);
+	            }
+	            
+				
 				//通知客户端同步背包信息
 				//ItemUpdateNoticeHelper.SyncAllBagItems(unit);
 				//ItemUpdateNoticeHelper.SyncAllEquipItems(unit);
@@ -95,11 +94,11 @@ namespace ET
 				unit.AddComponent<AdventureCheckComponent>();
 			
 			
-				// 加入aoi
-				var aoiu = unit.AddComponent<AOIUnitComponent,Vector3,Quaternion, UnitType,int>
-						(unit.Position,unit.Rotation,unit.Type,5);
-			
-				aoiu.AddSphereCollider(0.5f);
+				// 加入aoi 不是开发地图 不使用aoi
+				// var aoiu = unit.AddComponent<AOIUnitComponent,Vector3,Quaternion, UnitType,int>
+				// 		(unit.Position,unit.Rotation,unit.Type,5);
+				//
+				// aoiu.AddSphereCollider(0.5f);
 				response.NewInstanceId = unit.InstanceId;
             }
             else
@@ -112,24 +111,34 @@ namespace ET
 	            response.NewInstanceId = unit.InstanceId;
 	            
 	            //初始化地图怪物
-	            List<long> monsterIds = scene.GetComponent<MonsterFactoryComponent>().Get(unit.Id);
-	            unitInfos.Clear();
-	            if (monsterIds != null && monsterIds.Count > 0)
+	            long roomId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.RoomID);
+	            if (roomId != 0)
 	            {
-		            for (int i = 0; i < monsterIds.Count; i++)
+		            List<long> monsterIds = scene.GetComponent<MonsterFactoryComponent>().Get(roomId);
+		            unitInfos.Clear();
+		            if (monsterIds != null && monsterIds.Count > 0)
 		            {
-			            unitInfos.Add(UnitHelper.CreateUnitInfo(scene.GetComponent<UnitComponent>().Get(monsterIds[i])));
+			            for (int i = 0; i < monsterIds.Count; i++)
+			            {
+				            unitInfos.Add(UnitHelper.CreateUnitInfo(scene.GetComponent<UnitComponent>().Get(monsterIds[i])));
+			            }
 		            }
-	            }
-	            else
-	            {
-		            for (int i = 0; i < 3; i++)
+		            else
 		            {
-			            unitInfos.Add(UnitHelper.CreateUnitInfo(scene.GetComponent<MonsterFactoryComponent>().CreateMonsterUnit(unit.Id)));
+			            for (int i = 0; i < 3; i++)
+			            {
+				            Unit monster = scene.GetComponent<MonsterFactoryComponent>().CreateMonsterUnit(roomId);
+				            monster.AddComponent<ZhuiZhuAimComponent, Unit, Action>(unit, () =>
+				            {
+		            
+				            });
+				            monster.Position = new Vector3(i + 1, 0, i + 1);
+				            unitInfos.Add(UnitHelper.CreateUnitInfo(monster));
+			            }
 		            }
+		            m2CInitMonsterInfoList.UnitList = unitInfos;
+		            MessageHelper.SendToClient(unit, m2CInitMonsterInfoList);
 	            }
-	            m2CInitMonsterInfoList.UnitList = unitInfos;
-	            MessageHelper.SendToClient(unit, m2CInitMonsterInfoList);
             }
             
             reply();

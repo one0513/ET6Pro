@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace ET
 {
+    [FriendClass(typeof(RoomInfo))]
     public static class MoveHelper
     {
         // 可以多次调用，多次调用的话会取消上一次的协程
@@ -41,7 +42,9 @@ namespace ET
                 m2CPathfindingResult.Ys.Add(vector3.y);
                 m2CPathfindingResult.Zs.Add(vector3.z);
             }
-            MessageHelper.Broadcast(unit, m2CPathfindingResult);
+
+            await MessageHelper.RoomBroadcast(unit, m2CPathfindingResult);
+            //MessageHelper.Broadcast(unit, m2CPathfindingResult);
             
             bool ret = await unit.GetComponent<MoveComponent>().MoveToAsync(path, speed);
             if (ret) // 如果返回false，说明被其它移动取消了，这时候不需要通知客户端stop
@@ -119,7 +122,35 @@ namespace ET
                 m2CPathfindingResult.Ys.Add(vector3.y);
                 m2CPathfindingResult.Zs.Add(vector3.z);
             }
-            MessageHelper.BroadcastSomeUnit(sendUnits, m2CPathfindingResult);
+            
+            long roomId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.RoomID);
+            RoomInfo info = unit.DomainScene().GetComponent<RoomInfoComponent>().Get(roomId);
+            if (info != null)
+            {
+                for (int i = 0; i < info.playerList.Count; i++)
+                {
+                    Unit onlineUnit = unit.DomainScene().GetComponent<UnitComponent>().Get(info.playerList[i]);
+                    if (onlineUnit != null)
+                    {
+                        await MessageHelper.RoomBroadcast(onlineUnit, m2CPathfindingResult);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                var infos = await DBManagerComponent.Instance.GetZoneDB(unit.DomainZone()).Query<RoomInfo>(d => d.RoomId == roomId);
+                for (int i = 0; i < infos[0].playerList.Count; i++)
+                {
+                    Unit onlineUnit = unit.DomainScene().GetComponent<UnitComponent>().Get(infos[0].playerList[i]);
+                    if (onlineUnit != null)
+                    {
+                        await MessageHelper.RoomBroadcast(onlineUnit, m2CPathfindingResult);
+                        break;
+                    }
+                }
+            }
+  
             
             bool ret = await unit.GetComponent<MoveComponent>().MoveToAsync(path, speed);
             if (ret) // 如果返回false，说明被其它移动取消了，这时候不需要通知客户端stop

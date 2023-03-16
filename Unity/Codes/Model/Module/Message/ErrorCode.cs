@@ -55,6 +55,8 @@ namespace ET
         
         public const int ERR_AreadyHasRoom = 200037; //已在房间内
         public const int ERR_NotInRoom = 200038; //不在房间内
+        
+        public const int ERR_CurRoomError = 200039; //已解散或满员
 
 
     }

@@ -169,7 +169,7 @@ namespace ET
             return unit;
         }
         
-        public static Unit CreateMonster(Scene scene, int configId)
+        public static Unit CreateMonster(Scene scene,long roomId ,int configId)
         {
             UnitComponent unitComponent = scene.GetComponent<UnitComponent>();
             Unit unit = unitComponent.AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), configId);
@@ -181,6 +181,7 @@ namespace ET
             numericComponent.SetNoEvent(NumericType.Atk,unit.Config.Atk);
             numericComponent.SetNoEvent(NumericType.Def,unit.Config.Def);
             numericComponent.SetNoEvent(NumericType.IsAlive,1);
+            numericComponent.SetNoEvent(NumericType.RoomID,roomId);
             
             unitComponent.Add(unit);
 
@@ -189,10 +190,10 @@ namespace ET
             
             unit.AddComponent<AIComponent,int>(3);
             unit.AddComponent<CombatUnitComponent>();
-            var aoiu = unit.AddComponent<AOIUnitComponent,Vector3,Quaternion, UnitType,int>
-                    (unit.Position,unit.Rotation,unit.Type,5);
-			
-            aoiu.AddSphereCollider(0.5f);
+            // var aoiu = unit.AddComponent<AOIUnitComponent,Vector3,Quaternion, UnitType,int>
+            //         (unit.Position,unit.Rotation,unit.Type,5);
+			         //
+            // aoiu.AddSphereCollider(0.5f);
             return unit;
         }
     }

@@ -29,7 +29,7 @@ namespace ET
 			self.btnRefresh = self.AddUIComponent<UIButton>("spBg/btnRefresh");
 			self.ScrollView.InitListView(0,(a,b)=>{return self.GetScrollViewItemByIndex(a,b);});
 			self.btnClose.SetOnClick(()=>{self.OnClickbtnClose();});
-			self.btnRefresh.SetOnClick(()=>{self.OnClickbtnRefresh();});
+			self.btnRefresh.SetOnClick(()=>{self.OnClickbtnRefresh().Coroutine();});
 		}
 
 	}
@@ -42,7 +42,7 @@ namespace ET
 		{
 			self.ScrollView.InitListView(0,(a,b)=>{return self.GetScrollViewItemByIndex(a,b);});
 			self.btnClose.SetOnClick(()=>{self.OnClickbtnClose();});
-			self.btnRefresh.SetOnClick(()=>{self.OnClickbtnRefresh();});
+			self.btnRefresh.SetOnClick(()=>{self.OnClickbtnRefresh().Coroutine();});
 		}
 
 	}
@@ -69,9 +69,24 @@ namespace ET
 		{
 			UIManagerComponent.Instance.CloseWindow<UIRoomListView>().Coroutine();
 		}
-		public static void OnClickbtnRefresh(this UIRoomListView self)
+		public static async ETTask OnClickbtnRefresh(this UIRoomListView self)
 		{
-
+			await ETTask.CompletedTask;
+			// GameObject gameObject = await GameObjectPoolComponent.Instance.GetGameObjectAsync(UIRoomListItem.PrefabPath);
+			// UIRoomListItem ui = self.AddChild<UIRoomListItem>();
+			// var transform = gameObject.transform;
+			// ui.AddUIComponent<UITransform,Transform>("", transform);
+			// transform = gameObject.transform;
+			// transform.SetParent(self.btnRefresh.GetTransform());
+			// transform.localPosition = Vector3.zero;
+			// transform.localRotation = Quaternion.identity;
+			// transform.localScale = new Vector3(1, 1, 1);
+			// UIWatcherComponent.Instance.OnCreate(ui);
+			// UIWatcherComponent.Instance.OnEnable(ui);
+			// await TimerComponent.Instance.WaitAsync(seconds*1000);
+			// ui.BeforeOnDestroy();
+			// UIWatcherComponent.Instance.OnDestroy(ui);
+			// GameObjectPoolComponent.Instance.RecycleGameObject(gameObject);
 		}
 		
 		public static void UpdateView(this UIRoomListView self,List<RoomInfo> listData)

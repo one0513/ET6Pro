@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -36,6 +37,12 @@ namespace ET
                     reply();
                     unit.DomainScene().GetComponent<RoomInfoComponent>().Remove(roomId);
                     num.Set(NumericType.RoomID,0);
+                    List<long> monsterIdsList =  unit.DomainScene().GetComponent<MonsterFactoryComponent>().Get(roomId);
+                    for (int i = 0; i < monsterIdsList.Count; i++)
+                    {
+                        unit.DomainScene().GetComponent<UnitComponent>().Remove(monsterIdsList[i]);
+                    }
+                    unit.DomainScene().GetComponent<MonsterFactoryComponent>().Remove(roomId);
                     await DBManagerComponent.Instance.GetZoneDB(unit.DomainZone()).Remove<RoomInfo>(d => d.RoomId == roomId);
                     return;
                 }
@@ -54,6 +61,12 @@ namespace ET
                 {
                     reply();
                     num.Set(NumericType.RoomID,0);
+                    List<long> monsterIdsList =  unit.DomainScene().GetComponent<MonsterFactoryComponent>().Get(roomId);
+                    for (int i = 0; i < monsterIdsList.Count; i++)
+                    {
+                        unit.DomainScene().GetComponent<UnitComponent>().Remove(monsterIdsList[i]);
+                    }
+                    unit.DomainScene().GetComponent<MonsterFactoryComponent>().Remove(roomId);
                     await DBManagerComponent.Instance.GetZoneDB(unit.DomainZone()).Remove<RoomInfo>(d => d.RoomId == roomId);
                     return;
                 }

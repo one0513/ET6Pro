@@ -713,4 +713,41 @@ message M2C_OutBattleRoom // IActorLocationResponse
 	string Message = 92;
 }
 
+message PlayerInfoProto
+{
+	string Name = 1;
+	int32 Level = 2;
+	int32 IsOnline = 3;
 
+}
+
+//ResponseType M2C_GetBattleRoomPlayerInfo
+message C2M_GetBattleRoomPlayerInfo // IActorLocationRequest
+{
+	int32 RpcId        = 1;
+}
+
+message M2C_GetBattleRoomPlayerInfo // IActorLocationResponse
+{
+	int32 RpcId    = 90;
+	int32 Error    = 91;
+	string Message = 92;
+	repeated BattleRoomInfoProto BattleRoomInfoList = 1;
+	repeated PlayerInfoProto PlayerInfoList = 2;
+}
+
+
+message M2C_InitRoomPlayerInfoList // IActorMessage
+{
+	repeated UnitInfo UnitList = 1;
+}
+
+message M2C_PlayerJoinRoom // IActorMessage
+{
+	UnitInfo UnitList = 1;
+}
+
+message M2C_PlayerOutRoom // IActorMessage
+{
+	UnitInfo UnitList = 1;
+}

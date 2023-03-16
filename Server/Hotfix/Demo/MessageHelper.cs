@@ -5,6 +5,7 @@ using System.Collections.Generic;
 namespace ET
 {
     [FriendClass(typeof(UnitGateComponent))]
+    [FriendClass(typeof(RoomInfo))]
     public static class MessageHelper
     {
         public static void Broadcast(Unit unit, IActorMessage message,GhostComponent ghost =null)
@@ -23,12 +24,41 @@ namespace ET
                 SendToClient(u.GetParent<Unit>(), message);
             }
         }
-        //简易版广播 不考虑aoi
-        public static void BroadcastSomeUnit(List<Unit> units, IActorMessage message)
+        //简易版广播 小队广播
+        public static async ETTask RoomBroadcast(Unit unit, IActorMessage message)
         {
-            foreach (Unit unit in units)
+            long roomId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.RoomID);
+
+            if (roomId == 0)
             {
                 SendToClient(unit, message);
+            }
+            else
+            {
+                RoomInfo info = unit.DomainScene().GetComponent<RoomInfoComponent>().Get(roomId);
+                if (info != null)
+                {
+                    for (int i = 0; i < info.playerList.Count; i++)
+                    {
+                        Unit onlineUnit = unit.DomainScene().GetComponent<UnitComponent>().Get(info.playerList[i]);
+                        if (onlineUnit != null)
+                        {
+                            SendToClient(onlineUnit, message);
+                        }
+                    }
+                }
+                else
+                {
+                    var infos = await DBManagerComponent.Instance.GetZoneDB(unit.DomainZone()).Query<RoomInfo>(d => d.RoomId == roomId);
+                    for (int i = 0; i < infos[0].playerList.Count; i++)
+                    {
+                        Unit onlineUnit = unit.DomainScene().GetComponent<UnitComponent>().Get(infos[0].playerList[i]);
+                        if (onlineUnit != null)
+                        {
+                            SendToClient(onlineUnit, message);
+                        }
+                    }
+                }
             }
         }
         

@@ -1,0 +1,179 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &5519840806214734794
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 381964289, guid: c7a535bb22dbda74881c0136cd54a73c, type: 3}
+      propertyPath: ShapeModule.arc.speed.scalar
+      value: -1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 381964289, guid: c7a535bb22dbda74881c0136cd54a73c, type: 3}
+      propertyPath: ShapeModule.m_Rotation.z
+      value: -60
+      objectReference: {fileID: 0}
+    - target: {fileID: 381964289, guid: c7a535bb22dbda74881c0136cd54a73c, type: 3}
+      propertyPath: lengthInSec
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 381964289, guid: c7a535bb22dbda74881c0136cd54a73c, type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 761604340601541794, guid: c7a535bb22dbda74881c0136cd54a73c,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 761604340601541794, guid: c7a535bb22dbda74881c0136cd54a73c,
+        type: 3}
+      propertyPath: startDelay.scalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 761604340601541795, guid: c7a535bb22dbda74881c0136cd54a73c,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -1184866291630926985, guid: e82f2cbd6def7ff4c98963f706f00d3e,
+        type: 3}
+    - target: {fileID: 8620541752300164273, guid: c7a535bb22dbda74881c0136cd54a73c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620541752300164273, guid: c7a535bb22dbda74881c0136cd54a73c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620541752300164273, guid: c7a535bb22dbda74881c0136cd54a73c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620541752300164273, guid: c7a535bb22dbda74881c0136cd54a73c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620541752300164273, guid: c7a535bb22dbda74881c0136cd54a73c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620541752300164273, guid: c7a535bb22dbda74881c0136cd54a73c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620541752300164273, guid: c7a535bb22dbda74881c0136cd54a73c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620541752300164273, guid: c7a535bb22dbda74881c0136cd54a73c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620541752300164273, guid: c7a535bb22dbda74881c0136cd54a73c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620541752300164273, guid: c7a535bb22dbda74881c0136cd54a73c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620541752300164273, guid: c7a535bb22dbda74881c0136cd54a73c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620541752300164276, guid: c7a535bb22dbda74881c0136cd54a73c,
+        type: 3}
+      propertyPath: m_Name
+      value: CFXR4 Sword Trail TECH (180 Spiral)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620541752300164278, guid: c7a535bb22dbda74881c0136cd54a73c,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620541752300164278, guid: c7a535bb22dbda74881c0136cd54a73c,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.ctime3
+      value: 49151
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620541752300164278, guid: c7a535bb22dbda74881c0136cd54a73c,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.atime0
+      value: 49151
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620541752300164278, guid: c7a535bb22dbda74881c0136cd54a73c,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.r
+      value: 0.22010107
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620541752300164278, guid: c7a535bb22dbda74881c0136cd54a73c,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.g
+      value: 0.34901962
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620541752300164278, guid: c7a535bb22dbda74881c0136cd54a73c,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.b
+      value: 0.16470589
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620541752300164278, guid: c7a535bb22dbda74881c0136cd54a73c,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key2.r
+      value: 0.528743
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620541752300164278, guid: c7a535bb22dbda74881c0136cd54a73c,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key2.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620541752300164278, guid: c7a535bb22dbda74881c0136cd54a73c,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key2.b
+      value: 0.4470588
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620541752300164278, guid: c7a535bb22dbda74881c0136cd54a73c,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key3.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620541752300164278, guid: c7a535bb22dbda74881c0136cd54a73c,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key3.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620541752300164278, guid: c7a535bb22dbda74881c0136cd54a73c,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key3.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620541752300164278, guid: c7a535bb22dbda74881c0136cd54a73c,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.ctime1
+      value: 16419
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620541752300164278, guid: c7a535bb22dbda74881c0136cd54a73c,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.ctime2
+      value: 32768
+      objectReference: {fileID: 0}
+    - target: {fileID: 8620541752300164279, guid: c7a535bb22dbda74881c0136cd54a73c,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -1184866291630926985, guid: e82f2cbd6def7ff4c98963f706f00d3e,
+        type: 3}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c7a535bb22dbda74881c0136cd54a73c, type: 3}

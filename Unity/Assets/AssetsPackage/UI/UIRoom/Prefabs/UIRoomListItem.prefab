@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4050528975837461177}
   - component: {fileID: 9205516391325811105}
   - component: {fileID: 4090341025420390574}
-  - component: {fileID: 9022578648780769082}
   m_Layer: 0
   m_Name: lblRoomName
   m_TagString: Untagged
@@ -169,21 +168,6 @@ MonoBehaviour:
   shadowOffsetX: 0
   shadowOffsetY: 0
   underlayDilate: 0
---- !u!114 &9022578648780769082
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 258918752395586352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 120d88d4e150f8846a9270d2996478de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moduleName: lblTaskName
-  isListItem: 0
-  isMarked: 1
 --- !u!1 &416443817545685394
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,14 +180,13 @@ GameObject:
   - component: {fileID: 7655520959029659676}
   - component: {fileID: 5588950163891693737}
   - component: {fileID: 4318835581658154141}
-  - component: {fileID: 5124356076294027101}
   m_Layer: 0
   m_Name: lblDesc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &9177589867033443741
 RectTransform:
   m_ObjectHideFlags: 0
@@ -353,21 +336,6 @@ MonoBehaviour:
   shadowOffsetX: 0
   shadowOffsetY: 0
   underlayDilate: 0
---- !u!114 &5124356076294027101
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 416443817545685394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 120d88d4e150f8846a9270d2996478de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moduleName: lblDesc
-  isListItem: 0
-  isMarked: 1
 --- !u!1 &2634288307752292622
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,7 +347,6 @@ GameObject:
   - component: {fileID: 8698059268152186365}
   - component: {fileID: 2175048018688264716}
   - component: {fileID: 4830761990609138446}
-  - component: {fileID: 7714670253711756724}
   m_Layer: 0
   m_Name: sp
   m_TagString: Untagged
@@ -452,21 +419,6 @@ MonoBehaviour:
   autoSnap: 1
   showWhiteSource: 0
   raycastConsiderAlpha: 0
---- !u!114 &7714670253711756724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634288307752292622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 120d88d4e150f8846a9270d2996478de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moduleName: sp
-  isListItem: 0
-  isMarked: 0
 --- !u!1 &4982727789275924545
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,7 +431,6 @@ GameObject:
   - component: {fileID: 4977864824684420428}
   - component: {fileID: 386594704936340752}
   - component: {fileID: 2617819215718731087}
-  - component: {fileID: 7999014614254555008}
   - component: {fileID: 6232989836033319965}
   m_Layer: 0
   m_Name: btnJoin
@@ -507,7 +458,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 32.7}
-  m_SizeDelta: {x: 500, y: 40}
+  m_SizeDelta: {x: 200, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4977864824684420428
 CanvasRenderer:
@@ -606,21 +557,6 @@ MonoBehaviour:
   autoSnap: 1
   showWhiteSource: 0
   raycastConsiderAlpha: 0
---- !u!114 &7999014614254555008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4982727789275924545}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 120d88d4e150f8846a9270d2996478de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moduleName: btn
-  isListItem: 0
-  isMarked: 0
 --- !u!114 &6232989836033319965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -652,7 +588,6 @@ GameObject:
   - component: {fileID: 3675309441883983666}
   - component: {fileID: 444772673701489822}
   - component: {fileID: 7054011769663967941}
-  - component: {fileID: 4689599991817595125}
   m_Layer: 0
   m_Name: lbl
   m_TagString: Untagged
@@ -809,21 +744,6 @@ MonoBehaviour:
   shadowOffsetX: 0
   shadowOffsetY: 0
   underlayDilate: 0
---- !u!114 &4689599991817595125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4999306449344533744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 120d88d4e150f8846a9270d2996478de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moduleName: lblTaskStatue
-  isListItem: 0
-  isMarked: 0
 --- !u!1 &6827141848861913252
 GameObject:
   m_ObjectHideFlags: 0
@@ -836,7 +756,6 @@ GameObject:
   - component: {fileID: 3358003082245222436}
   - component: {fileID: 3671051507335228166}
   - component: {fileID: 1566398493999999074}
-  - component: {fileID: 5114955131929920677}
   m_Layer: 0
   m_Name: lblRoomPlayerNum
   m_TagString: Untagged
@@ -860,7 +779,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -156, y: -28}
+  m_AnchoredPosition: {x: 6, y: -9.1}
   m_SizeDelta: {x: 200, y: 33.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3358003082245222436
@@ -993,21 +912,6 @@ MonoBehaviour:
   shadowOffsetX: 0
   shadowOffsetY: 0
   underlayDilate: 0
---- !u!114 &5114955131929920677
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6827141848861913252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 120d88d4e150f8846a9270d2996478de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moduleName: lblProgress
-  isListItem: 0
-  isMarked: 1
 --- !u!1 &7624343061791573989
 GameObject:
   m_ObjectHideFlags: 0
@@ -1020,7 +924,6 @@ GameObject:
   - component: {fileID: 9037737589747811411}
   - component: {fileID: 3224225355932267546}
   - component: {fileID: -8700295683534578983}
-  - component: {fileID: 2089020913693952950}
   m_Layer: 0
   m_Name: UIRoomListItem
   m_TagString: Untagged
@@ -1110,21 +1013,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbcbd7952202d4d44a555aea5af2a351, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2089020913693952950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7624343061791573989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 120d88d4e150f8846a9270d2996478de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moduleName: UIRoomListItem
-  isListItem: 0
-  isMarked: 1
 --- !u!1 &8060057027578742570
 GameObject:
   m_ObjectHideFlags: 0
@@ -1137,14 +1025,13 @@ GameObject:
   - component: {fileID: 5851691121042015945}
   - component: {fileID: 51612713148584046}
   - component: {fileID: 9136363609408895253}
-  - component: {fileID: 971579910674207850}
   m_Layer: 0
   m_Name: lblRoomPower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3554536260213723887
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1294,18 +1181,3 @@ MonoBehaviour:
   shadowOffsetX: 0
   shadowOffsetY: 0
   underlayDilate: 0
---- !u!114 &971579910674207850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8060057027578742570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 120d88d4e150f8846a9270d2996478de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moduleName: lblReward
-  isListItem: 0
-  isMarked: 1

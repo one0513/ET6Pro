@@ -44,6 +44,7 @@ namespace ET
 			self.btnCreateRoom = self.AddUIComponent<UIButton>("btnCreateRoom");
 			self.btnRoomList = self.AddUIComponent<UIButton>("btnRoomList");
 			self.btnOutRoom = self.AddUIComponent<UIButton>("btnOutRoom");
+			self.btnMyRoom= self.AddUIComponent<UIButton>("btnMyRoom");
 			
 			self.btnRole.SetOnClick(()=>{self.OnClickbtnRole().Coroutine();});
 			self.btnAdventure.SetOnClick(()=>{self.OnClickbtnAdventure().Coroutine();});
@@ -53,6 +54,7 @@ namespace ET
 			self.btnCreateRoom.SetOnClick(()=>{self.OnClickbtnCreateRoom().Coroutine();});
 			self.btnRoomList.SetOnClick(()=>{self.OnClickbtnRoomList().Coroutine();});
 			self.btnOutRoom.SetOnClick(()=>{self.OnClickbtnOutRoom().Coroutine();});
+			self.btnMyRoom.SetOnClick(()=>{self.OnClickbtnMyRoom().Coroutine();});
 			
 		}
 
@@ -71,6 +73,7 @@ namespace ET
 			self.btnCreateRoom.SetOnClick(()=>{self.OnClickbtnCreateRoom().Coroutine();});
 			self.btnRoomList.SetOnClick(()=>{self.OnClickbtnRoomList().Coroutine();});
 			self.btnOutRoom.SetOnClick(()=>{self.OnClickbtnOutRoom().Coroutine();});
+			self.btnMyRoom.SetOnClick(()=>{self.OnClickbtnMyRoom().Coroutine();});
 		}
 
 	}
@@ -144,6 +147,19 @@ namespace ET
 		public static async ETTask OnClickbtnOutRoom(this UIMainView self)
 		{
 			M2C_OutBattleRoom m2COutBattleRoom = (M2C_OutBattleRoom) await self.scene.GetComponent<SessionComponent>().Session.Call(new C2M_OutBattleRoom() {});
+		}
+		public static async ETTask OnClickbtnMyRoom(this UIMainView self)
+		{
+			M2C_GetBattleRoomPlayerInfo m2CGetBattleRoomPlayerInfo = (M2C_GetBattleRoomPlayerInfo) await self.scene.GetComponent<SessionComponent>().Session.Call(new C2M_GetBattleRoomPlayerInfo() {});
+			if (m2CGetBattleRoomPlayerInfo.Error==ErrorCode.ERR_Success)
+			{
+				UIMyRoomView view = await UIManagerComponent.Instance.OpenWindow<UIMyRoomView>(UIMyRoomView.PrefabPath);
+				view.UpdateView(m2CGetBattleRoomPlayerInfo.PlayerInfoList).Coroutine();
+			}
+			else
+			{
+				Game.EventSystem.PublishAsync(new UIEventType.ShowToast() { Text = "当前暂未加入小队" }).Coroutine();
+			}
 		}
 		
 		public static void UpdateView(this UIMainView self)

@@ -23,6 +23,7 @@ namespace ET
 		public UIButton btnCreateRoom;
 		public UIButton btnRoomList;
 		public UIButton btnOutRoom;
+		public UIButton btnMyRoom;
 		public Scene scene;
 
 	}

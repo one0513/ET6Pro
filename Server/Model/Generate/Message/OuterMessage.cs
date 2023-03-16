@@ -1429,4 +1429,77 @@ namespace ET
 
 	}
 
+	[Message(OuterOpcode.PlayerInfoProto)]
+	[ProtoContract]
+	public partial class PlayerInfoProto: Object
+	{
+		[ProtoMember(1)]
+		public string Name { get; set; }
+
+		[ProtoMember(2)]
+		public int Level { get; set; }
+
+		[ProtoMember(3)]
+		public int IsOnline { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_GetBattleRoomPlayerInfo))]
+	[Message(OuterOpcode.C2M_GetBattleRoomPlayerInfo)]
+	[ProtoContract]
+	public partial class C2M_GetBattleRoomPlayerInfo: Object, IActorLocationRequest
+	{
+		[ProtoMember(1)]
+		public int RpcId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_GetBattleRoomPlayerInfo)]
+	[ProtoContract]
+	public partial class M2C_GetBattleRoomPlayerInfo: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public List<BattleRoomInfoProto> BattleRoomInfoList = new List<BattleRoomInfoProto>();
+
+		[ProtoMember(2)]
+		public List<PlayerInfoProto> PlayerInfoList = new List<PlayerInfoProto>();
+
+	}
+
+	[Message(OuterOpcode.M2C_InitRoomPlayerInfoList)]
+	[ProtoContract]
+	public partial class M2C_InitRoomPlayerInfoList: Object, IActorMessage
+	{
+		[ProtoMember(1)]
+		public List<UnitInfo> UnitList = new List<UnitInfo>();
+
+	}
+
+	[Message(OuterOpcode.M2C_PlayerJoinRoom)]
+	[ProtoContract]
+	public partial class M2C_PlayerJoinRoom: Object, IActorMessage
+	{
+		[ProtoMember(1)]
+		public UnitInfo UnitList { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_PlayerOutRoom)]
+	[ProtoContract]
+	public partial class M2C_PlayerOutRoom: Object, IActorMessage
+	{
+		[ProtoMember(1)]
+		public UnitInfo UnitList { get; set; }
+
+	}
+
 }

@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2928615371130208876
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1995381588829311986, guid: 219726b2131c6f8499b86da523e3e2e1,
+        type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1995381588829311986, guid: 219726b2131c6f8499b86da523e3e2e1,
+        type: 3}
+      propertyPath: ClampVelocityModule.dampen
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1995381588829311986, guid: 219726b2131c6f8499b86da523e3e2e1,
+        type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1995381588829311986, guid: 219726b2131c6f8499b86da523e3e2e1,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1995381588829311986, guid: 219726b2131c6f8499b86da523e3e2e1,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1995381589766015237, guid: 219726b2131c6f8499b86da523e3e2e1,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1995381589776357379, guid: 219726b2131c6f8499b86da523e3e2e1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1995381589776357379, guid: 219726b2131c6f8499b86da523e3e2e1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1995381589776357379, guid: 219726b2131c6f8499b86da523e3e2e1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1995381589776357379, guid: 219726b2131c6f8499b86da523e3e2e1,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1995381589776357379, guid: 219726b2131c6f8499b86da523e3e2e1,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1995381589776357379, guid: 219726b2131c6f8499b86da523e3e2e1,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1995381589776357379, guid: 219726b2131c6f8499b86da523e3e2e1,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1995381589776357379, guid: 219726b2131c6f8499b86da523e3e2e1,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1995381589776357379, guid: 219726b2131c6f8499b86da523e3e2e1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1995381589776357379, guid: 219726b2131c6f8499b86da523e3e2e1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1995381589776357379, guid: 219726b2131c6f8499b86da523e3e2e1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1995381589776712739, guid: 219726b2131c6f8499b86da523e3e2e1,
+        type: 3}
+      propertyPath: m_Name
+      value: CFXR4 Sparks Explosion Straight
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 219726b2131c6f8499b86da523e3e2e1, type: 3}

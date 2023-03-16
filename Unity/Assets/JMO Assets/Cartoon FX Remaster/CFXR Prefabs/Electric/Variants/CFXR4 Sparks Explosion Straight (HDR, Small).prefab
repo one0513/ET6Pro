@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &6344263624789232522
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5067099611589543770, guid: 40579f7397ca24d4a8d194620bd7db98,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5067099611589543770, guid: 40579f7397ca24d4a8d194620bd7db98,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5067099611589543770, guid: 40579f7397ca24d4a8d194620bd7db98,
+        type: 3}
+      propertyPath: ClampVelocityModule.dampen
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 5067099611589543770, guid: 40579f7397ca24d4a8d194620bd7db98,
+        type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5067099612794900619, guid: 40579f7397ca24d4a8d194620bd7db98,
+        type: 3}
+      propertyPath: m_Name
+      value: CFXR4 Sparks Explosion Straight (HDR, Small)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5067099612795325611, guid: 40579f7397ca24d4a8d194620bd7db98,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5067099612795325611, guid: 40579f7397ca24d4a8d194620bd7db98,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5067099612795325611, guid: 40579f7397ca24d4a8d194620bd7db98,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5067099612795325611, guid: 40579f7397ca24d4a8d194620bd7db98,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5067099612795325611, guid: 40579f7397ca24d4a8d194620bd7db98,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5067099612795325611, guid: 40579f7397ca24d4a8d194620bd7db98,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5067099612795325611, guid: 40579f7397ca24d4a8d194620bd7db98,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5067099612795325611, guid: 40579f7397ca24d4a8d194620bd7db98,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5067099612795325611, guid: 40579f7397ca24d4a8d194620bd7db98,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5067099612795325611, guid: 40579f7397ca24d4a8d194620bd7db98,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5067099612795325611, guid: 40579f7397ca24d4a8d194620bd7db98,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5067099612801506733, guid: 40579f7397ca24d4a8d194620bd7db98,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 40579f7397ca24d4a8d194620bd7db98, type: 3}
