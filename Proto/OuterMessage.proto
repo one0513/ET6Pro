@@ -742,12 +742,17 @@ message M2C_InitRoomPlayerInfoList // IActorMessage
 	repeated UnitInfo UnitList = 1;
 }
 
+message M2C_InitOneRoomPlayerInfo // IActorMessage
+{
+	UnitInfo UnitInfo = 1;
+}
+
 message M2C_PlayerJoinRoom // IActorMessage
 {
-	UnitInfo UnitList = 1;
+	UnitInfo UnitInfo = 1;
 }
 
 message M2C_PlayerOutRoom // IActorMessage
 {
-	UnitInfo UnitList = 1;
+	UnitInfo UnitInfo = 1;
 }

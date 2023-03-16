@@ -1484,12 +1484,21 @@ namespace ET
 
 	}
 
+	[Message(OuterOpcode.M2C_InitOneRoomPlayerInfo)]
+	[ProtoContract]
+	public partial class M2C_InitOneRoomPlayerInfo: Object, IActorMessage
+	{
+		[ProtoMember(1)]
+		public UnitInfo UnitInfo { get; set; }
+
+	}
+
 	[Message(OuterOpcode.M2C_PlayerJoinRoom)]
 	[ProtoContract]
 	public partial class M2C_PlayerJoinRoom: Object, IActorMessage
 	{
 		[ProtoMember(1)]
-		public UnitInfo UnitList { get; set; }
+		public UnitInfo UnitInfo { get; set; }
 
 	}
 
@@ -1498,7 +1507,7 @@ namespace ET
 	public partial class M2C_PlayerOutRoom: Object, IActorMessage
 	{
 		[ProtoMember(1)]
-		public UnitInfo UnitList { get; set; }
+		public UnitInfo UnitInfo { get; set; }
 
 	}
 

@@ -94,6 +94,7 @@ namespace ET
 		 public const ushort C2M_GetBattleRoomPlayerInfo = 10093;
 		 public const ushort M2C_GetBattleRoomPlayerInfo = 10094;
 		 public const ushort M2C_InitRoomPlayerInfoList = 10095;
+		 public const ushort M2C_InitOneRoomPlayerInfo = 10098;
 		 public const ushort M2C_PlayerJoinRoom = 10096;
 		 public const ushort M2C_PlayerOutRoom = 10097;
 	}

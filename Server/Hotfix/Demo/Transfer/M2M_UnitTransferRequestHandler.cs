@@ -5,6 +5,7 @@ using UnityEngine;
 namespace ET
 {
     [ActorMessageHandler]
+    [FriendClass(typeof(RoomInfo))]
     public class M2M_UnitTransferRequestHandler : AMActorRpcHandler<Scene, M2M_UnitTransferRequest, M2M_UnitTransferResponse>
     {
         protected override async ETTask Run(Scene scene, M2M_UnitTransferRequest request, M2M_UnitTransferResponse response, Action reply)
@@ -14,7 +15,8 @@ namespace ET
             //初始化小队Unit
 	        List<UnitInfo> unitInfos = new List<UnitInfo>();
 	        M2C_InitMonsterInfoList m2CInitMonsterInfoList = new M2C_InitMonsterInfoList();
-            
+	        M2C_InitOneRoomPlayerInfo m2CInitOneRoomPlayerInfo = new M2C_InitOneRoomPlayerInfo();
+	        
             if (unitComponent.Get(request.Unit.Id) == null)
             {
 	            Unit unit = request.Unit;
@@ -47,7 +49,7 @@ namespace ET
 	            m2CCreateUnits.Unit = UnitHelper.CreateUnitInfo(unit);
 	            MessageHelper.SendToClient(unit, m2CCreateUnits);
 
-	            //初始化 小队内的Unit
+	            //初始化 小队内的Monster Unit
 	            long roomId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.RoomID);
 	            if (roomId != 0)
 	            {
@@ -77,6 +79,47 @@ namespace ET
 		            m2CInitMonsterInfoList.UnitList = unitInfos;
 		            MessageHelper.SendToClient(unit, m2CInitMonsterInfoList);
 	            }
+	            
+	            //初始化 小队内的Player Unit
+	            RoomInfo info =  unit.DomainScene().GetComponent<RoomInfoComponent>().Get(roomId);
+				if (info != null)
+				{
+					if (info.RoomPlayerNum > 1)
+					{
+						foreach (var unitId in info.playerList)
+						{
+							if (unitId != unit.Id)
+							{
+								Unit onlineUnit = unitComponent.Get(unitId);
+								if (onlineUnit != null)
+								{
+									m2CInitOneRoomPlayerInfo.UnitInfo = UnitHelper.CreateUnitInfo(onlineUnit);
+								}
+								MessageHelper.SendToClient(unit, m2CInitOneRoomPlayerInfo);
+							}
+						}
+					}
+				}
+				else
+				{
+					var infos =  await DBManagerComponent.Instance.GetZoneDB(unit.DomainZone()).Query<RoomInfo>(d => d.RoomId == roomId);
+					
+					if (infos[0].playerList.Count > 1 )
+					{
+						foreach (var unitId in infos[0].playerList)
+						{
+							if (unitId != unit.Id)
+							{
+								Unit onlineUnit = unitComponent.Get(unitId);
+								if (onlineUnit != null)
+								{
+									m2CInitOneRoomPlayerInfo.UnitInfo = UnitHelper.CreateUnitInfo(onlineUnit);
+								}
+								MessageHelper.SendToClient(unit, m2CInitOneRoomPlayerInfo);
+							}
+						}
+					}
+				}
 	            
 				
 				//通知客户端同步背包信息
@@ -138,6 +181,47 @@ namespace ET
 		            }
 		            m2CInitMonsterInfoList.UnitList = unitInfos;
 		            MessageHelper.SendToClient(unit, m2CInitMonsterInfoList);
+		            
+		            //初始化 小队内的Player Unit
+		            RoomInfo info =  unit.DomainScene().GetComponent<RoomInfoComponent>().Get(roomId);
+		            if (info != null)
+		            {
+			            if (info.RoomPlayerNum > 1)
+			            {
+				            foreach (var unitId in info.playerList)
+				            {
+					            if (unitId != unit.Id)
+					            {
+						            Unit onlineUnit = unitComponent.Get(unitId);
+						            if (onlineUnit != null)
+						            {
+							            m2CInitOneRoomPlayerInfo.UnitInfo = UnitHelper.CreateUnitInfo(onlineUnit);
+						            }
+						            MessageHelper.SendToClient(unit, m2CInitOneRoomPlayerInfo);
+					            }
+				            }
+			            }
+		            }
+		            else
+		            {
+			            var infos =  await DBManagerComponent.Instance.GetZoneDB(unit.DomainZone()).Query<RoomInfo>(d => d.RoomId == roomId);
+					
+			            if (infos[0].playerList.Count > 1 )
+			            {
+				            foreach (var unitId in infos[0].playerList)
+				            {
+					            if (unitId != unit.Id)
+					            {
+						            Unit onlineUnit = unitComponent.Get(unitId);
+						            if (onlineUnit != null)
+						            {
+							            m2CInitOneRoomPlayerInfo.UnitInfo = UnitHelper.CreateUnitInfo(onlineUnit);
+						            }
+						            MessageHelper.SendToClient(unit, m2CInitOneRoomPlayerInfo);
+					            }
+				            }
+			            }
+		            }
 	            }
             }
             
