@@ -55,7 +55,7 @@ namespace ET
             BattleUnitFindComponent battleUnitFind = myUnit.GetComponent<BattleUnitFindComponent>();
             Unit target = battleUnitFind.GetNearestPlayer().GetResult();
             
-            while (true)
+            while (myUnit != null)
             {
                 if (target!=null)
                 {
@@ -73,7 +73,7 @@ namespace ET
                         Log.Info("开始追逐");
                         myUnit.MonsterChangePosAsync(nextTarget).Coroutine();
                     }
-                    await TimerComponent.Instance.WaitAsync(100,cancellationToken);
+                    await TimerComponent.Instance?.WaitAsync(100,cancellationToken);
 
                 }
             }

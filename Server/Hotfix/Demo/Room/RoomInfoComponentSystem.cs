@@ -26,6 +26,7 @@ namespace ET
         public static void Add(this RoomInfoComponent self, RoomInfo info)
         {
             self.RoomInfos.Add(info.Id, info);
+            DBManagerComponent.Instance.GetZoneDB(self.DomainZone()).Save<RoomInfo>(info).Coroutine();
         }
 
         public static async ETTask<RoomInfo> Get(this RoomInfoComponent self,long roomId)

@@ -74,8 +74,6 @@ namespace ET
             }
             MessageHelper.SendToClient(unit,m2CCreateUnits);
             
-            info.playerList.Add(unit.Id);
-            info.RoomPlayerNum += 1;
             await DBManagerComponent.Instance.GetZoneDB(unit.DomainZone()).Save<RoomInfo>(info);
             
         }

@@ -35,9 +35,15 @@ namespace ET
                     m2CRemoveUnits.Units = monsterIdsList;
                     foreach (var unitId in info.playerList)
                     {
-                        if (unitId != unit.Id && unit.DomainScene().GetComponent<UnitComponent>().Get(unitId) != null)
+                        Unit player = unit.DomainScene().GetComponent<UnitComponent>().Get(unitId);
+                        if (unitId != unit.Id && player != null)
                         {
                             m2CRemoveUnits.Units.Add(unitId);
+                            
+                            M2C_RemoveUnits m2CRemoveMyUnits = new M2C_RemoveUnits();
+                            m2CRemoveMyUnits.Units = new List<long>(){unit.Id};
+                            MessageHelper.SendToClient(player,m2CRemoveMyUnits);
+                            
                         }
                     }
                     MessageHelper.SendToClient(unit,m2CRemoveUnits);
