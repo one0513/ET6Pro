@@ -67,10 +67,8 @@ namespace ET
 			            for (int i = 0; i < 3; i++)
 			            {
 				            Unit monster = scene.GetComponent<MonsterFactoryComponent>().CreateMonsterUnit(roomId);
-				            monster.AddComponent<ZhuiZhuAimComponent, Unit, Action>(unit, () =>
-				            {
-		            
-				            });
+
+				            monster.AddComponent<BattleUnitFindComponent, long>(roomId);
 				            monster.Position = new Vector3(i + 1, 0, i + 1);
 				            unitInfos.Add(UnitHelper.CreateUnitInfo(monster));
 			            }
@@ -81,7 +79,7 @@ namespace ET
 		            
 		            
 		            //初始化 小队内的Player Unit
-		            RoomInfo info =  unit.DomainScene().GetComponent<RoomInfoComponent>().Get(roomId);
+		            RoomInfo info =  await unit.DomainScene().GetComponent<RoomInfoComponent>().Get(roomId);
 		            if (info != null)
 		            {
 			            if (info.RoomPlayerNum > 1)
@@ -175,10 +173,7 @@ namespace ET
 			            for (int i = 0; i < 3; i++)
 			            {
 				            Unit monster = scene.GetComponent<MonsterFactoryComponent>().CreateMonsterUnit(roomId);
-				            monster.AddComponent<ZhuiZhuAimComponent, Unit, Action>(unit, () =>
-				            {
-		            
-				            });
+				            monster.AddComponent<BattleUnitFindComponent, long>(roomId);
 				            monster.Position = new Vector3(i + 1, 0, i + 1);
 				            unitInfos.Add(UnitHelper.CreateUnitInfo(monster));
 			            }
@@ -188,7 +183,7 @@ namespace ET
 		            
 		            
 		            //初始化 小队内的Player Unit
-		            RoomInfo info =  unit.DomainScene().GetComponent<RoomInfoComponent>().Get(roomId);
+		            RoomInfo info =  await unit.DomainScene().GetComponent<RoomInfoComponent>().Get(roomId);
 		            if (info != null)
 		            {
 			            if (info.RoomPlayerNum > 1)

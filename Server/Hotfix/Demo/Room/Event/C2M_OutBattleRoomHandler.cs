@@ -20,7 +20,7 @@ namespace ET
                 return;
             }
 
-            RoomInfo info =  unit.DomainScene().GetComponent<RoomInfoComponent>().Get(roomId);
+            RoomInfo info =  await unit.DomainScene().GetComponent<RoomInfoComponent>().Get(roomId);
             if (info != null)
             {
                 if (info.RoomPlayerNum > 1)

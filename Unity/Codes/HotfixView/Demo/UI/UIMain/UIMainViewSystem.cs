@@ -164,13 +164,16 @@ namespace ET
 		
 		public static void UpdateView(this UIMainView self)
 		{
-			Unit unit = UnitHelper.GetMyUnitFromCurrentScene(self.scene.CurrentScene());
-			NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+			if (self.scene != null)
+			{
+				Unit unit = UnitHelper.GetMyUnitFromCurrentScene(self.scene.CurrentScene());
+				NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 			
-			self.lblExp.SetText(numericComponent.GetAsInt((int)NumericType.Exp).ToString());
-			//self.lblCoin.SetText(numericComponent.GetAsInt((int)NumericType.Gold).ToString());
-			self.lblLevel.SetText($"Lv:{numericComponent.GetAsInt((int)NumericType.Lv).ToString()}");
-			self.lblCurLevel.SetText($"当前关卡:{numericComponent.GetAsInt((int)NumericType.CurLevel).ToString()}关");
+				self.lblExp.SetText(numericComponent.GetAsInt((int)NumericType.Exp).ToString());
+				//self.lblCoin.SetText(numericComponent.GetAsInt((int)NumericType.Gold).ToString());
+				self.lblLevel.SetText($"Lv:{numericComponent.GetAsInt((int)NumericType.Lv).ToString()}");
+				self.lblCurLevel.SetText($"当前关卡:{numericComponent.GetAsInt((int)NumericType.CurLevel).ToString()}关");
+			}
 		}
 	}
 

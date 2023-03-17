@@ -90,7 +90,7 @@ namespace ET
             await Task.CompletedTask;
         }
         
-        public static async ETTask MonsterChangePosAsync(this Unit unit, Vector3 target,List<Unit> sendUnits)
+        public static async ETTask MonsterChangePosAsync(this Unit unit, Vector3 target)
         {
             using var list = ListComponent<Vector3>.Create();
             
@@ -124,7 +124,7 @@ namespace ET
             }
             
             long roomId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.RoomID);
-            RoomInfo info = unit.DomainScene().GetComponent<RoomInfoComponent>().Get(roomId);
+            RoomInfo info = await unit.DomainScene().GetComponent<RoomInfoComponent>().Get(roomId);
             if (info != null)
             {
                 for (int i = 0; i < info.playerList.Count; i++)

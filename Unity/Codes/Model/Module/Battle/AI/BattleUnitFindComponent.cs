@@ -1,8 +1,8 @@
 ﻿namespace ET
 {
     [ComponentOf(typeof(Unit))]
-    public class BattleUnitFindComponent :Entity,IAwake,IDestroy
+    public class BattleUnitFindComponent :Entity,IAwake<long>,IDestroy
     {
-        public Unit Target;
+        public long RoomId;
     }
 }

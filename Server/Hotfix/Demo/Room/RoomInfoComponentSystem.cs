@@ -20,17 +20,27 @@ namespace ET
         }
     }
     [FriendClass(typeof(RoomInfoComponent))]
+    [FriendClass(typeof(RoomInfo))]
     public static class RoomInfoComponentSystem
     {
-        public static void Add(this RoomInfoComponent self, RoomInfo player)
+        public static void Add(this RoomInfoComponent self, RoomInfo info)
         {
-            self.RoomInfos.Add(player.Id, player);
+            self.RoomInfos.Add(info.Id, info);
         }
 
-        public static RoomInfo Get(this RoomInfoComponent self,long id)
+        public static async ETTask<RoomInfo> Get(this RoomInfoComponent self,long roomId)
         {
-            self.RoomInfos.TryGetValue(id, out RoomInfo gamer);
-            return gamer;
+            self.RoomInfos.TryGetValue(roomId, out RoomInfo info);
+            if (info == null)
+            {
+                var infos = await DBManagerComponent.Instance.GetZoneDB(self.DomainZone()).Query<RoomInfo>(d => d.RoomId == roomId);
+                if (infos.Count > 0)
+                {
+                    self.RoomInfos.Add(infos[0].Id, infos[0]);
+                    return infos[0];
+                }
+            }
+            return info;
         }
 
         public static void Remove(this RoomInfoComponent self,long id)

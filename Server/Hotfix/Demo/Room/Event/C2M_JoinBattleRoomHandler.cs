@@ -17,32 +17,35 @@ namespace ET
                 reply();
                 return;
             }
+            RoomInfo info = await unit.DomainScene().GetComponent<RoomInfoComponent>().Get(request.RoomId);
             
-            var infos =  await DBManagerComponent.Instance.GetZoneDB(unit.DomainZone()).Query<RoomInfo>(d => d.RoomId == request.RoomId);
-            if (infos.Count <= 0)
+            //var infos =  await DBManagerComponent.Instance.GetZoneDB(unit.DomainZone()).Query<RoomInfo>(d => d.RoomId == request.RoomId);
+            if (info == null)
             {
                 response.Error = ErrorCode.ERR_CurRoomError;
                 reply();
                 return;
             }
-            if (infos[0].RoomPlayerNum >= 3)
+            if (info.RoomPlayerNum >= 3)
             {
                 response.Error = ErrorCode.ERR_CurRoomError;
                 reply();
                 return;
             }
-            infos[0].playerList.Add(unit.Id);
-            infos[0].RoomPlayerNum += 1;
+            info.playerList.Add(unit.Id);
+            info.RoomPlayerNum += 1;
             num.Set(NumericType.RoomID,request.RoomId);
 
             reply();
-            if (unit.DomainScene().GetComponent<RoomInfoComponent>().Get(request.RoomId) != null)
-            {
-                unit.DomainScene().GetComponent<RoomInfoComponent>().Get(request.RoomId).playerList.Add(unit.Id);
-                unit.DomainScene().GetComponent<RoomInfoComponent>().Get(request.RoomId).RoomPlayerNum += 1;
 
+            
+            if (info != null)
+            {
+                info.playerList.Add(unit.Id);
+                info.RoomPlayerNum += 1;
+                await DBManagerComponent.Instance.GetZoneDB(unit.DomainZone()).Save<RoomInfo>(info);
             }
-            await DBManagerComponent.Instance.GetZoneDB(unit.DomainZone()).Save<RoomInfo>(infos[0]);
+            
             
         }
     }

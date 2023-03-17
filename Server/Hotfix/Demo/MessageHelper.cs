@@ -35,7 +35,7 @@ namespace ET
             }
             else
             {
-                RoomInfo info = unit.DomainScene().GetComponent<RoomInfoComponent>().Get(roomId);
+                RoomInfo info = await unit.DomainScene().GetComponent<RoomInfoComponent>().Get(roomId);
                 if (info != null)
                 {
                     for (int i = 0; i < info.playerList.Count; i++)
