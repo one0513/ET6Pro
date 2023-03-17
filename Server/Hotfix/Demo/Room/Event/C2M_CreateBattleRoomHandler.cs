@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace ET
 {
@@ -31,6 +33,38 @@ namespace ET
             await DBManagerComponent.Instance.GetZoneDB(unit.DomainZone()).Save<RoomInfo>(info);
             
             reply();
+            
+            //todo: 初始化队友和怪物
+            M2C_CreateUnits m2CCreateUnits = new M2C_CreateUnits();
+            foreach (var unitId in info.playerList)
+            {
+                Unit otherPlayer = unit.DomainScene().GetComponent<UnitComponent>().Get(unitId);
+                if (unitId != unit.Id && otherPlayer != null)
+                {
+                    m2CCreateUnits.Units.Add(UnitHelper.CreateUnitInfo(otherPlayer));
+                }
+            }
+            List<long> monsterIds = unit.DomainScene().GetComponent<MonsterFactoryComponent>().Get(info.RoomId);
+            if (monsterIds != null && monsterIds.Count > 0)
+            {
+                for (int i = 0; i < monsterIds.Count; i++)
+                {
+                    m2CCreateUnits.Units.Add(UnitHelper.CreateUnitInfo(unit.DomainScene().GetComponent<UnitComponent>().Get(monsterIds[i])));
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    Unit monster = unit.DomainScene().GetComponent<MonsterFactoryComponent>().CreateMonsterUnit(info.RoomId);
+
+                    monster.AddComponent<BattleUnitFindComponent, long>(info.RoomId);
+                    monster.Position = new Vector3(i + 1, 0, i + 1);
+                    m2CCreateUnits.Units.Add(UnitHelper.CreateUnitInfo(monster));
+                }
+            }
+            MessageHelper.SendToClient(unit,m2CCreateUnits);
+            
         }
     }
 }

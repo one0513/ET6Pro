@@ -29,55 +29,39 @@ namespace ET
                     info.RoomPlayerNum -= 1;
                     info.playerList.Remove(unit.Id);
                     num.Set(NumericType.RoomID,0);
+                    
+                    List<long> monsterIdsList =  unit.DomainScene().GetComponent<MonsterFactoryComponent>().Get(roomId);
+                    M2C_RemoveUnits m2CRemoveUnits = new M2C_RemoveUnits();
+                    m2CRemoveUnits.Units = monsterIdsList;
+                    foreach (var unitId in info.playerList)
+                    {
+                        if (unitId != unit.Id && unit.DomainScene().GetComponent<UnitComponent>().Get(unitId) != null)
+                        {
+                            m2CRemoveUnits.Units.Add(unitId);
+                        }
+                    }
+                    MessageHelper.SendToClient(unit,m2CRemoveUnits);
+                    
+                    
                     await DBManagerComponent.Instance.GetZoneDB(unit.DomainZone()).Save<RoomInfo>(info);
                     return;
                 }
                 else
                 {
                     reply();
+                    
                     unit.DomainScene().GetComponent<RoomInfoComponent>().Remove(roomId);
                     num.Set(NumericType.RoomID,0);
                     List<long> monsterIdsList =  unit.DomainScene().GetComponent<MonsterFactoryComponent>().Get(roomId);
+                    M2C_RemoveUnits m2CRemoveUnits = new M2C_RemoveUnits();
+                    m2CRemoveUnits.Units = monsterIdsList;
+                    MessageHelper.SendToClient(unit,m2CRemoveUnits);
                     for (int i = 0; i < monsterIdsList.Count; i++)
                     {
                         unit.DomainScene().GetComponent<UnitComponent>().Remove(monsterIdsList[i]);
                     }
                     unit.DomainScene().GetComponent<MonsterFactoryComponent>().Remove(roomId);
                     await DBManagerComponent.Instance.GetZoneDB(unit.DomainZone()).Remove<RoomInfo>(d => d.RoomId == roomId);
-                    return;
-                }
-            }
-            else
-            {
-                var infos =  await DBManagerComponent.Instance.GetZoneDB(unit.DomainZone()).Query<RoomInfo>(d => d.RoomId == roomId);
-                if (infos.Count <= 0)
-                {
-                    response.Error = ErrorCode.ERR_NotInRoom;
-                    reply();
-                    return;
-                }
-
-                if (infos[0].playerList.Count <= 1 )
-                {
-                    reply();
-                    num.Set(NumericType.RoomID,0);
-                    List<long> monsterIdsList =  unit.DomainScene().GetComponent<MonsterFactoryComponent>().Get(roomId);
-                    for (int i = 0; i < monsterIdsList.Count; i++)
-                    {
-                        unit.DomainScene().GetComponent<UnitComponent>().Remove(monsterIdsList[i]);
-                    }
-                    unit.DomainScene().GetComponent<MonsterFactoryComponent>().Remove(roomId);
-                    await DBManagerComponent.Instance.GetZoneDB(unit.DomainZone()).Remove<RoomInfo>(d => d.RoomId == roomId);
-                    return;
-                }
-            
-                if (infos[0].playerList.Count > 1 )
-                {
-                    reply();
-                    infos[0].RoomPlayerNum -= 1;
-                    infos[0].playerList.Remove(unit.Id);
-                    num.Set(NumericType.RoomID,0);
-                    await DBManagerComponent.Instance.GetZoneDB(unit.DomainZone()).Save<RoomInfo>(infos[0]);
                     return;
                 }
             }

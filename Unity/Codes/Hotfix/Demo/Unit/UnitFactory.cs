@@ -50,6 +50,26 @@ namespace ET
 		    return unit;
 	    }
 	    
+	    public static Unit CreateRoomMonster(Scene currentScene, UnitInfo unitInfo)
+	    {
+		    UnitComponent unitComponent = currentScene.GetComponent<UnitComponent>();
+		    Unit unit = unitComponent.AddChildWithId<Unit, int>(unitInfo.UnitId, unitInfo.ConfigId);
+		    unitComponent.Add(unit);
+	        
+		    NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
+		    for (int i = 0; i < unitInfo.Ks.Count; ++i)
+		    {
+			    numericComponent.Insert(unitInfo.Ks[i], unitInfo.Vs[i]);
+		    }
+	        
+		    unit.AddComponent<ObjectWait>();
+		    unit.AddComponent<MoveComponent>();
+		    unit.Position = new Vector3(unitInfo.X, 0, unitInfo.Z);
+	        
+		    Game.EventSystem.PublishAsync(new EventType.AfterUnitCreate() {Unit = unit}).Coroutine();
+		    return unit;
+	    }
+	    
 	    public static void InitMonsterList(Scene currentScene, List<UnitInfo> unitInfos)
 	    {
 		    UnitComponent unitComponent = currentScene.GetComponent<UnitComponent>();
@@ -70,9 +90,24 @@ namespace ET
 	        
 			    Game.EventSystem.PublishAsync(new EventType.AfterUnitCreate() {Unit = unit}).Coroutine();
 		    }
-		   
 	    }
-	    
+
+	    public static Unit CreateAll(Scene currentScene, UnitInfo unitInfo)
+	    {
+		    switch (unitInfo.Type)
+		    {
+			    case (int)UnitType.Monster:
+				    return CreateRoomMonster(currentScene, unitInfo);
+			    case (int)UnitType.Player:
+				    return CreatePlayer(currentScene, unitInfo);
+			    default:
+			    {
+				    Log.Error("没有该类型Unit ");
+				    break;
+			    }
+		    }
+		    return null;
+	    }
 	    
         public static Unit Create(Scene currentScene, UnitInfo unitInfo)
         {
@@ -82,6 +117,7 @@ namespace ET
 	        var pos = new Vector3(unitInfo.X, unitInfo.Y, unitInfo.Z);
 	        unit.Position = pos;
 	        unit.Forward = new Vector3(unitInfo.ForwardX, unitInfo.ForwardY, unitInfo.ForwardZ);
+	
 	        switch (unit.Type)
 	        {
 		        case UnitType.Monster:

@@ -14,7 +14,7 @@
                 {
                     continue;
                 }
-                Unit unit = UnitFactory.CreatePlayer(currentScene, unitInfo);
+                Unit unit = UnitFactory.CreateAll(currentScene, unitInfo);
             }
         }
     }

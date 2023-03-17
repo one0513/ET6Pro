@@ -49,7 +49,7 @@ namespace ET
         public static async ETTask<Unit> GetNearestPlayer(this BattleUnitFindComponent self)
         {
             Unit nearestUnit = null;
-            float dis = 0f;
+            float dis = 100f;
 
             if (self.RoomId != 0)
             {
@@ -61,7 +61,7 @@ namespace ET
                     {
                         float nowDis = Vector2.Distance(new Vector2(player.Position.x, player.Position.z),
                             new Vector2(((Unit)self.Parent).Position.x, ((Unit)self.Parent).Position.z));
-                        if (nowDis > dis)
+                        if (nowDis <= dis)
                         {
                             nearestUnit = player;
                             dis = nowDis;
