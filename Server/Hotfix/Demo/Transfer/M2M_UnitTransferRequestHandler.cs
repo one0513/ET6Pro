@@ -13,9 +13,7 @@ namespace ET
             await ETTask.CompletedTask;
             UnitComponent unitComponent = scene.GetComponent<UnitComponent>();
             //初始化小队Unit
-	        List<UnitInfo> unitInfos = new List<UnitInfo>();
-	        M2C_InitMonsterInfoList m2CInitMonsterInfoList = new M2C_InitMonsterInfoList();
-	        M2C_InitOneRoomPlayerInfo m2CInitOneRoomPlayerInfo = new M2C_InitOneRoomPlayerInfo();
+            M2C_InitOneRoomPlayerInfo m2CInitOneRoomPlayerInfo = new M2C_InitOneRoomPlayerInfo();
 	        
             if (unitComponent.Get(request.Unit.Id) == null)
             {
@@ -37,10 +35,16 @@ namespace ET
 			
 	            unit.AddComponent<MoveComponent>();
 	            unit.AddComponent<PathfindingComponent, string>("Map");
+	            unit.AddComponent<AIComponent,int>(4);
 
-	            float x =  unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.PosX);
-	            float z =  unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.PosZ);
-	            unit.Position = new Vector3(x, 0, z);
+
+	            var num = unit.GetComponent<NumericComponent>();
+	            float x =  num.GetAsFloat(NumericType.PosX);
+	            float z =  num.GetAsFloat(NumericType.PosZ);
+	            unit.Position = new Vector3(x, unit.Position.x, z);
+	            num.Set(NumericType.IsAlive,1);
+	            num.Set(NumericType.Hp,num.GetAsInt(NumericType.MaxHp));
+	            
 			
 	            unit.AddComponent<MailBoxComponent>();
 		
@@ -51,32 +55,10 @@ namespace ET
 
 	            //初始化 小队内的Monster Unit
 	            long roomId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.RoomID);
+	            
+	            
 	            if (roomId != 0)
 	            {
-		            List<long> monsterIds = scene.GetComponent<MonsterFactoryComponent>().Get(roomId);
-		            unitInfos.Clear();
-		            if (monsterIds != null && monsterIds.Count > 0)
-		            {
-			            for (int i = 0; i < monsterIds.Count; i++)
-			            {
-				            unitInfos.Add(UnitHelper.CreateUnitInfo(scene.GetComponent<UnitComponent>().Get(monsterIds[i])));
-			            }
-		            }
-		            else
-		            {
-			            for (int i = 0; i < 3; i++)
-			            {
-				            Unit monster = scene.GetComponent<MonsterFactoryComponent>().CreateMonsterUnit(roomId);
-
-				            monster.AddComponent<BattleUnitFindComponent, long>(roomId);
-				            monster.Position = new Vector3(i + 1, 0, i + 1);
-				            unitInfos.Add(UnitHelper.CreateUnitInfo(monster));
-			            }
-		            }
-      
-		            m2CInitMonsterInfoList.UnitList = unitInfos;
-		            MessageHelper.SendToClient(unit, m2CInitMonsterInfoList);
-		            
 		            
 		            //初始化 小队内的Player Unit
 		            RoomInfo info =  await unit.DomainScene().GetComponent<RoomInfoComponent>().Get(roomId);
@@ -118,12 +100,14 @@ namespace ET
 				            }
 			            }
 		            }
-					//////////
 		            
+		            await scene.GetComponent<MonsterFactoryComponent>().InitRoomMonster(roomId,unit);
+		            unit.AddComponent<BattleUnitFindComponent, long>(roomId);
 	            }
 	            
-	           
-				
+	            
+	            
+	            
 				//通知客户端同步背包信息
 				//ItemUpdateNoticeHelper.SyncAllBagItems(unit);
 				//ItemUpdateNoticeHelper.SyncAllEquipItems(unit);
@@ -137,13 +121,7 @@ namespace ET
 				unit.AddComponent<CombatUnitComponent>();
             
 				unit.AddComponent<AdventureCheckComponent>();
-			
-			
-				// 加入aoi 不是开发地图 不使用aoi
-				// var aoiu = unit.AddComponent<AOIUnitComponent,Vector3,Quaternion, UnitType,int>
-				// 		(unit.Position,unit.Rotation,unit.Type,5);
-				//
-				// aoiu.AddSphereCollider(0.5f);
+				
 				response.NewInstanceId = unit.InstanceId;
             }
             else
@@ -159,29 +137,6 @@ namespace ET
 	            long roomId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.RoomID);
 	            if (roomId != 0)
 	            {
-		            List<long> monsterIds = scene.GetComponent<MonsterFactoryComponent>().Get(roomId);
-		            unitInfos.Clear();
-		            if (monsterIds != null && monsterIds.Count > 0)
-		            {
-			            for (int i = 0; i < monsterIds.Count; i++)
-			            {
-				            unitInfos.Add(UnitHelper.CreateUnitInfo(scene.GetComponent<UnitComponent>().Get(monsterIds[i])));
-			            }
-		            }
-		            else
-		            {
-			            for (int i = 0; i < 3; i++)
-			            {
-				            Unit monster = scene.GetComponent<MonsterFactoryComponent>().CreateMonsterUnit(roomId);
-				            monster.AddComponent<BattleUnitFindComponent, long>(roomId);
-				            monster.Position = new Vector3(i + 1, 0, i + 1);
-				            unitInfos.Add(UnitHelper.CreateUnitInfo(monster));
-			            }
-		            }
-		            m2CInitMonsterInfoList.UnitList = unitInfos;
-		            MessageHelper.SendToClient(unit, m2CInitMonsterInfoList);
-		            
-		            
 		            //初始化 小队内的Player Unit
 		            RoomInfo info =  await unit.DomainScene().GetComponent<RoomInfoComponent>().Get(roomId);
 		            if (info != null)
@@ -224,11 +179,9 @@ namespace ET
 				            }
 			            }
 		            }
+		            await scene.GetComponent<MonsterFactoryComponent>().InitRoomMonster(roomId,unit);
 		            
 	            }
-	            
-	           
-	            
             }
             
             reply();

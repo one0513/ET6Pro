@@ -24,6 +24,18 @@ namespace ET
                 SendToClient(u.GetParent<Unit>(), message);
             }
         }
+
+        public static  void RoomBroadcastAll(Unit unit, IActorMessage message)
+        {
+            if (unit.Type == UnitType.Player)
+            {
+                RoomBroadcast(unit, message).Coroutine();
+            }else if (unit.Type == UnitType.Monster)
+            {
+                MonsterBroadcast(unit, message).Coroutine();
+            }
+        }
+        
         //简易版广播 小队广播
         public static async ETTask RoomBroadcast(Unit unit, IActorMessage message)
         {
@@ -61,6 +73,23 @@ namespace ET
                 }
             }
         }
+        
+        //简易版广播 怪物广播 unit是怪物
+        public static async ETTask MonsterBroadcast(Unit unit, IActorMessage message)
+        {
+            long roomId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.RoomID);
+
+            RoomInfo info = await unit.DomainScene().GetComponent<RoomInfoComponent>().Get(roomId);
+            for (int i = 0; i < info.playerList.Count; i++)
+            {
+                Unit onlineUnit = unit.DomainScene().GetComponent<UnitComponent>().Get(info.playerList[i]);
+                if (onlineUnit != null)
+                {
+                    SendToClient(onlineUnit, message);
+                }
+            }
+        }
+        
         
         public static void SendToClient(Unit unit, IActorMessage message)
         {

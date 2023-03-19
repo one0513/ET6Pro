@@ -52,6 +52,13 @@ namespace ET
             public Scene Scene;
             public string Text;
         }
+        
+        //即时消息弹出框
+        public struct ShowFront
+        {
+            public Scene Scene;
+            public string Text;
+        }
         //新创建UI组件
         public struct AddComponent
         {

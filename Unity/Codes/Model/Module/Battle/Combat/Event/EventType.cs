@@ -21,7 +21,17 @@ namespace ET.EventType
         public GhostComponent Ghost;//SkillUnit的Ghost
 #endif
     }
-    
+
+    /// <summary>
+    /// 复活时间改变
+    /// </summary>
+    public struct AfterRelefeTimeChange
+    {
+        public int Time;
+        public long UnitId;
+        public Scene Scene;
+    }
+
     /// <summary>
     /// 当技能触发
     /// </summary>

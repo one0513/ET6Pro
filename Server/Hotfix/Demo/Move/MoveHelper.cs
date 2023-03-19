@@ -58,8 +58,7 @@ namespace ET
 
         public static async ETTask MoveToAsync(this Unit unit, List<Vector3> path, ETCancellationToken cancellationToken = null)
         {
-            //float speed = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Speed);
-            float speed = 2;
+            float speed = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Speed);
             if (speed < 0.01)
             {
                 unit.SendStop(-1);
@@ -99,11 +98,11 @@ namespace ET
             List<Vector3> path = list;
             if (path.Count < 2)
             {
-                //unit.SendStop(3);
+                unit.SendStop(3);
                 return;
             }
             
-            float speed = 1.5f;
+            float speed = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Speed);
             if (speed < 0.01)
             {
                 unit.SendStop(-1);
@@ -168,7 +167,7 @@ namespace ET
         // error: 0表示协程走完正常停止
         public static void SendStop(this Unit unit, int error)
         {
-            MessageHelper.Broadcast(unit, new M2C_Stop()
+            MessageHelper.RoomBroadcastAll(unit, new M2C_Stop()
             {
                 Error = error,
                 Id = unit.Id, 

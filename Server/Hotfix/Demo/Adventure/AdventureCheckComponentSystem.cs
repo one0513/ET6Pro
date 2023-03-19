@@ -208,7 +208,7 @@ namespace ET
         public static void CalcuateDamageHpValue(this AdventureCheckComponent self, Unit attackUnit, Unit targeUnit)
         {
             int Hp = targeUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Hp);
-            Hp = Hp - DamageCalcuateHelper.CalcuateDamageValue(attackUnit, targeUnit, ref self.Random);
+            //Hp = Hp - DamageCalcuateHelper.CalcuateDamageValue(attackUnit, targeUnit, ref self.Random);
             if (Hp <= 0)
             {
                 Hp = 0;

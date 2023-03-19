@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace ET
 {
@@ -43,6 +44,25 @@ namespace ET
             }
             return info;
         }
+        
+        public static  List<long> GetOnlinePlayerId(this RoomInfoComponent self,long roomId)
+        {
+            self.RoomInfos.TryGetValue(roomId, out RoomInfo info);
+            if (info != null)
+            {
+                self.onlinePlayerIds.Clear();
+                foreach (var playerId in info.playerList)
+                {
+                    if (self.DomainScene().GetComponent<UnitComponent>().Get(playerId) != null)
+                    {
+                        self.onlinePlayerIds.Add(playerId);
+                    }
+                }
+            }
+            return self.onlinePlayerIds;
+        }
+
+        
 
         public static void Remove(this RoomInfoComponent self,long id)
         {
@@ -53,5 +73,26 @@ namespace ET
         {
             return self.RoomInfos.Values.ToArray();
         }
+
+        public static void SaveRoomCurLevel(this RoomInfoComponent self, long roomId, int level)
+        {
+            self.RoomInfos.TryGetValue(roomId, out RoomInfo info);
+            if (info != null && info.curLevel != level)
+            {
+                info.curLevel = level;
+                DBManagerComponent.Instance.GetZoneDB(self.DomainZone()).Save<RoomInfo>(info).Coroutine();
+            }
+        }
+
+        public static int GetRoomCurLevel(this RoomInfoComponent self, long roomId)
+        {
+            self.RoomInfos.TryGetValue(roomId, out RoomInfo info);
+            if (info != null)
+            {
+                return info.curLevel;
+            }
+            return 1;
+        }
+        
     }
 }

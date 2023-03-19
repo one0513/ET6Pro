@@ -45,6 +45,7 @@ namespace ET
 			self.btnRoomList = self.AddUIComponent<UIButton>("btnRoomList");
 			self.btnOutRoom = self.AddUIComponent<UIButton>("btnOutRoom");
 			self.btnMyRoom= self.AddUIComponent<UIButton>("btnMyRoom");
+			self.btnChangeMap = self.AddUIComponent<UIButton>("btnChangeMap");
 			
 			self.btnRole.SetOnClick(()=>{self.OnClickbtnRole().Coroutine();});
 			self.btnAdventure.SetOnClick(()=>{self.OnClickbtnAdventure().Coroutine();});
@@ -55,6 +56,7 @@ namespace ET
 			self.btnRoomList.SetOnClick(()=>{self.OnClickbtnRoomList().Coroutine();});
 			self.btnOutRoom.SetOnClick(()=>{self.OnClickbtnOutRoom().Coroutine();});
 			self.btnMyRoom.SetOnClick(()=>{self.OnClickbtnMyRoom().Coroutine();});
+			self.btnChangeMap.SetOnClick(()=>{self.OnClickbtnChangeMap().Coroutine();});
 			
 		}
 
@@ -74,6 +76,7 @@ namespace ET
 			self.btnRoomList.SetOnClick(()=>{self.OnClickbtnRoomList().Coroutine();});
 			self.btnOutRoom.SetOnClick(()=>{self.OnClickbtnOutRoom().Coroutine();});
 			self.btnMyRoom.SetOnClick(()=>{self.OnClickbtnMyRoom().Coroutine();});
+			self.btnChangeMap.SetOnClick(()=>{self.OnClickbtnChangeMap().Coroutine();});
 		}
 
 	}
@@ -87,18 +90,19 @@ namespace ET
 		}
 		public static async ETTask OnClickbtnAdventure(this UIMainView self)
 		{
+			
 			Unit unit = UnitHelper.GetMyUnitFromCurrentScene(self.scene.CurrentScene());
 			NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-			if (self.scene.CurrentScene().GetComponent<AdventureComponent>().isFighting)
+			if (numericComponent.GetAsLong(NumericType.RoomID) == 0)
 			{
-				Game.EventSystem.PublishAsync(new UIEventType.ShowToast() { Text = "当前正在战斗中！！" }).Coroutine();
+				Game.EventSystem.PublishAsync(new UIEventType.ShowToast() { Text = "请先加入小队" }).Coroutine();
 			}
 			else
 			{
-				self.scene.CurrentScene().GetComponent<AdventureComponent>().SetFightStatue(true);
-				await AdventureHelper.RequestStartGameLevel(self.scene, numericComponent.GetAsInt((int)NumericType.CurLevel));
-				await self.scene.CurrentScene().GetComponent<AdventureComponent>().StartAdventure();
+
+				await AdventureHelper.RequestStartGameLevel(self.scene, 1);
 			}
+
 		}
 		
 		public static async ETTask OnClickbtnNextAdventure(this UIMainView self)
@@ -144,6 +148,11 @@ namespace ET
 			
 		}
 		
+		public static async ETTask OnClickbtnChangeMap(this UIMainView self)
+		{
+			await UIManagerComponent.Instance.OpenWindow<UIMapView,Scene>(UIMapView.PrefabPath, self.scene);
+		}
+		
 		public static async ETTask OnClickbtnOutRoom(this UIMainView self)
 		{
 			M2C_OutBattleRoom m2COutBattleRoom = (M2C_OutBattleRoom) await self.scene.GetComponent<SessionComponent>().Session.Call(new C2M_OutBattleRoom() {});
@@ -166,12 +175,12 @@ namespace ET
 		{
 			if (self.scene != null)
 			{
-				// Unit unit = UnitHelper.GetMyUnitFromCurrentScene(self.scene.CurrentScene());
-				// NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+				Unit unit = UnitHelper.GetMyUnitFromCurrentScene(self.scene.CurrentScene());
+				NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 				//
 				// self.lblExp.SetText(numericComponent.GetAsInt((int)NumericType.Exp).ToString());
 				// //self.lblCoin.SetText(numericComponent.GetAsInt((int)NumericType.Gold).ToString());
-				// self.lblLevel.SetText($"Lv:{numericComponent.GetAsInt((int)NumericType.Lv).ToString()}");
+				self.lblLevel.SetText($"Lv:{numericComponent.GetAsInt((int)NumericType.Lv).ToString()}");
 				// self.lblCurLevel.SetText($"当前关卡:{numericComponent.GetAsInt((int)NumericType.CurLevel).ToString()}关");
 			}
 		}

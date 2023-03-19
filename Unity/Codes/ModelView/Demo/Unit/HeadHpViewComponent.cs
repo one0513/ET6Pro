@@ -9,6 +9,9 @@ namespace ET
         public GameObject HpBarGroup = null;
         public SpriteRenderer HpBar = null;
         public TextMeshPro HpText = null;
+
+        public GameObject DidTip = null;
+        public TextMeshPro RelifeTimeText = null;
     }
     
 }

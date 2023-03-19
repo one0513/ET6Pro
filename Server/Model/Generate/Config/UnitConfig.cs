@@ -103,6 +103,21 @@ namespace ET
 		/// <summary>伤害</summary>
 		[ProtoMember(8)]
 		public int Dmg { get; set; }
+		/// <summary>攻击速度</summary>
+		[ProtoMember(9)]
+		public int ATKSpeed { get; set; }
+		/// <summary>攻击范围</summary>
+		[ProtoMember(10)]
+		public int ATKRage { get; set; }
+		/// <summary>移动速度</summary>
+		[ProtoMember(11)]
+		public int Speed { get; set; }
+		/// <summary>等级</summary>
+		[ProtoMember(12)]
+		public int Lv { get; set; }
+		/// <summary>掉落经验</summary>
+		[ProtoMember(14)]
+		public int Drop { get; set; }
 
 	}
 }

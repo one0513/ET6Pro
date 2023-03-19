@@ -38,6 +38,7 @@ namespace ET
             Game.Scene.AddComponent<UIManagerComponent>();
             Game.Scene.AddComponent<UIWatcherComponent>();
             Game.Scene.AddComponent<ToastComponent>();
+            Game.Scene.AddComponent<UIFrontTipComponent>();
             
             //摄像机与场景管理
             Game.Scene.AddComponent<CameraManagerComponent>();

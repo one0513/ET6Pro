@@ -58,11 +58,14 @@ ShaderVariantCollection:
   - first: {fileID: 9103, guid: 0000000000000000f000000000000000, type: 0}
     second:
       variants:
-      - keywords: 
-        passType: 0
       - keywords: BILLBOARD_FACE_CAMERA_POS _DEPTH_NO_MSAA
         passType: 0
-      - keywords: BILLBOARD_FACE_CAMERA_POS _ADDITIONAL_LIGHTS _DEPTH_NO_MSAA
+      - keywords: BILLBOARD_FACE_CAMERA_POS _DEPTH_NO_MSAA _MAIN_LIGHT_SHADOWS
+        passType: 0
+  - first: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: ETC1_EXTERNAL_ALPHA
         passType: 0
   - first: {fileID: 4800000, guid: c17132b1f77d20942aa75f8429c0f8bc, type: 3}
     second:
@@ -90,66 +93,45 @@ ShaderVariantCollection:
       variants:
       - keywords: 
         passType: 8
-      - keywords: BILLBOARD_FACE_CAMERA_POS LIGHTPROBE_SH _DEPTH_NO_MSAA _MAIN_LIGHT_SHADOWS
-        passType: 13
-  - first: {fileID: 4800000, guid: 0406db5a14f94604a8c57ccfbc9f3b46, type: 3}
-    second:
-      variants:
-      - keywords: 
-        passType: 0
-      - keywords: BILLBOARD_FACE_CAMERA_POS LIGHTPROBE_SH _ALPHABLEND_ON _DEPTH_NO_MSAA
-          _FLIPBOOKBLENDING_OFF _MAIN_LIGHT_SHADOWS
-        passType: 0
-      - keywords: BILLBOARD_FACE_CAMERA_POS LIGHTPROBE_SH _ALPHABLEND_ON _DEPTH_NO_MSAA
-          _FADING_ON _FLIPBOOKBLENDING_OFF _MAIN_LIGHT_SHADOWS
-        passType: 0
-      - keywords: _FADING_ON _SOFTPARTICLES_ON
-        passType: 0
-      - keywords: BILLBOARD_FACE_CAMERA_POS LIGHTPROBE_SH _ALPHABLEND_ON _DEPTH_NO_MSAA
-          _FADING_ON _FLIPBOOKBLENDING_OFF _MAIN_LIGHT_SHADOWS _SOFTPARTICLES_ON
-        passType: 0
-      - keywords: _EMISSION
-        passType: 0
-      - keywords: _EMISSION _FADING_ON _SOFTPARTICLES_ON
-        passType: 0
-  - first: {fileID: 4800000, guid: 69c1f799e772cb6438f56c23efccb782, type: 3}
-    second:
-      variants:
-      - keywords: 
-        passType: 8
-      - keywords: _TERRAIN_INSTANCED_PERPIXEL_NORMAL
-        passType: 8
-      - keywords: _MAIN_LIGHT_SHADOWS _TERRAIN_INSTANCED_PERPIXEL_NORMAL
-        passType: 13
-  - first: {fileID: 4800000, guid: 4cce2f9b5aa266749a6fd8a6571787e3, type: 3}
-    second:
-      variants:
-      - keywords: 
-        passType: 0
-  - first: {fileID: 4800000, guid: 8d2bb70cbf9db8d4da26e15b26e74248, type: 3}
-    second:
-      variants:
-      - keywords: 
-        passType: 8
-      - keywords: _MAIN_LIGHT_SHADOWS
-        passType: 13
-  - first: {fileID: 4800000, guid: c721ff85800b87845985c598d8ca7cbe, type: 3}
-    second:
-      variants:
-      - keywords: BILLBOARD_FACE_CAMERA_POS _DEPTH_NO_MSAA _MAIN_LIGHT_SHADOWS _UnityFogEnable
-        passType: 0
-  - first: {fileID: 4800000, guid: 64a3b199fc166974c8b7c7faa441c80f, type: 3}
-    second:
-      variants:
-      - keywords: 
+      - keywords: BILLBOARD_FACE_CAMERA_POS _DEPTH_NO_MSAA _MAIN_LIGHT_SHADOWS
         passType: 13
   - first: {fileID: 4800000, guid: 064a180859b9ff04e847fbe4e848a314, type: 3}
     second:
       variants:
-      - keywords: 
+      - keywords: BILLBOARD_FACE_CAMERA_POS LIGHTPROBE_SH _DEPTH_NO_MSAA _MAIN_LIGHT_SHADOWS
         passType: 0
   - first: {fileID: 4800000, guid: fec7e4da1db584f46878b89e9e1a48d0, type: 3}
     second:
       variants:
-      - keywords: 
+      - keywords: BILLBOARD_FACE_CAMERA_POS LIGHTPROBE_SH _DEPTH_NO_MSAA _MAIN_LIGHT_SHADOWS
         passType: 0
+  - first: {fileID: 4800000, guid: e198026df304af84a85675be636192ea, type: 3}
+    second:
+      variants:
+      - keywords: SHADOWS_DEPTH _CFXR_SINGLE_CHANNEL
+        passType: 8
+      - keywords: SHADOWS_DEPTH _CFXR_DISSOLVE _CFXR_DISSOLVE_ALONG_UV_X _CFXR_OVERLAYBLEND_RGB
+          _CFXR_SINGLE_CHANNEL
+        passType: 8
+      - keywords: _CFXR_DISSOLVE _CFXR_DISSOLVE_ALONG_UV_X _CFXR_OVERLAYBLEND_RGB
+          _CFXR_OVERLAYTEX_OFF _CFXR_SINGLE_CHANNEL
+        passType: 8
+      - keywords: _CFXR_DISSOLVE _CFXR_DISSOLVE_ALONG_UV_X _CFXR_HDR_BOOST _CFXR_OVERLAYBLEND_RGB
+          _CFXR_OVERLAYTEX_OFF _CFXR_SINGLE_CHANNEL
+        passType: 8
+      - keywords: _CFXR_DITHERED_SHADOWS_OFF _CFXR_HDR_BOOST _CFXR_OVERLAYBLEND_RGBA
+          _CFXR_SINGLE_CHANNEL _FADING_ON _OVERLAYTEX_OFF
+        passType: 8
+      - keywords: SHADOWS_DEPTH _CFXR_DITHERED_SHADOWS_ON _CFXR_SINGLE_CHANNEL
+        passType: 8
+      - keywords: _CFXR_DITHERED_SHADOWS_ON _CFXR_HDR_BOOST _CFXR_SINGLE_CHANNEL
+          _FADING_ON
+        passType: 8
+      - keywords: _CFXR_DISSOLVE _CFXR_DISSOLVE_ALONG_UV_X _CFXR_OVERLAYBLEND_RGB
+          _CFXR_SINGLE_CHANNEL
+        passType: 13
+      - keywords: _CFXR_DISSOLVE _CFXR_DISSOLVE_ALONG_UV_X _CFXR_HDR_BOOST _CFXR_OVERLAYBLEND_RGB
+          _CFXR_SINGLE_CHANNEL
+        passType: 13
+      - keywords: _CFXR_HDR_BOOST _CFXR_SINGLE_CHANNEL _FADING_ON
+        passType: 13

@@ -68,96 +68,36 @@ namespace ET
 
             var oneAI = AIConfigCategory.Instance.AIConfigs[self.AIConfigId];
             
-            foreach (var key in oneAI.Keys)
+            foreach (AIConfig aiConfig in oneAI.Values)
             {
-                var value = oneAI[key];
-                AIDispatcherComponent.Instance.AIHandlers.TryGetValue(value.Name, out AAIHandler aaiHandler);
-
+            
+                AIDispatcherComponent.Instance.AIHandlers.TryGetValue(aiConfig.Name, out AAIHandler aaiHandler);
+            
                 if (aaiHandler == null)
                 {
-                    Log.Error($"not found aihandler: {value.Name}");
+                    Log.Error($"not found aihandler: {aiConfig.Name}");
                     continue;
                 }
-
-                int ret = aaiHandler.Check(self, value);
+            
+                int ret = aaiHandler.Check(self, aiConfig);
                 if (ret != 0)
                 {
                     continue;
                 }
-
-                if (self.Current == value.Id)
+            
+                if (self.Current == aiConfig.Id)
                 {
                     break;
                 }
-
+            
                 self.Cancel(); // 取消之前的行为
                 ETCancellationToken cancellationToken = new ETCancellationToken();
                 self.CancellationToken = cancellationToken;
-                self.Current = value.Id;
-
-                aaiHandler.Execute(self, value, cancellationToken).Coroutine();
+                self.Current = aiConfig.Id;
+            
+                aaiHandler.Execute(self, aiConfig, cancellationToken).Coroutine();
                 return;
             }
-            // foreach (var value in oneAI.Values)
-            // {
-            //     AIDispatcherComponent.Instance.AIHandlers.TryGetValue(value.Name, out AAIHandler aaiHandler);
-            //
-            //     if (aaiHandler == null)
-            //     {
-            //         Log.Error($"not found aihandler: {value.Name}");
-            //         continue;
-            //     }
-            //
-            //     int ret = aaiHandler.Check(self, value);
-            //     if (ret != 0)
-            //     {
-            //         continue;
-            //     }
-            //
-            //     if (self.Current == value.Id)
-            //     {
-            //         break;
-            //     }
-            //
-            //     self.Cancel(); // 取消之前的行为
-            //     ETCancellationToken cancellationToken = new ETCancellationToken();
-            //     self.CancellationToken = cancellationToken;
-            //     self.Current = value.Id;
-            //
-            //     aaiHandler.Execute(self, value, cancellationToken).Coroutine();
-            //     return;
-            // }
-
-            // foreach (AIConfig aiConfig in oneAI.Values)
-            // {
-            //
-            //     AIDispatcherComponent.Instance.AIHandlers.TryGetValue(aiConfig.Name, out AAIHandler aaiHandler);
-            //
-            //     if (aaiHandler == null)
-            //     {
-            //         Log.Error($"not found aihandler: {aiConfig.Name}");
-            //         continue;
-            //     }
-            //
-            //     int ret = aaiHandler.Check(self, aiConfig);
-            //     if (ret != 0)
-            //     {
-            //         continue;
-            //     }
-            //
-            //     if (self.Current == aiConfig.Id)
-            //     {
-            //         break;
-            //     }
-            //
-            //     self.Cancel(); // 取消之前的行为
-            //     ETCancellationToken cancellationToken = new ETCancellationToken();
-            //     self.CancellationToken = cancellationToken;
-            //     self.Current = aiConfig.Id;
-            //
-            //     aaiHandler.Execute(self, aiConfig, cancellationToken).Coroutine();
-            //     return;
-            // }
             
         }
 

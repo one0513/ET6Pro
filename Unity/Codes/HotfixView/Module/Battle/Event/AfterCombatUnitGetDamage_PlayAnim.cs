@@ -5,20 +5,17 @@
     {
         protected override void Run(EventType.AfterCombatUnitGetDamage args)
         {
-            var anim = args.Unit.unit.GetComponent<AnimatorComponent>();
-            if (anim != null)
+            var hpViewComponent = args.Unit.unit.GetComponent<HeadHpViewComponent>();
+            if (hpViewComponent != null)
             {
-                if(args.Unit.unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Hp)<=0)
-                {
-                    anim.Play(MotionType.Die);
-                }
-                else
-                    anim.Play(MotionType.Hurt);
+                hpViewComponent.SetHp();
+                args.Unit.unit.ZoneScene().GetComponent<FlyDamageValueViewComponent>().SpawnFlyDamage(args.Unit.unit.Position, args.DamageValue).Coroutine();
+                args.Unit.unit.ZoneScene().GetComponent<FlyDamageValueViewComponent>().SpawnAtkFx(args.Unit.unit).Coroutine();
             }
-            else if(args.Unit.unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Hp)<=0)//直接死了
-            {
-                args.Unit.unit.Dispose();
-            }
+            // else if(args.Unit.unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Hp)<=0)//直接死了
+            // {
+            //     args.Unit.unit.Dispose();
+            // }
             
         }
         

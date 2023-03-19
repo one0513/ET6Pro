@@ -13,6 +13,12 @@ namespace ET
             self.HpBarGroup = gameObject.GetComponent<ReferenceCollector>().GetObject("HpBarGroup") as GameObject;
             self.HpText     = (gameObject.GetComponent<ReferenceCollector>().GetObject("HpText") as GameObject).GetComponent<TextMeshPro>();
             self.HpBar      = (gameObject.GetComponent<ReferenceCollector>().GetObject("HpBar") as GameObject).GetComponent<SpriteRenderer>();
+
+            if (((Unit)self.Parent).Type == UnitType.Player)
+            {
+                self.DidTip = gameObject.GetComponent<ReferenceCollector>().GetObject("DidTip") as GameObject;
+                self.RelifeTimeText     = (gameObject.GetComponent<ReferenceCollector>().GetObject("RelifeTimeText") as GameObject).GetComponent<TextMeshPro>();
+            }
         }
     }
 
@@ -31,11 +37,21 @@ namespace ET
             int MaxHp = numericComponent.GetAsInt(NumericType.MaxHp);
             int Hp    = numericComponent.GetAsInt(NumericType.Hp);
 
+            Hp = Hp < 0? 0 : Hp;
             self.HpText.text = $"{Hp} / {MaxHp}";
             self.HpBar.size = new Vector2((float)Hp / MaxHp, self.HpBar.size.y);
         }
         
-
-
+        public static void SetDieState(this HeadHpViewComponent self,int time)
+        {
+            if (time == 0)
+            {
+                int MaxHp = self.Parent.GetComponent<NumericComponent>().GetAsInt(NumericType.MaxHp);
+                self.Parent.GetComponent<NumericComponent>().SetNoEvent(NumericType.Hp,MaxHp);
+            }
+            self.DidTip?.SetActive(time >0);
+            self.RelifeTimeText.text = $"{time}";
+        }
+        
     }
 }

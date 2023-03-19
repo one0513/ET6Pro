@@ -4,7 +4,7 @@ namespace ET
 {
     public static class DamageCalcuateHelper
     {
-        public static int CalcuateDamageValue(Unit attackUnit,Unit TargetUnit,ref SRandom random)
+        public static int CalcuateDamageValue(Unit attackUnit,Unit TargetUnit)
         {
             int dmg = attackUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Dmg);
             int atk = attackUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Atk);

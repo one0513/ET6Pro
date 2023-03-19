@@ -97,5 +97,7 @@ namespace ET
 		 public const ushort M2C_InitOneRoomPlayerInfo = 10098;
 		 public const ushort M2C_PlayerJoinRoom = 10096;
 		 public const ushort M2C_PlayerOutRoom = 10097;
+		 public const ushort M2C_UpdatePlayerDieTime = 10099;
+		 public const ushort M2C_MonsterDie = 10100;
 	}
 }

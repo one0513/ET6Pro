@@ -13,8 +13,8 @@ namespace ET.Event
             }
 
             SRandom random = args.ZoneScene.CurrentScene().GetComponent<AdventureComponent>().Random;
-            
-            int damage = DamageCalcuateHelper.CalcuateDamageValue(args.AttackUnit, args.TargetUnit, ref random);
+            int damage = 0;
+            //int damage = DamageCalcuateHelper.CalcuateDamageValue(args.AttackUnit, args.TargetUnit, ref random);
             int HP     = args.TargetUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Hp) - damage;
 
             if (HP <= 0)

@@ -24,6 +24,7 @@ namespace ET
 		public UIButton btnRoomList;
 		public UIButton btnOutRoom;
 		public UIButton btnMyRoom;
+		public UIButton btnChangeMap;
 		public Scene scene;
 
 	}

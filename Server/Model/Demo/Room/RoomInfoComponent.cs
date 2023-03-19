@@ -6,5 +6,6 @@ namespace ET
     public class RoomInfoComponent: Entity, IAwake, IDestroy
     {
         public readonly Dictionary<long, RoomInfo> RoomInfos = new Dictionary<long, RoomInfo>();
+        public List<long> onlinePlayerIds = new List<long>();
     }
 }

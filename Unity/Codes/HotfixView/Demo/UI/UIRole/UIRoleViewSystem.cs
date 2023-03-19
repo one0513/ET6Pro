@@ -125,14 +125,7 @@ namespace ET
 		
 		static void AddAtrPoint(this UIRoleView self,int type)
 		{
-			if (self.scene.CurrentScene().GetComponent<AdventureComponent>().isFighting)
-			{
-				Game.EventSystem.PublishAsync(new UIEventType.ShowToast() { Text = "战斗中无法加点" }).Coroutine();
-			}
-			else
-			{
-				NumericHelper.ReqeustAddAttributePoint(self.scene, type).Coroutine();
-			}
+			NumericHelper.ReqeustAddAttributePoint(self.scene, type).Coroutine();
 		}
 	}
 

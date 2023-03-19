@@ -123,3 +123,15 @@ MonoBehaviour:
         PackRuleName: PackDirectory
         FilterRuleName: CollectPrefab
         AssetTags: 
+    - GroupName: fx
+      GroupDesc: 
+      AssetTags: 
+      ActiveRuleName: EnableGroup
+      Collectors:
+      - CollectPath: Assets/AssetsPackage/FX
+        CollectorGUID: c898359650696e9408ed05ecfb4c4d25
+        CollectorType: 0
+        AddressRuleName: AddressByFileName
+        PackRuleName: PackSeparately
+        FilterRuleName: CollectAll
+        AssetTags: 

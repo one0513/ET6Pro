@@ -5,6 +5,7 @@ namespace ET
 {
     [FriendClass(typeof(RoomInfo))]
     [FriendClass(typeof(RoleInfo))]
+    [FriendClass(typeof(AIComponent))]
     public class C2M_OutBattleRoomHandler: AMActorLocationRpcHandler<Unit, C2M_OutBattleRoom, M2C_OutBattleRoom>
     {
         protected override async ETTask Run(Unit unit, C2M_OutBattleRoom request, M2C_OutBattleRoom response, Action reply)
@@ -19,7 +20,8 @@ namespace ET
                 reply();
                 return;
             }
-
+            unit.RemoveComponent<BattleUnitFindComponent>();
+            unit.GetComponent<AIComponent>().Current = 0;
             RoomInfo info =  await unit.DomainScene().GetComponent<RoomInfoComponent>().Get(roomId);
             if (info != null)
             {
@@ -32,7 +34,10 @@ namespace ET
                     
                     List<long> monsterIdsList =  unit.DomainScene().GetComponent<MonsterFactoryComponent>().Get(roomId);
                     M2C_RemoveUnits m2CRemoveUnits = new M2C_RemoveUnits();
-                    m2CRemoveUnits.Units = monsterIdsList;
+                    for (int i = 0; i < monsterIdsList.Count; i++)
+                    {
+                        m2CRemoveUnits.Units.Add(monsterIdsList[i]);
+                    }
                     foreach (var unitId in info.playerList)
                     {
                         Unit player = unit.DomainScene().GetComponent<UnitComponent>().Get(unitId);
@@ -60,7 +65,10 @@ namespace ET
                     num.Set(NumericType.RoomID,0);
                     List<long> monsterIdsList =  unit.DomainScene().GetComponent<MonsterFactoryComponent>().Get(roomId);
                     M2C_RemoveUnits m2CRemoveUnits = new M2C_RemoveUnits();
-                    m2CRemoveUnits.Units = monsterIdsList;
+                    for (int i = 0; i < monsterIdsList.Count; i++)
+                    {
+                        m2CRemoveUnits.Units.Add(monsterIdsList[i]);
+                    }
                     MessageHelper.SendToClient(unit,m2CRemoveUnits);
                     for (int i = 0; i < monsterIdsList.Count; i++)
                     {

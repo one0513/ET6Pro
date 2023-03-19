@@ -756,3 +756,14 @@ message M2C_PlayerOutRoom // IActorMessage
 {
 	UnitInfo UnitInfo = 1;
 }
+
+message M2C_UpdatePlayerDieTime // IActorMessage
+{
+	int32 relifeTime = 1;
+	int64 UnitId = 2;
+}
+
+message M2C_MonsterDie // IActorMessage
+{
+	repeated int64 UnitIds = 1;
+}

@@ -45,6 +45,7 @@ namespace ET
 	        
 		    unit.AddComponent<ObjectWait>();
 		    unit.AddComponent<MoveComponent>();
+		    unit.AddComponent<CombatUnitComponent>();
 	        
 		    Game.EventSystem.PublishAsync(new EventType.AfterUnitCreate() {Unit = unit}).Coroutine();
 		    return unit;
@@ -64,6 +65,7 @@ namespace ET
 	        
 		    unit.AddComponent<ObjectWait>();
 		    unit.AddComponent<MoveComponent>();
+		    unit.AddComponent<CombatUnitComponent>();
 		    unit.Position = new Vector3(unitInfo.X, 0, unitInfo.Z);
 	        
 		    Game.EventSystem.PublishAsync(new EventType.AfterUnitCreate() {Unit = unit}).Coroutine();
@@ -86,6 +88,7 @@ namespace ET
 	        
 			    unit.AddComponent<ObjectWait>();
 			    unit.AddComponent<MoveComponent>();
+			    unit.AddComponent<CombatUnitComponent>();
 			    unit.Position = new Vector3(unitInfo.X, 0, unitInfo.Z);
 	        
 			    Game.EventSystem.PublishAsync(new EventType.AfterUnitCreate() {Unit = unit}).Coroutine();

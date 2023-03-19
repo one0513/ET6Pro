@@ -181,6 +181,10 @@ namespace ET
             numericComponent.SetNoEvent(NumericType.Atk,unit.Config.Atk);
             numericComponent.SetNoEvent(NumericType.Def,unit.Config.Def);
             numericComponent.SetNoEvent(NumericType.IsAlive,1);
+            numericComponent.SetNoEvent(NumericType.Lv,unit.Config.Lv);
+            numericComponent.SetNoEvent(NumericType.ATKRage,unit.Config.ATKRage);
+            numericComponent.SetNoEvent(NumericType.ATKSpeed,unit.Config.ATKSpeed);
+            numericComponent.SetNoEvent(NumericType.Speed,unit.Config.Speed);
             numericComponent.SetNoEvent(NumericType.RoomID,roomId);
             
             unitComponent.Add(unit);

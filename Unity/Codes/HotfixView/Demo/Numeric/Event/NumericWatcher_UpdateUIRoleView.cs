@@ -6,7 +6,7 @@ namespace ET
     [NumericWatcher(NumericType.AttributePoint)]
     [NumericWatcher(NumericType.Atk)]
     [NumericWatcher(NumericType.Def)]
-    [NumericWatcher(NumericType.Hp)]
+    [NumericWatcher(NumericType.MaxHp)]
     [NumericWatcher(NumericType.Dmg)]
     [NumericWatcher(NumericType.CE)]
     public class NumericWatcher_UpdateUIRoleView: INumericWatcher
@@ -14,6 +14,7 @@ namespace ET
         public void Run(NumbericChange args)
         {
             UIManagerComponent.Instance.GetWindow<UIRoleView>()?.UpdateView();
+            UIManagerComponent.Instance.GetWindow<UIMainView>()?.UpdateView();
         }
     }
 }

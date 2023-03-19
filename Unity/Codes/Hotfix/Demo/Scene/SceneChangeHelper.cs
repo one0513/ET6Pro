@@ -23,12 +23,12 @@
             M2C_CreateMyUnit m2CCreateMyUnit = waitCreateMyUnit.Message;
             Unit myUnit = UnitFactory.CreatePlayer(currentScene, m2CCreateMyUnit.Unit);
 
-            if (myUnit.GetComponent<NumericComponent>().GetAsLong(NumericType.RoomID) != 0)
-            {
-                WaitType.Wait_InitMonsterInfoList waitInitMonsterInfoList = await zoneScene.GetComponent<ObjectWait>().Wait<WaitType.Wait_InitMonsterInfoList>();
-                M2C_InitMonsterInfoList m2CInitMonsterInfoList = waitInitMonsterInfoList.Message;
-                UnitFactory.InitMonsterList(currentScene, m2CInitMonsterInfoList.UnitList);
-            }
+            // if (myUnit.GetComponent<NumericComponent>().GetAsLong(NumericType.RoomID) != 0)
+            // {
+            //     WaitType.Wait_InitMonsterInfoList waitInitMonsterInfoList = await zoneScene.GetComponent<ObjectWait>().Wait<WaitType.Wait_InitMonsterInfoList>();
+            //     M2C_InitMonsterInfoList m2CInitMonsterInfoList = waitInitMonsterInfoList.Message;
+            //     UnitFactory.InitMonsterList(currentScene, m2CInitMonsterInfoList.UnitList);
+            // }
             
             Game.EventSystem.PublishAsync(new EventType.SceneChangeFinish() {ZoneScene = zoneScene, CurrentScene = currentScene}).Coroutine();
             

@@ -24,7 +24,7 @@ namespace ET
                 int now = t.GetAsInt(NumericType.Hp);
                 //由于考虑ghost回血加血时序不一定一致，所以允许生命为负值
                 int nowBaseValue = now - realValue;
-                t.Set(NumericType.HpBase, nowBaseValue);
+                t.Set(NumericType.Hp, nowBaseValue);
                 Log.Info(to.DomainScene().Name+" "+to.Id+" "+nowBaseValue);
                 if (broadcast)
                 {
@@ -37,6 +37,12 @@ namespace ET
                         NowBaseValue = nowBaseValue,
                         Ghost = ghost,
                     });
+
+                    //怪物死亡 人物等待复活
+                    if (nowBaseValue <= 0)
+                    {
+                        tU.DomainScene().GetComponent<MonsterFactoryComponent>().OnUnitDie(tU).Coroutine();
+                    }
                 }
             }
             buffT.AfterDamage(fU, tU, info);

@@ -2,26 +2,33 @@
 
 namespace ET
 {
+    [FriendClass(typeof(RoomInfo))]
+    [FriendClass(typeof(AIComponent))]
     public class C2M_StartGameLvelHandler : AMActorLocationRpcHandler<Unit,C2M_StartGameLevel,M2C_StartGameLevel>
     {
         protected override async ETTask Run(Unit unit, C2M_StartGameLevel request, M2C_StartGameLevel response, Action reply)
         {
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 
-            if ( numericComponent.GetAsInt(NumericType.AdventureState) != 0 )
+            long roomId = numericComponent.GetAsLong(NumericType.RoomID);
+            if (roomId == 0)
             {
-                response.Error = ErrorCode.ERR_AlreadyAdventureState;
+                response.Error = ErrorCode.ERR_NotInRoom;
                 reply();
                 return;
             }
-            
-            numericComponent.Set(NumericType.AdventureState, 1);
-            numericComponent.Set(NumericType.CurLevel, request.LevelId);
-            numericComponent.Set(NumericType.AdventureStartTime,TimeHelper.ServerNow());
-            //设置本次战斗的随机种子，保证客户端的战斗中的每次随机产生的数能在服务器端复现
-            numericComponent.Set(NumericType.BattleRandomSeed,RandomHelper.RandUInt32());
-            
             reply();
+            unit.DomainScene().GetComponent<MonsterFactoryComponent>().CreateLevelMonster(roomId, request.LevelId).Coroutine();
+            var roomInfo =  await unit.DomainScene().GetComponent<RoomInfoComponent>().Get(roomId);
+            foreach (var playerId in roomInfo.playerList)
+            {
+                if (unit.DomainScene().GetComponent<UnitComponent>().Get(playerId) != null)
+                {
+                    unit.DomainScene().GetComponent<UnitComponent>().Get(playerId).GetComponent<AIComponent>().Current = 0;
+                }
+                
+            }
+            
             await ETTask.CompletedTask;
         }
     }

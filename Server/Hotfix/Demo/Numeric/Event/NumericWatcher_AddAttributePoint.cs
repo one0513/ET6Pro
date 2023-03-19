@@ -5,7 +5,7 @@ namespace ET
 
     [NumericWatcher(NumericType.Atk)]
     [NumericWatcher(NumericType.Def)]
-    [NumericWatcher(NumericType.Hp)]
+    [NumericWatcher(NumericType.MaxHp)]
     [NumericWatcher(NumericType.Dmg)]
     public class NumericWatcher_AddAttributePoint : INumericWatcher
     {
@@ -22,7 +22,7 @@ namespace ET
                 
                 unit.GetComponent<NumericComponent>()[NumericType.CE] += (args.New -args.Old) * 5;
             }
-            if (args.NumericType == NumericType.Hp)
+            if (args.NumericType == NumericType.MaxHp)
             {
                 unit.GetComponent<NumericComponent>()[NumericType.CE] += (args.New -args.Old) * 1;
             }

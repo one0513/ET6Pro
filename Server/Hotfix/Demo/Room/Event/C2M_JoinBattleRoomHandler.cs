@@ -5,6 +5,7 @@ using UnityEngine;
 namespace ET
 {
     [FriendClass(typeof(RoomInfo))]
+    [FriendClass(typeof(AIComponent))]
     public class C2M_JoinBattleRoomHandler: AMActorLocationRpcHandler<Unit, C2M_JoinBattleRoom, M2C_JoinBattleRoom>
     {
         protected override async ETTask Run(Unit unit, C2M_JoinBattleRoom request, M2C_JoinBattleRoom response, Action reply)
@@ -33,13 +34,17 @@ namespace ET
                 reply();
                 return;
             }
+
+            roomId = request.RoomId;
+            unit.AddComponent<BattleUnitFindComponent, long>(roomId);
+            unit.GetComponent<AIComponent>().Current = 0;
             info.playerList.Add(unit.Id);
             info.RoomPlayerNum += 1;
             num.Set(NumericType.RoomID,request.RoomId);
 
             reply();
-            //todo: 初始化队友和怪物
-            M2C_CreateUnits m2CCreateUnits = new M2C_CreateUnits();
+            //初始化队友和怪物
+            M2C_CreateUnits m2CCreateOtherUnits = new M2C_CreateUnits();
             foreach (var unitId in info.playerList)
             {
                 Unit otherPlayer = unit.DomainScene().GetComponent<UnitComponent>().Get(unitId);
@@ -50,31 +55,21 @@ namespace ET
                     m2CCreateMyUnit.Units.Add(UnitHelper.CreateUnitInfo(unit));
                     MessageHelper.SendToClient(otherPlayer,m2CCreateMyUnit);
                     
-                    m2CCreateUnits.Units.Add(UnitHelper.CreateUnitInfo(otherPlayer));
+                    m2CCreateOtherUnits.Units.Add(UnitHelper.CreateUnitInfo(otherPlayer));
                 }
             }
+            MessageHelper.SendToClient(unit,m2CCreateOtherUnits);
+            
             List<long> monsterIds = unit.DomainScene().GetComponent<MonsterFactoryComponent>().Get(info.RoomId);
             if (monsterIds != null && monsterIds.Count > 0)
             {
-                for (int i = 0; i < monsterIds.Count; i++)
-                {
-                    m2CCreateUnits.Units.Add(UnitHelper.CreateUnitInfo(unit.DomainScene().GetComponent<UnitComponent>().Get(monsterIds[i])));
-                }
+                await unit.DomainScene().GetComponent<MonsterFactoryComponent>().InitRoomMonster(roomId,unit);
             }
-            else
+            else //重启服务器 队友和怪物都被移除
             {
-                for (int i = 0; i < 3; i++)
-                {
-                    Unit monster = unit.DomainScene().GetComponent<MonsterFactoryComponent>().CreateMonsterUnit(info.RoomId);
-
-                    monster.AddComponent<BattleUnitFindComponent, long>(info.RoomId);
-                    monster.Position = new Vector3(i + 1, 0, i + 1);
-                    m2CCreateUnits.Units.Add(UnitHelper.CreateUnitInfo(monster));
-                }
+                await unit.DomainScene().GetComponent<MonsterFactoryComponent>().CreateLevelMonster(roomId, 1);
             }
-            MessageHelper.SendToClient(unit,m2CCreateUnits);
-            
-            await DBManagerComponent.Instance.GetZoneDB(unit.DomainZone()).Save<RoomInfo>(info);
+            DBManagerComponent.Instance.GetZoneDB(unit.DomainZone()).Save<RoomInfo>(info).Coroutine();
             
         }
     }

@@ -10,8 +10,8 @@ namespace ET
 		{
 			Unit unit = session.DomainScene().CurrentScene().GetComponent<UnitComponent>().Get(message.Id);
 
-			//float speed = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Speed);
-			float speed = 2;
+			float speed = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Speed);
+			//float speed = 2;
 			using (ListComponent<Vector3> list = ListComponent<Vector3>.Create())
 			{
 				for (int i = 0; i < message.Xs.Count; ++i)

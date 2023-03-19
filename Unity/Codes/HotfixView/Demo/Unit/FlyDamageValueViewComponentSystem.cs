@@ -1,6 +1,6 @@
-﻿using DG.Tweening;
+﻿using System;
+using DG.Tweening;
 using TMPro;
-using UnityEditor.UI;
 using UnityEngine;
 
 namespace ET
@@ -36,9 +36,16 @@ namespace ET
         {
             GameObject bundleGameObject =  AssetsBundleHelper.LoadOneAssetSync("flyDamageValue") as GameObject;
             
-            //GameObject go = UnityEngine.Object.Instantiate(bundleGameObject);
-            
             await GameObjectPoolHelper.InitPoolFormGamObjectAsync(bundleGameObject ,3);
+            
+            //特效暂时写在这里
+            GameObject iceAtk =  AssetsBundleHelper.LoadOneAssetSync("iceAtk") as GameObject;
+            
+            await GameObjectPoolHelper.InitPoolFormGamObjectAsync(iceAtk ,3);
+            
+            GameObject fireAtk =  AssetsBundleHelper.LoadOneAssetSync("fireAtk") as GameObject;
+            
+            await GameObjectPoolHelper.InitPoolFormGamObjectAsync(fireAtk ,3);
         }
         
         
@@ -59,6 +66,34 @@ namespace ET
                 GameObjectPoolHelper.ReturnObjectToPool(flyDamageValueGameObject);
             };
             await ETTask.CompletedTask;
+        }
+        
+        public static async ETTask SpawnAtkFx(this FlyDamageValueViewComponent self,Unit toUnit)
+        {
+            GameObject fx = null;
+            if (toUnit.Type == UnitType.Player)
+            {
+                fx = GameObjectPoolHelper.GetObjectFromPool("iceAtk");
+            }
+            else
+            {
+                fx = GameObjectPoolHelper.GetObjectFromPool("fireAtk");
+            }
+
+            try
+            {
+                fx.transform.SetParent(toUnit.GetComponent<GameObjectComponent>().GameObject.transform);
+                fx.transform.localPosition = Vector3.zero;
+                fx.SetActive(true);
+            
+                await TimerComponent.Instance.WaitAsync(1000);
+                fx.SetActive(false);
+                GameObjectPoolHelper.ReturnObjectToPool(fx);
+            }
+            catch (Exception e)
+            {
+               Debug.Log(e.ToString());
+            }
         }
         
     }

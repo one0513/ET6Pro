@@ -10,6 +10,10 @@ namespace ET
         public void Add(Action callback)
         {
             // 如果action是null，绝对不能添加,要抛异常，说明有协程泄漏
+            if (this.actions == null)//不知道哪里泄漏了 先直接返回
+            {
+                return;
+            }
             this.actions.Add(callback);
         }
         

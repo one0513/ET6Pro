@@ -63,6 +63,12 @@ namespace ET
                     __Map.Add("AOIBase",AOIBase);
                     __Map.Add("RoomID",RoomID);
                     __Map.Add("RoomIDBase",RoomIDBase);
+                    __Map.Add("ATKSpeed",ATKSpeed);
+                    __Map.Add("ATKSpeedBase",ATKSpeedBase);
+                    __Map.Add("ATKRage",ATKRage);
+                    __Map.Add("ATKRageBase",ATKRageBase);
+                    __Map.Add("RestartTime",RestartTime);
+                    __Map.Add("RestartTimeBase",RestartTimeBase);
                 }
                 return __Map;
             }
@@ -168,5 +174,20 @@ namespace ET
 		public const int RoomID = 3020;
 		/// <summary> 小队IDBase </summary>
 		public const int RoomIDBase = 3020 * 10 + 1;
+
+		/// <summary> 攻击速度 </summary>
+		public const int ATKSpeed = 3021;
+		/// <summary> 攻击速度Base </summary>
+		public const int ATKSpeedBase = 3021 * 10 + 1;
+
+		/// <summary> 攻击范围 </summary>
+		public const int ATKRage = 3022;
+		/// <summary> 攻击范围Base </summary>
+		public const int ATKRageBase = 3022 * 10 + 1;
+
+		/// <summary> 复活时间 </summary>
+		public const int RestartTime = 3023;
+		/// <summary> 复活时间Base </summary>
+		public const int RestartTimeBase = 3023 * 10 + 1;
     }
 }

@@ -61,6 +61,15 @@ namespace ET
 
 			if (errorcode != ErrorCode.ERR_Success)
 			{
+				if (errorcode == ErrorCode.ERR_AccountMessaFormatError)
+				{
+					Game.EventSystem.PublishAsync(new UIEventType.ShowToast() { Text = "请输入6位以上的账号密码" }).Coroutine();
+				}
+				else
+				{
+					Game.EventSystem.PublishAsync(new UIEventType.ShowToast() { Text = "账号或密码错误" }).Coroutine();
+				}
+				
 				return;
 			}
 

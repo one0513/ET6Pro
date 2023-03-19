@@ -43,7 +43,7 @@ namespace ET
             {
                 targetAttributeCount += 5;
             }
-            else if(targetNumericType == NumericType.Hp)
+            else if(targetNumericType == NumericType.MaxHp)
             {
                 targetAttributeCount += 20;
             }   

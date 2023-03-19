@@ -1,0 +1,370 @@
+{
+    "ShaderTotalCount": 18,
+    "VariantTotalCount": 33,
+    "ShaderVariantInfos": [
+        {
+            "AssetPath": "Resources/unity_builtin_extra",
+            "ShaderName": "Hidden/BlitCopy",
+            "ShaderVariantElements": [
+                {
+                    "PassType": 0,
+                    "Keywords": [
+                        ""
+                    ]
+                }
+            ]
+        },
+        {
+            "AssetPath": "Resources/unity_builtin_extra",
+            "ShaderName": "Skybox/Procedural",
+            "ShaderVariantElements": [
+                {
+                    "PassType": 0,
+                    "Keywords": [
+                        "BILLBOARD_FACE_CAMERA_POS",
+                        "_DEPTH_NO_MSAA",
+                        "_SUNDISK_SIMPLE"
+                    ]
+                },
+                {
+                    "PassType": 0,
+                    "Keywords": [
+                        "BILLBOARD_FACE_CAMERA_POS",
+                        "_DEPTH_NO_MSAA",
+                        "_MAIN_LIGHT_SHADOWS",
+                        "_SUNDISK_SIMPLE"
+                    ]
+                }
+            ]
+        },
+        {
+            "AssetPath": "Resources/unity_builtin_extra",
+            "ShaderName": "Hidden/Internal-GUITextureClip",
+            "ShaderVariantElements": [
+                {
+                    "PassType": 0,
+                    "Keywords": [
+                        ""
+                    ]
+                }
+            ]
+        },
+        {
+            "AssetPath": "Resources/unity_builtin_extra",
+            "ShaderName": "Hidden/Internal-GUITextureClipText",
+            "ShaderVariantElements": [
+                {
+                    "PassType": 0,
+                    "Keywords": [
+                        ""
+                    ]
+                }
+            ]
+        },
+        {
+            "AssetPath": "Resources/unity_builtin_extra",
+            "ShaderName": "Hidden/Internal-GUITexture",
+            "ShaderVariantElements": [
+                {
+                    "PassType": 0,
+                    "Keywords": [
+                        ""
+                    ]
+                }
+            ]
+        },
+        {
+            "AssetPath": "Resources/unity_builtin_extra",
+            "ShaderName": "Hidden/Internal-GUITextureBlit",
+            "ShaderVariantElements": [
+                {
+                    "PassType": 0,
+                    "Keywords": [
+                        ""
+                    ]
+                }
+            ]
+        },
+        {
+            "AssetPath": "Resources/unity_builtin_extra",
+            "ShaderName": "Hidden/Internal-GUIRoundedRect",
+            "ShaderVariantElements": [
+                {
+                    "PassType": 0,
+                    "Keywords": [
+                        ""
+                    ]
+                }
+            ]
+        },
+        {
+            "AssetPath": "Resources/unity_builtin_extra",
+            "ShaderName": "Hidden/Internal-GUIRoundedRectWithColorPerBorder",
+            "ShaderVariantElements": [
+                {
+                    "PassType": 0,
+                    "Keywords": [
+                        ""
+                    ]
+                }
+            ]
+        },
+        {
+            "AssetPath": "Resources/unity_builtin_extra",
+            "ShaderName": "Hidden/Internal-UIRAtlasBlitCopy",
+            "ShaderVariantElements": [
+                {
+                    "PassType": 0,
+                    "Keywords": [
+                        ""
+                    ]
+                }
+            ]
+        },
+        {
+            "AssetPath": "Resources/unity_builtin_extra",
+            "ShaderName": "Hidden/UIElements/EditorUIE",
+            "ShaderVariantElements": [
+                {
+                    "PassType": 0,
+                    "Keywords": [
+                        "BILLBOARD_FACE_CAMERA_POS",
+                        "_DEPTH_NO_MSAA"
+                    ]
+                },
+                {
+                    "PassType": 0,
+                    "Keywords": [
+                        "BILLBOARD_FACE_CAMERA_POS",
+                        "_DEPTH_NO_MSAA",
+                        "_MAIN_LIGHT_SHADOWS"
+                    ]
+                }
+            ]
+        },
+        {
+            "AssetPath": "Resources/unity_builtin_extra",
+            "ShaderName": "Sprites/Default",
+            "ShaderVariantElements": [
+                {
+                    "PassType": 0,
+                    "Keywords": [
+                        "ETC1_EXTERNAL_ALPHA"
+                    ]
+                }
+            ]
+        },
+        {
+            "AssetPath": "Packages/com.unity.render-pipelines.universal/Shaders/Utils/Blit.shader",
+            "ShaderName": "Hidden/Universal Render Pipeline/Blit",
+            "ShaderVariantElements": [
+                {
+                    "PassType": 0,
+                    "Keywords": [
+                        "BILLBOARD_FACE_CAMERA_POS",
+                        "_DEPTH_NO_MSAA"
+                    ]
+                },
+                {
+                    "PassType": 0,
+                    "Keywords": [
+                        "BILLBOARD_FACE_CAMERA_POS",
+                        "_DEPTH_NO_MSAA",
+                        "_MAIN_LIGHT_SHADOWS"
+                    ]
+                }
+            ]
+        },
+        {
+            "AssetPath": "Packages/com.unity.render-pipelines.universal/Shaders/Utils/CopyDepth.shader",
+            "ShaderName": "Hidden/Universal Render Pipeline/CopyDepth",
+            "ShaderVariantElements": [
+                {
+                    "PassType": 0,
+                    "Keywords": [
+                        "BILLBOARD_FACE_CAMERA_POS",
+                        "_DEPTH_NO_MSAA"
+                    ]
+                },
+                {
+                    "PassType": 0,
+                    "Keywords": [
+                        "BILLBOARD_FACE_CAMERA_POS",
+                        "_DEPTH_NO_MSAA",
+                        "_MAIN_LIGHT_SHADOWS"
+                    ]
+                }
+            ]
+        },
+        {
+            "AssetPath": "Packages/com.unity.render-pipelines.universal/Shaders/Utils/Sampling.shader",
+            "ShaderName": "Hidden/Universal Render Pipeline/Sampling",
+            "ShaderVariantElements": [
+                {
+                    "PassType": 0,
+                    "Keywords": [
+                        "BILLBOARD_FACE_CAMERA_POS",
+                        "_DEPTH_NO_MSAA"
+                    ]
+                },
+                {
+                    "PassType": 0,
+                    "Keywords": [
+                        "BILLBOARD_FACE_CAMERA_POS",
+                        "_DEPTH_NO_MSAA",
+                        "_MAIN_LIGHT_SHADOWS"
+                    ]
+                }
+            ]
+        },
+        {
+            "AssetPath": "Packages/com.unity.render-pipelines.universal/Shaders/Lit.shader",
+            "ShaderName": "Universal Render Pipeline/Lit",
+            "ShaderVariantElements": [
+                {
+                    "PassType": 8,
+                    "Keywords": [
+                        ""
+                    ]
+                },
+                {
+                    "PassType": 13,
+                    "Keywords": [
+                        "BILLBOARD_FACE_CAMERA_POS",
+                        "_DEPTH_NO_MSAA",
+                        "_MAIN_LIGHT_SHADOWS"
+                    ]
+                }
+            ]
+        },
+        {
+            "AssetPath": "Assets/AssetsPackage/UI/UIGuidance/Shaders/CircleMaskShader.shader",
+            "ShaderName": "Mask/CircleMaskShader",
+            "ShaderVariantElements": [
+                {
+                    "PassType": 0,
+                    "Keywords": [
+                        "BILLBOARD_FACE_CAMERA_POS",
+                        "LIGHTPROBE_SH",
+                        "_DEPTH_NO_MSAA",
+                        "_MAIN_LIGHT_SHADOWS"
+                    ]
+                }
+            ]
+        },
+        {
+            "AssetPath": "Assets/AssetsPackage/UI/UIGuidance/Shaders/RectMaskShader.shader",
+            "ShaderName": "Mask/RectMaskShader",
+            "ShaderVariantElements": [
+                {
+                    "PassType": 0,
+                    "Keywords": [
+                        "BILLBOARD_FACE_CAMERA_POS",
+                        "LIGHTPROBE_SH",
+                        "_DEPTH_NO_MSAA",
+                        "_MAIN_LIGHT_SHADOWS"
+                    ]
+                }
+            ]
+        },
+        {
+            "AssetPath": "Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Shaders/CFXR Particle Ubershader.shader",
+            "ShaderName": "Cartoon FX/Remaster/Particle Ubershader",
+            "ShaderVariantElements": [
+                {
+                    "PassType": 8,
+                    "Keywords": [
+                        "SHADOWS_DEPTH",
+                        "_CFXR_SINGLE_CHANNEL"
+                    ]
+                },
+                {
+                    "PassType": 8,
+                    "Keywords": [
+                        "SHADOWS_DEPTH",
+                        "_CFXR_DISSOLVE",
+                        "_CFXR_DISSOLVE_ALONG_UV_X",
+                        "_CFXR_OVERLAYBLEND_RGB",
+                        "_CFXR_SINGLE_CHANNEL"
+                    ]
+                },
+                {
+                    "PassType": 8,
+                    "Keywords": [
+                        "_CFXR_DISSOLVE",
+                        "_CFXR_DISSOLVE_ALONG_UV_X",
+                        "_CFXR_OVERLAYBLEND_RGB",
+                        "_CFXR_OVERLAYTEX_OFF",
+                        "_CFXR_SINGLE_CHANNEL"
+                    ]
+                },
+                {
+                    "PassType": 8,
+                    "Keywords": [
+                        "_CFXR_DISSOLVE",
+                        "_CFXR_DISSOLVE_ALONG_UV_X",
+                        "_CFXR_HDR_BOOST",
+                        "_CFXR_OVERLAYBLEND_RGB",
+                        "_CFXR_OVERLAYTEX_OFF",
+                        "_CFXR_SINGLE_CHANNEL"
+                    ]
+                },
+                {
+                    "PassType": 8,
+                    "Keywords": [
+                        "_CFXR_DITHERED_SHADOWS_OFF",
+                        "_CFXR_HDR_BOOST",
+                        "_CFXR_OVERLAYBLEND_RGBA",
+                        "_CFXR_SINGLE_CHANNEL",
+                        "_FADING_ON",
+                        "_OVERLAYTEX_OFF"
+                    ]
+                },
+                {
+                    "PassType": 8,
+                    "Keywords": [
+                        "SHADOWS_DEPTH",
+                        "_CFXR_DITHERED_SHADOWS_ON",
+                        "_CFXR_SINGLE_CHANNEL"
+                    ]
+                },
+                {
+                    "PassType": 8,
+                    "Keywords": [
+                        "_CFXR_DITHERED_SHADOWS_ON",
+                        "_CFXR_HDR_BOOST",
+                        "_CFXR_SINGLE_CHANNEL",
+                        "_FADING_ON"
+                    ]
+                },
+                {
+                    "PassType": 13,
+                    "Keywords": [
+                        "_CFXR_DISSOLVE",
+                        "_CFXR_DISSOLVE_ALONG_UV_X",
+                        "_CFXR_OVERLAYBLEND_RGB",
+                        "_CFXR_SINGLE_CHANNEL"
+                    ]
+                },
+                {
+                    "PassType": 13,
+                    "Keywords": [
+                        "_CFXR_DISSOLVE",
+                        "_CFXR_DISSOLVE_ALONG_UV_X",
+                        "_CFXR_HDR_BOOST",
+                        "_CFXR_OVERLAYBLEND_RGB",
+                        "_CFXR_SINGLE_CHANNEL"
+                    ]
+                },
+                {
+                    "PassType": 13,
+                    "Keywords": [
+                        "_CFXR_HDR_BOOST",
+                        "_CFXR_SINGLE_CHANNEL",
+                        "_FADING_ON"
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1511,4 +1511,25 @@ namespace ET
 
 	}
 
+	[Message(OuterOpcode.M2C_UpdatePlayerDieTime)]
+	[ProtoContract]
+	public partial class M2C_UpdatePlayerDieTime: Object, IActorMessage
+	{
+		[ProtoMember(1)]
+		public int relifeTime { get; set; }
+
+		[ProtoMember(2)]
+		public long UnitId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_MonsterDie)]
+	[ProtoContract]
+	public partial class M2C_MonsterDie: Object, IActorMessage
+	{
+		[ProtoMember(1)]
+		public List<long> UnitIds = new List<long>();
+
+	}
+
 }

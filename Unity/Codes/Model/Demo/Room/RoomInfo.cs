@@ -17,7 +17,9 @@ namespace ET
         public int RoomPlayerNum = 0;
 
         public List<long> playerList = new List<long>();
-        
+
+        public int curLevel = 1;//该房间当前所在地图ID
+
     }
 
     
