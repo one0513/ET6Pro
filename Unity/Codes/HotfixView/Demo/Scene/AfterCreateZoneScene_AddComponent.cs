@@ -6,6 +6,7 @@ namespace ET
         {
             Scene zoneScene = args.ZoneScene;
             zoneScene.AddComponent<FlyDamageValueViewComponent>();
+            zoneScene.AddComponent<EffectComponent>();
         }
     }
 }

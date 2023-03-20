@@ -58,15 +58,15 @@ namespace ET
             //通知创建关卡新怪物
             BattleLevelConfig cfg = BattleLevelConfigCategory.Instance.Get(levelId);
             M2C_CreateUnits m2CCreateUnits = new M2C_CreateUnits();
-            foreach (var cfgId in cfg.MonsterIds)
+            for (int i = 0; i < cfg.MonsterIds.Length; i++)
             {
-                Unit monsterUnit = UnitFactory.CreateMonster(self.DomainScene(),roomId,cfgId);
-                int r = RandomHelper.RandomNumber(0, self.randomPos.Count);
-                monsterUnit.Position = self.randomPos[r];
+                Unit monsterUnit = UnitFactory.CreateMonster(self.DomainScene(),roomId,cfg.MonsterIds[i]);
+                monsterUnit.Position = self.randomPos[i];
                 self.Add(roomId,monsterUnit.Id);
                 monsterUnit.AddComponent<BattleUnitFindComponent, long>(roomId);
                 m2CCreateUnits.Units.Add(UnitHelper.CreateUnitInfo(monsterUnit));
             }
+
             MessageHelper.RoomBroadcastAll(self.DomainScene().GetComponent<UnitComponent>().Get(self.roomIdAndEnemyId[roomId][0]),m2CCreateUnits);
             self.DomainScene().GetComponent<RoomInfoComponent>().SaveRoomCurLevel(roomId,levelId);
             

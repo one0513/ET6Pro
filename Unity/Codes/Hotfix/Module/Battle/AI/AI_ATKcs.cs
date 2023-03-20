@@ -14,11 +14,11 @@
                 return 1;
             }
 
-            if (myUnit.Type != UnitType.Player && myUnit.Position != myUnit.OldPosition)
-            {
-                Log.Info("moving");
-                return 2;
-            }
+            // if (myUnit.Type != UnitType.Player && myUnit.Position != myUnit.OldPosition)
+            // {
+            //     Log.Info("moving");
+            //     return 2;
+            // }
             BattleUnitFindComponent battleUnitFind = myUnit.GetComponent<BattleUnitFindComponent>();
             if (battleUnitFind == null)
             {
@@ -38,7 +38,7 @@
 
             if (myUnit.Type == UnitType.Player)
             {
-                if (battleUnitFind.GetNearestMonsetr() != null)
+                if (battleUnitFind.HasLifeMonsetr() != null)
                 {
                     return 0;
                 }
@@ -63,22 +63,22 @@
                 return;
             }
             
+            
             for (int i = 0; i < 100000; ++i)
             {
                 BattleUnitFindComponent battleUnitFind = myUnit.GetComponent<BattleUnitFindComponent>();
                 Unit target = null;
                 if (myUnit.Type ==UnitType.Player)
                 {
-                    target = battleUnitFind.GetNearestMonsetr();
-                    if (target == null)
-                    {
-                        return;
-                    }
-                    
+                    target = battleUnitFind.HasLifeMonsetr();
                 }
                 else
                 {
-                    target = battleUnitFind.GetNearestPlayer().GetResult();
+                    target = battleUnitFind.HasLifePlayer();
+                }
+                if (target == null)
+                {
+                    return;
                 }
                 
                 Log.Debug($"攻击: {i}次");

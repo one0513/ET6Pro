@@ -30,16 +30,22 @@ namespace ET
             self.HpBarGroup?.SetActive(isVisible);
         }
 
-        public static void SetHp(this HeadHpViewComponent self)
+        public static async ETTask SetHp(this HeadHpViewComponent self)
         {
+            
             NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
 
             int MaxHp = numericComponent.GetAsInt(NumericType.MaxHp);
             int Hp    = numericComponent.GetAsInt(NumericType.Hp);
 
             Hp = Hp < 0? 0 : Hp;
+            if (Hp != MaxHp)
+            {
+                await TimerComponent.Instance.WaitAsync(1000);
+            }
             self.HpText.text = $"{Hp} / {MaxHp}";
             self.HpBar.size = new Vector2((float)Hp / MaxHp, self.HpBar.size.y);
+            await ETTask.CompletedTask;
         }
         
         public static void SetDieState(this HeadHpViewComponent self,int time)

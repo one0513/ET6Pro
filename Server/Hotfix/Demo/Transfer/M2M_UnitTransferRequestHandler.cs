@@ -39,9 +39,9 @@ namespace ET
 
 
 	            var num = unit.GetComponent<NumericComponent>();
-	            float x =  num.GetAsFloat(NumericType.PosX);
-	            float z =  num.GetAsFloat(NumericType.PosZ);
-	            unit.Position = new Vector3(x, unit.Position.x, z);
+	            // float x =  num.GetAsFloat(NumericType.PosX);
+	            // float z =  num.GetAsFloat(NumericType.PosZ);
+	            unit.Position = new Vector3(0, 0, -2);
 	            num.Set(NumericType.IsAlive,1);
 	            num.Set(NumericType.Hp,num.GetAsInt(NumericType.MaxHp));
 	            

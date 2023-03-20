@@ -16,7 +16,7 @@ namespace ET
             args.Unit.AddComponent<GameObjectComponent>().GameObject = go;
             args.Unit.GetComponent<GameObjectComponent>().SpriteRenderer = go.GetComponent<SpriteRenderer>();
             args.Unit.AddComponent<AnimatorComponent>();
-            args.Unit.AddComponent<HeadHpViewComponent>().SetHp();
+            args.Unit.AddComponent<HeadHpViewComponent>().SetHp().Coroutine();
             if (args.Unit.Type == UnitType.Player)
             {
                 float x =  args.Unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.PosX);

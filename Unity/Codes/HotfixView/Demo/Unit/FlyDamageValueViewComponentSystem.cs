@@ -51,6 +51,7 @@ namespace ET
         
         public static async ETTask SpawnFlyDamage(this FlyDamageValueViewComponent self,Vector3 startPos,long DamageValue)
         {
+            await TimerComponent.Instance.WaitAsync(1000);
             GameObject flyDamageValueGameObject = GameObjectPoolHelper.GetObjectFromPool("flyDamageValue");
             flyDamageValueGameObject.transform.SetParent(GlobalComponent.Instance.Unit);
             self.FlyingDamageSet.Add(flyDamageValueGameObject);

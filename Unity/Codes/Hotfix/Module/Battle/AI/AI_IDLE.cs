@@ -23,14 +23,14 @@
 
             if (myUnit.Type == UnitType.Player)
             {
-                if (battleUnitFind.GetNearestMonsetr() == null)
+                if (battleUnitFind.HasLifeMonsetr() == null)
                 {
                     return 0;
                 }
             }
             else
             {
-                if ( battleUnitFind.CheckHasLifePlayer())
+                if ( battleUnitFind.HasLifePlayer()== null)
                 {
                     Log.Info("No Target");
                     return 0;

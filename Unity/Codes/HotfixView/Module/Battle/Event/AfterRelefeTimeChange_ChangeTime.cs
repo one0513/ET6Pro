@@ -11,7 +11,7 @@ namespace ET
             if (hpViewComponent != null)
             {
                 hpViewComponent.SetDieState(args.Time);
-                hpViewComponent.SetHp();
+                hpViewComponent.SetHp().Coroutine();
                 
             }
         }

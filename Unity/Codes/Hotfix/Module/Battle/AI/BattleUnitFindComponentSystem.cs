@@ -116,6 +116,44 @@ namespace ET
             return nearestUnit;
         }
         
+        public static Unit HasLifePlayer(this BattleUnitFindComponent self)
+        {
+            var list = self.Parent.DomainScene().GetComponent<RoomInfoComponent>().GetOnlinePlayerId(self.RoomId);
+            for (int i = 0; i < list.Count; i++)
+            {
+                Unit playerUnit = self.Parent.DomainScene().GetComponent<UnitComponent>().Get(list[i]);
+                bool state = playerUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.IsAlive) == 1;
+                if (state)
+                {
+                    return playerUnit;
+                }
+            }
+
+            return null;
+        }
+        
+        public static Unit HasLifeMonsetr(this BattleUnitFindComponent self)
+        {
+
+            var monsterIds = self.Parent.DomainScene().GetComponent<MonsterFactoryComponent>().Get(self.RoomId);
+            if (monsterIds == null || monsterIds.Count <= 0)
+            {
+                return null;
+            }
+
+            for (int i = 0; i < monsterIds.Count; i++)
+            {
+                Unit monsetrUnit = self.Parent.DomainScene().GetComponent<UnitComponent>().Get(monsterIds[i]);
+                bool state = monsetrUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.IsAlive) == 1;
+                if (state)
+                {
+                    return monsetrUnit;
+                }
+
+            }
+            return null;
+        }
+        
         
         public static async ETTask<Unit> GetNearestPlayer(this BattleUnitFindComponent self)
         {

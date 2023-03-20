@@ -189,10 +189,10 @@ namespace ET
             
             unitComponent.Add(unit);
 
-            unit.AddComponent<MoveComponent>();
-            unit.AddComponent<PathfindingComponent, string>("Map");
+            // unit.AddComponent<MoveComponent>();
+            // unit.AddComponent<PathfindingComponent, string>("Map");
             
-            unit.AddComponent<AIComponent,int>(3);
+            unit.AddComponent<AIComponent,int>(4);
             unit.AddComponent<CombatUnitComponent>();
             // var aoiu = unit.AddComponent<AOIUnitComponent,Vector3,Quaternion, UnitType,int>
             //         (unit.Position,unit.Rotation,unit.Type,5);
