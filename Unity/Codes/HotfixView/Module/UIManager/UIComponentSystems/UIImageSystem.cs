@@ -42,6 +42,42 @@ namespace ET
                 self.bgAutoFit =  self.GetGameObject().GetComponent<BgAutoFit>();
             }
         }
+        
+         public static async ETTask SetAtlaAndSprite(this UIImage self,string atlaName,string sprite_path,bool setNativeSize = false)
+        {
+            CoroutineLock coroutine = null;
+            try
+            {
+                coroutine = await CoroutineLockComponent.Instance.Wait(CoroutineLockType.UIImage, self.Id);
+                if (sprite_path == self.spritePath) return;
+                self.ActivatingComponent();
+                if (self.bgAutoFit != null) self.bgAutoFit.enabled = false;
+                self.image.enabled = false;
+                var base_sprite_path = self.spritePath;
+                self.spritePath = sprite_path;
+                if (string.IsNullOrEmpty(sprite_path))
+                {
+                    self.image.sprite = null;
+                    self.image.enabled = true;
+                }
+                else
+                {
+                    string path = $"UI/{atlaName}/Prefabs/{atlaName}.prefab";
+                    GameObject go = await AssetsBundleHelper.LoadOneAssetAsync(path) as GameObject;
+                    CAtlas ca = go.GetComponent<CAtlas>();
+                    self.image.Atlas = ca;
+                    // self.image.sprite = AssetsBundleHelper.LoadOneSubAssetSync<Sprite>(path,sprite_path);
+                    self.image.enabled = true;
+                    self.image.SpriteName = sprite_path;
+
+                }
+            }
+            finally
+            {
+                coroutine?.Dispose();
+            }
+        }
+        
         public static async ETTask SetSpritePath(this UIImage self,string sprite_path,bool setNativeSize = false)
         {
             CoroutineLock coroutine = null;
@@ -61,30 +97,38 @@ namespace ET
                 }
                 else
                 {
-                    var sprite = await ImageLoaderComponent.Instance.LoadImageAsync(sprite_path);
+                    // string path = $"UI/{self.image.AtlasName}/Prefabs/{self.image.AtlasName}.prefab";
+                    
+                    // Sprite s = AssetsBundleHelper.LoadOneSubAssetSync<Sprite>(path,sprite_path);
+                    // self.image.sprite = AssetsBundleHelper.LoadOneSubAssetSync<Sprite>(path,sprite_path);
                     self.image.enabled = true;
-                    if (sprite == null)
-                    {
-                        ImageLoaderComponent.Instance.ReleaseImage(sprite_path);
-                        return;
-                    }
-                    self.image.sprite = sprite;
-                    if(setNativeSize)
-                        self.SetNativeSize();
-                    if (self.bgAutoFit != null)
-                    {
-                        self.bgAutoFit.bgSprite = sprite;
-                        self.bgAutoFit.enabled = true;
-                    }
+                    self.image.SpriteName = sprite_path;
+                    // var sprite = await ImageLoaderComponent.Instance.LoadImageAsync(sprite_path);
+                    // self.image.enabled = true;
+                    // if (sprite == null)
+                    // {
+                    //     ImageLoaderComponent.Instance.ReleaseImage(sprite_path);
+                    //     return;
+                    // }
+                    // self.image.sprite = sprite;
+                    // if(setNativeSize)
+                    //     self.SetNativeSize();
+                    // if (self.bgAutoFit != null)
+                    // {
+                    //     self.bgAutoFit.bgSprite = sprite;
+                    //     self.bgAutoFit.enabled = true;
+                    // }
                 }
-                if(!string.IsNullOrEmpty(base_sprite_path))
-                    ImageLoaderComponent.Instance.ReleaseImage(base_sprite_path);
+                // if(!string.IsNullOrEmpty(base_sprite_path))
+                //     ImageLoaderComponent.Instance.ReleaseImage(base_sprite_path);
             }
             finally
             {
                 coroutine?.Dispose();
             }
         }
+        
+        
 
         public static void SetNativeSize(this UIImage self)
         {

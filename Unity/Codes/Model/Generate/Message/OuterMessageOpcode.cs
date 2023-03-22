@@ -99,5 +99,21 @@ namespace ET
 		 public const ushort M2C_PlayerOutRoom = 10097;
 		 public const ushort M2C_UpdatePlayerDieTime = 10099;
 		 public const ushort M2C_MonsterDie = 10100;
+		 public const ushort ItemInfo = 10101;
+		 public const ushort M2C_AllItemsList = 10102;
+		 public const ushort M2C_ItemUpdateOpInfo = 10103;
+		 public const ushort AttributeEntryProto = 10104;
+		 public const ushort EquipInfoProto = 10105;
+		 public const ushort C2M_EquipItem = 10106;
+		 public const ushort M2C_EquipItem = 10107;
+		 public const ushort C2M_UnloadEquipItem = 10108;
+		 public const ushort M2C_UnloadEquipItem = 10109;
+		 public const ushort C2M_SellItem = 10110;
+		 public const ushort M2C_SellItem = 10111;
+		 public const ushort C2M_UseItem = 10112;
+		 public const ushort M2C_UseItem = 10113;
+		 public const ushort ForgeInfoProto = 10114;
+		 public const ushort C2M_StartForge = 10115;
+		 public const ushort M2C_StartForge = 10116;
 	}
 }

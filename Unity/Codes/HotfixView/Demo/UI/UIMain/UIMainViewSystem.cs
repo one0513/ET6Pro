@@ -46,11 +46,16 @@ namespace ET
 			self.btnOutRoom = self.AddUIComponent<UIButton>("btnOutRoom");
 			self.btnMyRoom= self.AddUIComponent<UIButton>("btnMyRoom");
 			self.btnChangeMap = self.AddUIComponent<UIButton>("btnChangeMap");
+			self.btnBag = self.AddUIComponent<UIButton>("btnBag");
+			self.btnForge = self.AddUIComponent<UIButton>("btnForge");
+
 			
 			self.btnRole.SetOnClick(()=>{self.OnClickbtnRole().Coroutine();});
 			self.btnAdventure.SetOnClick(()=>{self.OnClickbtnAdventure().Coroutine();});
 			self.btnNextAdventure.SetOnClick(()=>{self.OnClickbtnNextAdventure().Coroutine();});
 			self.btnTask.SetOnClick(()=>{self.OnClickbtnTask();});
+			self.btnBag.SetOnClick(()=>{self.OnClickbtnBag();});
+			self.btnForge.SetOnClick(()=>{self.OnClickbtnForge();});
 			
 			self.btnCreateRoom.SetOnClick(()=>{self.OnClickbtnCreateRoom().Coroutine();});
 			self.btnRoomList.SetOnClick(()=>{self.OnClickbtnRoomList().Coroutine();});
@@ -77,6 +82,8 @@ namespace ET
 			self.btnOutRoom.SetOnClick(()=>{self.OnClickbtnOutRoom().Coroutine();});
 			self.btnMyRoom.SetOnClick(()=>{self.OnClickbtnMyRoom().Coroutine();});
 			self.btnChangeMap.SetOnClick(()=>{self.OnClickbtnChangeMap().Coroutine();});
+			self.btnBag.SetOnClick(()=>{self.OnClickbtnBag();});
+			self.btnForge.SetOnClick(()=>{self.OnClickbtnForge();});
 		}
 
 	}
@@ -123,6 +130,16 @@ namespace ET
 		public static void OnClickbtnTask(this UIMainView self)
 		{
 			UIManagerComponent.Instance.OpenWindow<UITaskView, Scene>(UITaskView.PrefabPath, self.scene).Coroutine();
+		}
+		
+		public static void OnClickbtnBag(this UIMainView self)
+		{
+			UIManagerComponent.Instance.OpenWindow<UIBagView, Scene>(UIBagView.PrefabPath, self.scene).Coroutine();
+		}
+		
+		public static void OnClickbtnForge(this UIMainView self)
+		{
+			UIManagerComponent.Instance.OpenWindow<UIForgeView, Scene>(UIForgeView.PrefabPath, self.scene).Coroutine();
 		}
 
 		public static async ETTask OnClickbtnCreateRoom(this UIMainView self)

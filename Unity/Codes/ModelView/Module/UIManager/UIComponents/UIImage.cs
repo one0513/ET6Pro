@@ -12,7 +12,7 @@ namespace ET
     public class UIImage:Entity,IAwake,IOnCreate,IOnCreate<string>,IOnEnable
     {
         public string spritePath;
-        public CSprite image;
+        public CSprite image{get;set;}
         public BgAutoFit bgAutoFit;
     }
 }

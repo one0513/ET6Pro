@@ -28,6 +28,14 @@ namespace ET
 		public UIButton btnClose;
 		public Scene scene;
 
+		public UIEmptyGameobject Weapon;
+		public UIEmptyGameobject Deputy;
+		public UIEmptyGameobject Casque;
+		public UIEmptyGameobject Armour;
+
+		public List<UIBagItem> Items = new List<UIBagItem>();
+
+		public bool isInitEquip = false;
 
 	}
 }

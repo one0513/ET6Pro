@@ -25,6 +25,9 @@ namespace ET
 		public UIButton btnOutRoom;
 		public UIButton btnMyRoom;
 		public UIButton btnChangeMap;
+		
+		public UIButton btnBag;
+		public UIButton btnForge;
 		public Scene scene;
 
 	}

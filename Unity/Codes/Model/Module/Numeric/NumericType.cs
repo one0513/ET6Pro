@@ -69,6 +69,10 @@ namespace ET
                     __Map.Add("ATKRageBase",ATKRageBase);
                     __Map.Add("RestartTime",RestartTime);
                     __Map.Add("RestartTimeBase",RestartTimeBase);
+                    __Map.Add("MaxBagCapacity",MaxBagCapacity);
+                    __Map.Add("MaxBagCapacityBase",MaxBagCapacityBase);
+                    __Map.Add("Gold",Gold);
+                    __Map.Add("GoldBase",GoldBase);
                 }
                 return __Map;
             }
@@ -189,5 +193,15 @@ namespace ET
 		public const int RestartTime = 3023;
 		/// <summary> 复活时间Base </summary>
 		public const int RestartTimeBase = 3023 * 10 + 1;
+
+		/// <summary> 背包最大容量 </summary>
+		public const int MaxBagCapacity = 3024;
+		/// <summary> 背包最大容量Base </summary>
+		public const int MaxBagCapacityBase = 3024 * 10 + 1;
+
+		/// <summary> 金币 </summary>
+		public const int Gold = 3025;
+		/// <summary> 金币Base </summary>
+		public const int GoldBase = 3025 * 10 + 1;
     }
 }

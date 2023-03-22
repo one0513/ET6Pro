@@ -14,6 +14,8 @@ namespace ET
             zoneScene.AddComponent<ServerInfosComponent>();
             zoneScene.AddComponent<RoleInfosComponent>();
             zoneScene.AddComponent<TasksComponent>();
+            zoneScene.AddComponent<BagComponent>();
+            zoneScene.AddComponent<EquipmentsComponent>();
             
             
             Game.EventSystem.Publish(new EventType.AfterCreateZoneScene() {ZoneScene = zoneScene});

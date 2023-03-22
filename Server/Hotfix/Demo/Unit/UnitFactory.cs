@@ -119,6 +119,8 @@ namespace ET
                             numericComponent.SetNoEvent(config.Key,config.Value.BaseValue);
                         }
                     }
+                    unit.AddComponent<BagComponent>();
+                    unit.AddComponent<EquipmentsComponent>();
                     unit.AddComponent<TasksComponent>();
                     unitComponent.Add(unit);
                     // 进入地图再加入aoi

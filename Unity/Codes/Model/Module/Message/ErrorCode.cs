@@ -58,6 +58,17 @@ namespace ET
         
         public const int ERR_CurRoomError = 200039; //已解散或满员
 
+        public const int ERR_ItemNotExist = 200040;
+        public const int ERR_AddBagItemError = 200041;
+        public const int ERR_EquipItemError = 200042;
+        public const int ERR_BagMaxLoad = 200043;
+        
+        public const int ERR_ItemNumNotEnough = 200044;
+        public const int ERR_ItemCanNotUse = 200045;
+
+        public const int ERR_ForgeMarNotEnough = 200046;//锻造材料不足
+
+
 
     }
 }

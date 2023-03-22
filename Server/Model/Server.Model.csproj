@@ -30,6 +30,38 @@
       <Link>Demo\Adventure\BattleRoundResult.cs</Link>
     </Compile>
 
+    <Compile Include="..\..\Unity\Codes\Model\Demo\Bag\BagComponent.cs">
+      <Link>Demo\Bag\BagComponent.cs</Link>
+    </Compile>
+
+    <Compile Include="..\..\Unity\Codes\Model\Demo\Euqipment\EquipmentsComponent.cs">
+      <Link>Demo\Equipment\EquipmentsComponent.cs</Link>
+    </Compile>
+
+    <Compile Include="..\..\Unity\Codes\Model\Demo\Euqipment\EquipPosition.cs">
+      <Link>Demo\Equipment\EquipPosition.cs</Link>
+    </Compile>
+
+    <Compile Include="..\..\Unity\Codes\Model\Demo\Item\AttributeEntry.cs">
+      <Link>Demo\Item\AttributeEntry.cs</Link>
+    </Compile>
+
+    <Compile Include="..\..\Unity\Codes\Model\Demo\Item\EquipInfoComponent.cs">
+      <Link>Demo\Item\EquipInfoComponent.cs</Link>
+    </Compile>
+
+    <Compile Include="..\..\Unity\Codes\Model\Demo\Item\Item.cs">
+      <Link>Demo\Item\Item.cs</Link>
+    </Compile>
+
+    <Compile Include="..\..\Unity\Codes\Model\Demo\Item\ItemQuality.cs">
+      <Link>Demo\Item\ItemQuality.cs</Link>
+    </Compile>
+
+    <Compile Include="..\..\Unity\Codes\Model\Demo\Item\ItemType.cs">
+      <Link>Demo\Item\ItemType.cs</Link>
+    </Compile>
+
     <Compile Include="..\..\Unity\Codes\Model\Demo\Role\RoleInfo.cs">
       <Link>Demo\Role\RoleInfo.cs</Link>
     </Compile>

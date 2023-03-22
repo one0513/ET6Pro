@@ -10,11 +10,13 @@ namespace ET
 	[FriendClass(typeof(UIRoleView))]
 	public class UIRoleViewOnEnableSystem : OnEnableSystem<UIRoleView,Scene>
 	{
-		public override void OnEnable(UIRoleView self, Scene scene)
+		public override async void OnEnable(UIRoleView self, Scene scene)
 		{
 			self.scene = scene;
 			self.UpdateView();
 			
+			await self.InitEquipItem();
+			self.UpdateEquipItems();
 		}
 	}
 	
@@ -42,6 +44,12 @@ namespace ET
 			self.lblDmg = self.AddUIComponent<UITextmesh>("spBg/sp/lblDmg");
 			self.btnUpDmg = self.AddUIComponent<UIButton>("spBg/sp/lblDmg/btnUpDmg");
 			self.btnUpTip = self.AddUIComponent<UIButton>("spBg/sp/btnUpTip");
+			
+			self.Weapon = self.AddUIComponent<UIEmptyGameobject>("spBg/EquipmentTransform/Weapon");
+			self.Deputy = self.AddUIComponent<UIEmptyGameobject>("spBg/EquipmentTransform/Deputy");
+			self.Casque = self.AddUIComponent<UIEmptyGameobject>("spBg/EquipmentTransform/Casque");
+			self.Armour = self.AddUIComponent<UIEmptyGameobject>("spBg/EquipmentTransform/Armour");
+			
 			self.btnUpLevel.SetOnClick(()=>{self.OnClickbtnUpLevel();});
 			self.btnClose.SetOnClick(()=>{self.OnClickbtnClose().Coroutine();});
 			self.btnUpAtk.SetOnClick(()=>{self.OnClickbtnUpAtk();});
@@ -49,6 +57,8 @@ namespace ET
 			self.btnUpHp.SetOnClick(()=>{self.OnClickbtnUpHp();});
 			self.btnUpDmg.SetOnClick(()=>{self.OnClickbtnUpDmg();});
 			self.btnUpTip.SetOnClick(()=>{self.OnClickbtnUpTip();});
+			
+			
 		}
 
 	}
@@ -126,6 +136,95 @@ namespace ET
 		static void AddAtrPoint(this UIRoleView self,int type)
 		{
 			NumericHelper.ReqeustAddAttributePoint(self.scene, type).Coroutine();
+		}
+		
+		public static async ETTask InitEquipItem(this UIRoleView self)
+		{
+			if (self.isInitEquip)
+				return;
+			for (int i = 1; i < 5; i++)
+			{
+				GameObject gameObject = await GameObjectPoolComponent.Instance.GetGameObjectAsync(UIBagItem.PrefabPath);
+				UIBagItem ui = self.AddChild<UIBagItem>();
+				var transform = gameObject.transform;
+				ui.AddUIComponent<UITransform,Transform>("", transform);
+				transform = gameObject.transform;
+
+				switch (i)
+				{
+					case (int)EquipPosition.Weapon:
+						transform.SetParent(self.Weapon.GetTransform());
+						break;
+					case (int)EquipPosition.Deputy:
+						transform.SetParent(self.Deputy.GetTransform());
+						break;
+					case (int)EquipPosition.Casque:
+						transform.SetParent(self.Casque.GetTransform());
+						break;
+					case (int)EquipPosition.Armour:
+						transform.SetParent(self.Armour.GetTransform());
+						break;
+				}
+				
+				transform.localPosition = Vector3.zero;
+				transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+				ui.SetActive(false);
+				UIWatcherComponent.Instance.OnCreate(ui);
+				self.Items.Add(ui);
+			}
+
+			self.isInitEquip = true;
+		}
+		
+		public static void  UpdateEquipItems(this UIRoleView self)
+		{
+			for (int i = 0; i < self.Items.Count; i++)
+			{
+				self.Items[i].SetActive(false);
+			}
+
+			for (int i = 1; i < 5; i++)
+			{
+				switch (i)
+				{
+					case (int)EquipPosition.Weapon:
+						Item Weapon = self.scene.GetComponent<EquipmentsComponent>().GetItemByPosition(EquipPosition.Weapon);
+						if (Weapon != null)
+						{
+							self.Items[i-1].SetData(Weapon,self.scene);
+							self.Items[i-1].SetActive(true);
+						}
+						
+						break;
+					case (int)EquipPosition.Deputy:
+						Item Deputy = self.scene.GetComponent<EquipmentsComponent>().GetItemByPosition(EquipPosition.Deputy);
+						if (Deputy != null)
+						{
+							self.Items[i-1].SetData(Deputy,self.scene);
+							self.Items[i-1].SetActive(true);
+						}
+						
+						break;
+					case (int)EquipPosition.Casque:
+						Item Casque = self.scene.GetComponent<EquipmentsComponent>().GetItemByPosition(EquipPosition.Casque);
+						if (Casque != null)
+						{
+							self.Items[i-1].SetData(Casque,self.scene);
+							self.Items[i-1].SetActive(true);
+						}
+						
+						break;
+					case (int)EquipPosition.Armour:
+						Item Armour = self.scene.GetComponent<EquipmentsComponent>().GetItemByPosition(EquipPosition.Armour);
+						if (Armour != null)
+						{
+							self.Items[i-1].SetData(Armour,self.scene);
+							self.Items[i-1].SetActive(true);
+						}
+						
+						break;
+				}
+			}
 		}
 	}
 

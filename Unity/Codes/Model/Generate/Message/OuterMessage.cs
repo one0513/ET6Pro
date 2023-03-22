@@ -1532,4 +1532,255 @@ namespace ET
 
 	}
 
+	[Message(OuterOpcode.ItemInfo)]
+	[ProtoContract]
+	public partial class ItemInfo: Object
+	{
+		[ProtoMember(1)]
+		public long ItemUid { get; set; }
+
+		[ProtoMember(2)]
+		public int ItemConfigId { get; set; }
+
+		[ProtoMember(3)]
+		public int ItemQuality { get; set; }
+
+		[ProtoMember(4)]
+		public int ItemAccount { get; set; }
+
+		[ProtoMember(5)]
+		public EquipInfoProto EquipInfo { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_AllItemsList)]
+	[ProtoContract]
+	public partial class M2C_AllItemsList: Object, IActorMessage
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public List<ItemInfo> ItemInfoList = new List<ItemInfo>();
+
+		[ProtoMember(2)]
+		public int ContainerType { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_ItemUpdateOpInfo)]
+	[ProtoContract]
+	public partial class M2C_ItemUpdateOpInfo: Object, IActorMessage
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public ItemInfo ItemInfo { get; set; }
+
+		[ProtoMember(2)]
+		public int Op { get; set; }
+
+		[ProtoMember(3)]
+		public int ContainerType { get; set; }
+
+	}
+
+	[Message(OuterOpcode.AttributeEntryProto)]
+	[ProtoContract]
+	public partial class AttributeEntryProto: Object
+	{
+		[ProtoMember(1)]
+		public long Id { get; set; }
+
+		[ProtoMember(2)]
+		public int Key { get; set; }
+
+		[ProtoMember(3)]
+		public long Value { get; set; }
+
+		[ProtoMember(4)]
+		public int EntryType { get; set; }
+
+	}
+
+	[Message(OuterOpcode.EquipInfoProto)]
+	[ProtoContract]
+	public partial class EquipInfoProto: Object
+	{
+		[ProtoMember(1)]
+		public long Id { get; set; }
+
+		[ProtoMember(2)]
+		public int Score { get; set; }
+
+		[ProtoMember(3)]
+		public List<AttributeEntryProto> AttributeEntryProtoList = new List<AttributeEntryProto>();
+
+	}
+
+	[ResponseType(nameof(M2C_EquipItem))]
+	[Message(OuterOpcode.C2M_EquipItem)]
+	[ProtoContract]
+	public partial class C2M_EquipItem: Object, IActorLocationRequest
+	{
+		[ProtoMember(1)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(2)]
+		public long ItemUid { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_EquipItem)]
+	[ProtoContract]
+	public partial class M2C_EquipItem: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_UnloadEquipItem))]
+	[Message(OuterOpcode.C2M_UnloadEquipItem)]
+	[ProtoContract]
+	public partial class C2M_UnloadEquipItem: Object, IActorLocationRequest
+	{
+		[ProtoMember(1)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(2)]
+		public int EquipPosition { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_UnloadEquipItem)]
+	[ProtoContract]
+	public partial class M2C_UnloadEquipItem: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_SellItem))]
+	[Message(OuterOpcode.C2M_SellItem)]
+	[ProtoContract]
+	public partial class C2M_SellItem: Object, IActorLocationRequest
+	{
+		[ProtoMember(1)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(2)]
+		public long ItemUid { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_SellItem)]
+	[ProtoContract]
+	public partial class M2C_SellItem: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_UseItem))]
+	[Message(OuterOpcode.C2M_UseItem)]
+	[ProtoContract]
+	public partial class C2M_UseItem: Object, IActorLocationRequest
+	{
+		[ProtoMember(1)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(2)]
+		public long ItemUid { get; set; }
+
+		[ProtoMember(3)]
+		public int Num { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_UseItem)]
+	[ProtoContract]
+	public partial class M2C_UseItem: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
+	[Message(OuterOpcode.ForgeInfoProto)]
+	[ProtoContract]
+	public partial class ForgeInfoProto: Object
+	{
+		[ProtoMember(1)]
+		public long ItemUid { get; set; }
+
+		[ProtoMember(2)]
+		public int Num { get; set; }
+
+		[ProtoMember(3)]
+		public int MarCfgId { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_StartForge))]
+	[Message(OuterOpcode.C2M_StartForge)]
+	[ProtoContract]
+	public partial class C2M_StartForge: Object, IActorLocationRequest
+	{
+		[ProtoMember(1)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(2)]
+		public List<ForgeInfoProto> Infos = new List<ForgeInfoProto>();
+
+		[ProtoMember(3)]
+		public int ForgePos { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_StartForge)]
+	[ProtoContract]
+	public partial class M2C_StartForge: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public ItemInfo ItemInfo { get; set; }
+
+	}
+
 }

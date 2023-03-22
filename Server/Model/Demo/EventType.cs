@@ -55,5 +55,12 @@ namespace ET
 			public int LevelId;
 		}
 		
+		public struct ChangeEquipItem
+		{
+			public Unit Unit;
+			public Item Item;
+			public EquipOp EquipOp;
+		}
+		
 	}
 }

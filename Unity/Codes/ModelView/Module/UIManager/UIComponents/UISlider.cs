@@ -9,8 +9,8 @@ namespace ET
     public class UISlider: Entity,IAwake,IOnCreate,IOnEnable
     {
         public Slider slider;
-        public UnityAction<float> onValueChanged;
-        public bool isWholeNumbers;
+        public UnityAction<float> onValueChanged{ get; set; }
+        public bool isWholeNumbers { get; set; }
         public ArrayList valueList;
     }
 }

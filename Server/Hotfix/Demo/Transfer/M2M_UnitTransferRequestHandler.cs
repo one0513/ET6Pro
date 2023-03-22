@@ -33,8 +33,8 @@ namespace ET
 		            unit.AddComponent(entity);
 	            }
 			
-	            unit.AddComponent<MoveComponent>();
-	            unit.AddComponent<PathfindingComponent, string>("Map");
+	            // unit.AddComponent<MoveComponent>();
+	            // unit.AddComponent<PathfindingComponent, string>("Map");
 	            unit.AddComponent<AIComponent,int>(4);
 
 
@@ -104,13 +104,19 @@ namespace ET
 		            await scene.GetComponent<MonsterFactoryComponent>().InitRoomMonster(roomId,unit);
 		            unit.AddComponent<BattleUnitFindComponent, long>(roomId);
 	            }
-	            
-	            
+
 	            
 	            
 				//通知客户端同步背包信息
-				//ItemUpdateNoticeHelper.SyncAllBagItems(unit);
-				//ItemUpdateNoticeHelper.SyncAllEquipItems(unit);
+				ItemUpdateNoticeHelper.SyncAllBagItems(unit);
+				ItemUpdateNoticeHelper.SyncAllEquipItems(unit);
+				
+				BagHelper.AddItemByConfigId(unit,1011,100);
+				BagHelper.AddItemByConfigId(unit,1012,100);
+				BagHelper.AddItemByConfigId(unit,1013,100);
+				BagHelper.AddItemByConfigId(unit,1014,100);
+				BagHelper.AddItemByConfigId(unit,1015,100);
+				BagHelper.AddItemByConfigId(unit,1016,100);
 
 				//通知客户端同步打造信息
 				//ForgeHelper.SyncAllProduction(unit);
@@ -132,6 +138,15 @@ namespace ET
 	            m2CCreateUnits.Unit = UnitHelper.CreateUnitInfo(unit);
 	            MessageHelper.SendToClient(unit, m2CCreateUnits);
 	            response.NewInstanceId = unit.InstanceId;
+	            
+	            //通知客户端同步背包信息
+	            ItemUpdateNoticeHelper.SyncAllBagItems(unit);
+	            ItemUpdateNoticeHelper.SyncAllEquipItems(unit);
+
+	            //通知客户端同步打造信息
+	            //ForgeHelper.SyncAllProduction(unit);
+			
+	            TaskNoticeHelper.SyncAllTaskInfo(unit);
 	            
 	            //初始化地图怪物
 	            long roomId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.RoomID);

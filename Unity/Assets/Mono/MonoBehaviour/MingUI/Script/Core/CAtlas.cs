@@ -89,19 +89,19 @@ public class CAtlas : MonoBehaviour
                 return spriteDic[theName];
             }
         }
-        //if (alpha) {
-        //    foreach (Sprite sprite in spriteAlphaList) {
-        //        if (sprite.name == theName) {
-        //            return sprite;
-        //        }
-        //    }
-        //} else {
-        //    foreach (Sprite sprite in spriteList) {
-        //        if (sprite.name == theName) {
-        //            return sprite;
-        //        }
-        //    }
-        //}
+        if (alpha) {
+            // foreach (Sprite sprite in spriteAlphaList) {
+            //     if (sprite.name == theName) {
+            //         return sprite;
+            //     }
+            // }
+        } else {
+            foreach (Sprite sprite in spriteList) {
+                if (sprite.name == theName) {
+                    return sprite;
+                }
+            }
+        }
         return null;
     }
 
